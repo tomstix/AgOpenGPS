@@ -28,12 +28,10 @@
     <FileVersion>5.1.6</FileVersion>
     <LangVersion>7.1</LangVersion>
     <OutputPath>..\..\AgOpenGPS_v5\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <RunCodeAnalysis>false</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>BriansRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <NoWarn />
+    <CodeAnalysisRuleSet>BriansRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>AOG.ico</ApplicationIcon>
