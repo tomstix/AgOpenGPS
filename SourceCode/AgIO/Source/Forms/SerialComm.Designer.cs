@@ -1,10 +1,9 @@
 ﻿//Please, if you use this, share the improvements
 
-using System.IO.Ports;
 using System;
 using System.Windows.Forms;
 using System.Linq;
-using System.Globalization;
+using System.IO.Ports;
 
 namespace AgIO
 {
