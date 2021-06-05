@@ -1,17 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8AE86C22-D6EA-46D3-A053-C10B15EDEC8A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>AgDiag</RootNamespace>
-    <AssemblyName>AgDiag</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
+    <TargetFramework>net46</TargetFramework>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,125 +17,90 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <AssemblyTitle>AgDiag</AssemblyTitle>
+    <Product>AgDiag</Product>
+    <NeutralLanguage>en-CA</NeutralLanguage>
+    <Copyright>Copyright ©  2020</Copyright>
+    <AssemblyVersion>5.1.5</AssemblyVersion>
+    <FileVersion>5.1.5</FileVersion>
     <OutputPath>..\..\..\AgOpenGPS_v5\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\..\..\AgOpenGPS_v5\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>AgDiag.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.*" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.*" />
+    <PackageReference Include="System.Net.Http" Version="4.*" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Keypad">
       <HintPath>..\Keypad.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="System" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CGLM.cs" />
-    <Compile Include="Classes\CSettings.cs" />
-    <Compile Include="Forms\FormLoop.cs">
+    <Compile Update="Forms\FormLoop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormLoop.Designer.cs">
+    <Compile Update="Forms\FormLoop.Designer.cs">
       <DependentUpon>FormLoop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormTimedMessage.cs">
+    <Compile Update="Forms\FormTimedMessage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormTimedMessage.designer.cs">
+    <Compile Update="Forms\FormTimedMessage.designer.cs">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\FormLoop.resx">
+    <EmbeddedResource Update="Forms\FormLoop.resx">
       <DependentUpon>FormLoop.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="gStr.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="gStr.Designer.cs">
+    <Compile Update="gStr.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.resx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SerialComm.Designer.cs">
+    <Compile Update="Forms\SerialComm.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormLoop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Controls.Designer.cs">
+    <Compile Update="Forms\Controls.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormLoop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UDP.Designer.cs">
+    <Compile Update="Forms\UDP.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormLoop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
+    <Compile Update="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="AgDiag.ico" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Remove="Settings.cs" />
+    <Compile Remove="Forms\FormSteerGraph.cs" />
+    <Compile Remove="Forms\FormSteerGraph.Designer.cs" />
+  </ItemGroup>
 </Project>

@@ -1,20 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Resource.Embedder.2.1.1\build\Resource.Embedder.props" Condition="Exists('..\packages\Resource.Embedder.2.1.1\build\Resource.Embedder.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{73933709-370E-43B3-8563-CC0F48FF587B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgOpenGPS</RootNamespace>
-    <AssemblyName>AgOpenGPS</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>net46</TargetFramework>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -30,60 +19,46 @@
     <ApplicationVersion>1.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\..\AgOpenGPS_v5\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <AssemblyTitle>AgOpenGPS</AssemblyTitle>
+    <Company>AgOpenGPS</Company>
+    <Product>AgOpenGPS</Product>
+    <Description>Ag Guidance Program</Description>
+    <Copyright>Copyright ©  2016</Copyright>
+    <AssemblyVersion>5.1.6</AssemblyVersion>
+    <FileVersion>5.1.6</FileVersion>
     <LangVersion>7.1</LangVersion>
+    <OutputPath>..\..\AgOpenGPS_v5\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\..\AgOpenGPS_v5\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRuleSet>BriansRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
-    <NoWarn>
-    </NoWarn>
-    <Prefer32Bit>false</Prefer32Bit>
-    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
-    <DebugSymbols>false</DebugSymbols>
-    <LangVersion>7.1</LangVersion>
+    <NoWarn />
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>AOG.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup />
   <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
+    <StartupObject />
   </PropertyGroup>
-  <PropertyGroup />
-  <PropertyGroup />
+  <ItemGroup>
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.*" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Resource.Embedder" Version="2.1.1" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="ColorPicker">
       <HintPath>References\ColorPicker.dll</HintPath>
     </Reference>
     <Reference Include="Control.Draggable, Version=1.0.7235.37687, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>References\Control.Draggable.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Keypad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>References\Keypad.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.Build.Utilities.v4.0" />
@@ -91,596 +66,513 @@
       <HintPath>References\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="OpenTK.GLControl, Version=1.2.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>References\OpenTK.GLControl.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="RepeatButtonControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>References\RepeatButtonControl.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="System" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Device" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebEye.Controls.WinForms.WebCameraControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>References\WebEye.Controls.WinForms.WebCameraControl.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CGuidance.cs" />
-    <Compile Include="Classes\CRecordedPath.cs" />
-    <Compile Include="Classes\CSettings.cs" />
-    <Compile Include="Classes\CSunTimes.cs" />
-    <Compile Include="Classes\CFieldData.cs" />
-    <Compile Include="Classes\CBoundaryLines.cs" />
-    <Compile Include="Classes\CDubins.cs" />
-    <Compile Include="Classes\CAHRS.cs" />
-    <Compile Include="Classes\CAutoSteer.cs" />
-    <Compile Include="Classes\CABCurve.cs" />
-    <Compile Include="Classes\CFont.cs" />
-    <Compile Include="Classes\CHeadLines.cs" />
-    <Compile Include="Classes\CHead.cs" />
-    <Compile Include="Classes\CSim.cs" />
-    <Compile Include="Classes\CTram.cs" />
-    <Compile Include="Classes\CWorkSwitch.cs" />
-    <Compile Include="Classes\CYouTurn.cs" />
-    <Compile Include="Classes\CBoundary.cs" />
-    <Compile Include="Classes\CFlag.cs" />
-    <Compile Include="Classes\CABLine.cs" />
-    <Compile Include="Classes\CCamera.cs" />
-    <Compile Include="Classes\CContour.cs" />
-    <Compile Include="Classes\CModuleComm.cs" />
-    <Compile Include="Classes\CNMEA.cs" />
-    <Compile Include="Classes\CSection.cs" />
-    <Compile Include="Classes\CPointData.cs" />
-    <Compile Include="Classes\CVehicle.cs" />
-    <Compile Include="Classes\CWorldGrid.cs" />
-    <Compile Include="Classes\CTurn.cs" />
-    <Compile Include="Classes\CTurnLines.cs" />
-    <Compile Include="Classes\CTool.cs" />
-    <Compile Include="Forms\FormFieldKML.cs">
+    <Compile Update="Forms\FormFieldKML.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormFieldKML.Designer.cs">
+    <Compile Update="Forms\FormFieldKML.Designer.cs">
       <DependentUpon>FormFieldKML.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Pickers\FormColorPicker.cs">
+    <Compile Update="Forms\Pickers\FormColorPicker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Pickers\FormColorPicker.Designer.cs">
+    <Compile Update="Forms\Pickers\FormColorPicker.Designer.cs">
       <DependentUpon>FormColorPicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormSaveAs.cs">
+    <Compile Update="Forms\FormSaveAs.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormSaveAs.Designer.cs">
+    <Compile Update="Forms\FormSaveAs.Designer.cs">
       <DependentUpon>FormSaveAs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Form_First.cs">
+    <Compile Update="Forms\Form_First.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form_First.Designer.cs">
+    <Compile Update="Forms\Form_First.Designer.cs">
       <DependentUpon>Form_First.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Inputs\FormKeyboard.cs">
+    <Compile Update="Forms\Inputs\FormKeyboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Inputs\FormKeyboard.Designer.cs">
+    <Compile Update="Forms\Inputs\FormKeyboard.Designer.cs">
       <DependentUpon>FormKeyboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Pickers\FormDrivePicker.cs">
+    <Compile Update="Forms\Pickers\FormDrivePicker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Pickers\FormDrivePicker.Designer.cs">
+    <Compile Update="Forms\Pickers\FormDrivePicker.Designer.cs">
       <DependentUpon>FormDrivePicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Pickers\FormTouchPick.cs">
+    <Compile Update="Forms\Pickers\FormTouchPick.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Pickers\FormTouchPick.Designer.cs">
+    <Compile Update="Forms\Pickers\FormTouchPick.Designer.cs">
       <DependentUpon>FormTouchPick.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormHeadland.cs">
+    <Compile Update="Forms\FormHeadland.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormHeadland.Designer.cs">
+    <Compile Update="Forms\FormHeadland.Designer.cs">
       <DependentUpon>FormHeadland.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormEditCurve.cs">
+    <Compile Update="Forms\Guidance\FormEditCurve.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Guidance\FormEditCurve.Designer.cs">
+    <Compile Update="Forms\Guidance\FormEditCurve.Designer.cs">
       <DependentUpon>FormEditCurve.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormEditAB.cs">
+    <Compile Update="Forms\Guidance\FormEditAB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Guidance\FormEditAB.Designer.cs">
+    <Compile Update="Forms\Guidance\FormEditAB.Designer.cs">
       <DependentUpon>FormEditAB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Pickers\FormFilePicker.cs">
+    <Compile Update="Forms\Pickers\FormFilePicker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Pickers\FormFilePicker.Designer.cs">
+    <Compile Update="Forms\Pickers\FormFilePicker.Designer.cs">
       <DependentUpon>FormFilePicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Inputs\FormNumeric.cs">
+    <Compile Update="Forms\Inputs\FormNumeric.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Inputs\FormNumeric.Designer.cs">
+    <Compile Update="Forms\Inputs\FormNumeric.Designer.cs">
       <DependentUpon>FormNumeric.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormMakeBndCon.cs">
+    <Compile Update="Forms\Guidance\FormMakeBndCon.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Guidance\FormMakeBndCon.Designer.cs">
+    <Compile Update="Forms\Guidance\FormMakeBndCon.Designer.cs">
       <DependentUpon>FormMakeBndCon.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\FormColor.cs">
+    <Compile Update="Forms\Settings\FormColor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\FormColor.Designer.cs">
+    <Compile Update="Forms\Settings\FormColor.Designer.cs">
       <DependentUpon>FormColor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\FormConfig.cs">
+    <Compile Update="Forms\Settings\FormConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\FormConfig.Designer.cs">
+    <Compile Update="Forms\Settings\FormConfig.Designer.cs">
       <DependentUpon>FormConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\ConfigMenu.Designer.cs">
-      <SubType>Form</SubType>
-      <DependentUpon>FormConfig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Settings\ConfigVehicle.Designer.cs">
+    <Compile Update="Forms\Settings\ConfigMenu.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\ConfigTool.Designer.cs">
+    <Compile Update="Forms\Settings\ConfigVehicle.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\ConfigData.Designer.cs">
+    <Compile Update="Forms\Settings\ConfigTool.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\ConfigModule.Designer.cs">
+    <Compile Update="Forms\Settings\ConfigData.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormABDraw.cs">
+    <Compile Update="Forms\Settings\ConfigModule.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Forms\Guidance\FormABDraw.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Guidance\FormABDraw.Designer.cs">
+    <Compile Update="Forms\Guidance\FormABDraw.Designer.cs">
       <DependentUpon>FormABDraw.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormFlags.cs">
+    <Compile Update="Forms\FormFlags.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormFlags.Designer.cs">
+    <Compile Update="Forms\FormFlags.Designer.cs">
       <DependentUpon>FormFlags.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\FormSteerGraph.cs">
+    <Compile Update="Forms\Settings\FormSteerGraph.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\FormSteerGraph.Designer.cs">
+    <Compile Update="Forms\Settings\FormSteerGraph.Designer.cs">
       <DependentUpon>FormSteerGraph.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormShiftPos.cs">
+    <Compile Update="Forms\FormShiftPos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormShiftPos.Designer.cs">
+    <Compile Update="Forms\FormShiftPos.Designer.cs">
       <DependentUpon>FormShiftPos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormSmoothAB.cs">
+    <Compile Update="Forms\Guidance\FormSmoothAB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Guidance\FormSmoothAB.Designer.cs">
+    <Compile Update="Forms\Guidance\FormSmoothAB.Designer.cs">
       <DependentUpon>FormSmoothAB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormABCurve.cs">
+    <Compile Update="Forms\Guidance\FormABCurve.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Guidance\FormABCurve.Designer.cs">
+    <Compile Update="Forms\Guidance\FormABCurve.Designer.cs">
       <DependentUpon>FormABCurve.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormBoundary.cs">
+    <Compile Update="Forms\FormBoundary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormBoundary.Designer.cs">
+    <Compile Update="Forms\FormBoundary.Designer.cs">
       <DependentUpon>FormBoundary.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormBoundaryPlayer.cs">
+    <Compile Update="Forms\FormBoundaryPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormBoundaryPlayer.Designer.cs">
+    <Compile Update="Forms\FormBoundaryPlayer.Designer.cs">
       <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormFieldDir.cs">
+    <Compile Update="Forms\FormFieldDir.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormFieldDir.Designer.cs">
+    <Compile Update="Forms\FormFieldDir.Designer.cs">
       <DependentUpon>FormFieldDir.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormJob.cs">
+    <Compile Update="Forms\FormJob.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormJob.Designer.cs">
+    <Compile Update="Forms\FormJob.Designer.cs">
       <DependentUpon>FormJob.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormSaveOrNot.cs">
+    <Compile Update="Forms\FormSaveOrNot.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormSaveOrNot.Designer.cs">
+    <Compile Update="Forms\FormSaveOrNot.Designer.cs">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\FormSimCoords.cs">
+    <Compile Update="Forms\Settings\FormSimCoords.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\FormSimCoords.Designer.cs">
+    <Compile Update="Forms\Settings\FormSimCoords.Designer.cs">
       <DependentUpon>FormSimCoords.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\FormSteer.cs">
+    <Compile Update="Forms\Settings\FormSteer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\FormSteer.Designer.cs">
+    <Compile Update="Forms\Settings\FormSteer.Designer.cs">
       <DependentUpon>FormSteer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormTimedMessage.cs">
+    <Compile Update="Forms\FormTimedMessage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormTimedMessage.Designer.cs">
+    <Compile Update="Forms\FormTimedMessage.Designer.cs">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormTramCurve.cs">
+    <Compile Update="Forms\Guidance\FormTramCurve.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Guidance\FormTramCurve.Designer.cs">
+    <Compile Update="Forms\Guidance\FormTramCurve.Designer.cs">
       <DependentUpon>FormTramCurve.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormWebCam.cs">
+    <Compile Update="Forms\FormWebCam.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormWebCam.Designer.cs">
+    <Compile Update="Forms\FormWebCam.Designer.cs">
       <DependentUpon>FormWebCam.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\GUI.Designer.cs">
+    <Compile Update="Forms\GUI.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Position.designer.cs">
+    <Compile Update="Forms\Position.designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Form_About.cs">
+    <Compile Update="Forms\Form_About.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form_About.Designer.cs">
+    <Compile Update="Forms\Form_About.Designer.cs">
       <DependentUpon>Form_About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormTram.cs">
+    <Compile Update="Forms\Guidance\FormTram.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Guidance\FormTram.Designer.cs">
+    <Compile Update="Forms\Guidance\FormTram.Designer.cs">
       <DependentUpon>FormTram.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\gStr.Empty.Designer.cs">
+    <Compile Update="Classes\gStr.Empty.Designer.cs">
       <DependentUpon>gStr.Empty.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="gStr.da.Designer.cs">
+    <Compile Update="gStr.da.Designer.cs">
       <DependentUpon>gStr.da.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="gStr.sk.Designer.cs">
+    <Compile Update="gStr.sk.Designer.cs">
       <DependentUpon>gStr.sk.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="gStr.af.Designer.cs">
+    <Compile Update="gStr.af.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.af.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.de.Designer.cs">
+    <Compile Update="gStr.de.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.de.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.Designer.cs">
+    <Compile Update="gStr.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.es.Designer.cs">
+    <Compile Update="gStr.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.es.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.fr.Designer.cs">
+    <Compile Update="gStr.fr.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.fr.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.it.Designer.cs">
+    <Compile Update="gStr.it.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.it.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.nl.Designer.cs">
+    <Compile Update="gStr.nl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.nl.resx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\SaveOpen.Designer.cs">
+    <Compile Update="Forms\SaveOpen.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormABLine.cs">
+    <Compile Update="Forms\Guidance\FormABLine.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Guidance\FormABLine.Designer.cs">
+    <Compile Update="Forms\Guidance\FormABLine.Designer.cs">
       <DependentUpon>FormABLine.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormGPSData.cs">
+    <Compile Update="Forms\FormGPSData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormGPSData.Designer.cs">
+    <Compile Update="Forms\FormGPSData.Designer.cs">
       <DependentUpon>FormGPSData.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\CGLM.cs" />
-    <Compile Include="Forms\OpenGL.Designer.cs">
+    <Compile Update="Forms\OpenGL.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\PGN.Designer.cs">
+    <Compile Update="Forms\PGN.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Controls.Designer.cs">
+    <Compile Update="Forms\Controls.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormGPS.cs">
+    <Compile Update="Forms\FormGPS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormGPS.Designer.cs">
+    <Compile Update="Forms\FormGPS.Designer.cs">
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="gStr.pl.Designer.cs">
+    <Compile Update="gStr.pl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.pl.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.ru.Designer.cs">
+    <Compile Update="gStr.ru.Designer.cs">
       <DependentUpon>gStr.ru.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="gStr.uk.Designer.cs">
+    <Compile Update="gStr.uk.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.uk.resx</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UDPComm.Designer.cs">
+    <Compile Update="Forms\UDPComm.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\vec3.cs" />
-    <Compile Include="Properties\Vehicle.Designer.cs">
+    <Compile Update="Properties\Vehicle.Designer.cs">
       <DependentUpon>Vehicle.settings</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Forms\FormFieldKML.resx">
+    <EmbeddedResource Update="Forms\FormFieldKML.resx">
       <DependentUpon>FormFieldKML.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Pickers\FormColorPicker.resx">
+    <EmbeddedResource Update="Forms\Pickers\FormColorPicker.resx">
       <DependentUpon>FormColorPicker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSaveAs.resx">
+    <EmbeddedResource Update="Forms\FormSaveAs.resx">
       <DependentUpon>FormSaveAs.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Form_First.resx">
+    <EmbeddedResource Update="Forms\Form_First.resx">
       <DependentUpon>Form_First.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Inputs\FormKeyboard.resx">
+    <EmbeddedResource Update="Forms\Inputs\FormKeyboard.resx">
       <DependentUpon>FormKeyboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Pickers\FormDrivePicker.resx">
+    <EmbeddedResource Update="Forms\Pickers\FormDrivePicker.resx">
       <DependentUpon>FormDrivePicker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Pickers\FormTouchPick.resx">
+    <EmbeddedResource Update="Forms\Pickers\FormTouchPick.resx">
       <DependentUpon>FormTouchPick.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormHeadland.resx">
+    <EmbeddedResource Update="Forms\FormHeadland.resx">
       <DependentUpon>FormHeadland.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormEditCurve.resx">
+    <EmbeddedResource Update="Forms\Guidance\FormEditCurve.resx">
       <DependentUpon>FormEditCurve.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormEditAB.resx">
+    <EmbeddedResource Update="Forms\Guidance\FormEditAB.resx">
       <DependentUpon>FormEditAB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Pickers\FormFilePicker.resx">
+    <EmbeddedResource Update="Forms\Pickers\FormFilePicker.resx">
       <DependentUpon>FormFilePicker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Inputs\FormNumeric.resx">
+    <EmbeddedResource Update="Forms\Inputs\FormNumeric.resx">
       <DependentUpon>FormNumeric.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormMakeBndCon.resx">
+    <EmbeddedResource Update="Forms\Guidance\FormMakeBndCon.resx">
       <DependentUpon>FormMakeBndCon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\FormColor.resx">
+    <EmbeddedResource Update="Forms\Settings\FormColor.resx">
       <DependentUpon>FormColor.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\FormConfig.resx">
+    <EmbeddedResource Update="Forms\Settings\FormConfig.resx">
       <DependentUpon>FormConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormABDraw.resx">
+    <EmbeddedResource Update="Forms\Guidance\FormABDraw.resx">
       <DependentUpon>FormABDraw.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFlags.resx">
+    <EmbeddedResource Update="Forms\FormFlags.resx">
       <DependentUpon>FormFlags.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormShiftPos.resx">
+    <EmbeddedResource Update="Forms\FormShiftPos.resx">
       <DependentUpon>FormShiftPos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormABCurve.resx">
+    <EmbeddedResource Update="Forms\Guidance\FormABCurve.resx">
       <DependentUpon>FormABCurve.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormBoundary.resx">
+    <EmbeddedResource Update="Forms\FormBoundary.resx">
       <DependentUpon>FormBoundary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormBoundaryPlayer.resx">
+    <EmbeddedResource Update="Forms\FormBoundaryPlayer.resx">
       <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFieldDir.resx">
+    <EmbeddedResource Update="Forms\FormFieldDir.resx">
       <DependentUpon>FormFieldDir.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormABLine.resx">
+    <EmbeddedResource Update="Forms\Guidance\FormABLine.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormGPSData.resx">
+    <EmbeddedResource Update="Forms\FormGPSData.resx">
       <DependentUpon>FormGPSData.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormGPS.resx">
+    <EmbeddedResource Update="Forms\FormGPS.resx">
       <DependentUpon>FormGPS.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormJob.resx">
+    <EmbeddedResource Update="Forms\FormJob.resx">
       <DependentUpon>FormJob.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSaveOrNot.resx">
+    <EmbeddedResource Update="Forms\FormSaveOrNot.resx">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\FormSimCoords.resx">
+    <EmbeddedResource Update="Forms\Settings\FormSimCoords.resx">
       <DependentUpon>FormSimCoords.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormSmoothAB.resx">
+    <EmbeddedResource Update="Forms\Guidance\FormSmoothAB.resx">
       <DependentUpon>FormSmoothAB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\FormSteer.resx">
+    <EmbeddedResource Update="Forms\Settings\FormSteer.resx">
       <DependentUpon>FormSteer.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\FormSteerGraph.resx">
+    <EmbeddedResource Update="Forms\Settings\FormSteerGraph.resx">
       <DependentUpon>FormSteerGraph.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormtimedMessage.resx">
+    <EmbeddedResource Update="Forms\FormtimedMessage.resx">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormTramCurve.resx">
+    <EmbeddedResource Update="Forms\Guidance\FormTramCurve.resx">
       <DependentUpon>FormTramCurve.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormWebCam.resx">
+    <EmbeddedResource Update="Forms\FormWebCam.resx">
       <DependentUpon>FormWebCam.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Form_About.resx">
+    <EmbeddedResource Update="Forms\Form_About.resx">
       <DependentUpon>Form_About.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormTram.resx">
+    <EmbeddedResource Update="Forms\Guidance\FormTram.resx">
       <DependentUpon>FormTram.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Classes\gStr.Empty.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.Empty.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.da.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.da.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.sk.resx">
+    <EmbeddedResource Update="gStr.sk.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.sk.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.af.resx">
+    <EmbeddedResource Update="gStr.af.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.af.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.de.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.de.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.es.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.es.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.fr.resx">
+    <EmbeddedResource Update="gStr.fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.fr.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.it.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.it.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.nl.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.nl.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.pl.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.pl.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.resx">
+    <EmbeddedResource Update="gStr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.ru.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.ru.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.uk.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.uk.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Manual.es.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Manual.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
+    <Compile Update="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -690,28 +582,6 @@
       <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 3.1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
     <Content Include="AOG.ico" />
@@ -1003,19 +873,31 @@
     <None Include="btnImages\MakeBoundaryContour.jpg" />
     <Content Include="ALicense.txt" />
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Resource.Embedder.2.1.1\build\Resource.Embedder.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Resource.Embedder.2.1.1\build\Resource.Embedder.props'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <Compile Remove="Controls.Designer.cs" />
+    <Compile Remove="FormSource.cs" />
+    <Compile Remove="FormSource.Designer.cs" />
+    <Compile Remove="Forms\FormNumeric.cs" />
+    <Compile Remove="Forms\FormNumeric.Designer.cs" />
+    <Compile Remove="Forms\FormSwapAB.cs" />
+    <Compile Remove="Forms\FormSwapAB.Designer.cs" />
+    <Compile Remove="Forms\Pickers\FormEnvPicker.cs" />
+    <Compile Remove="Forms\Pickers\FormEnvPicker.Designer.cs" />
+    <Compile Remove="Forms\Pickers\FormEnvSaver.cs" />
+    <Compile Remove="Forms\Pickers\FormEnvSaver.Designer.cs" />
+    <Compile Remove="Forms\Pickers\FormToolPicker.cs" />
+    <Compile Remove="Forms\Pickers\FormToolPicker.Designer.cs" />
+    <Compile Remove="Forms\Pickers\FormToolSaver.cs" />
+    <Compile Remove="Forms\Pickers\FormToolSaver.Designer.cs" />
+    <Compile Remove="Forms\Pickers\FormVehiclePicker.cs" />
+    <Compile Remove="Forms\Pickers\FormVehiclePicker.Designer.cs" />
+    <Compile Remove="Forms\Pickers\FormVehicleSaver.cs" />
+    <Compile Remove="Forms\Pickers\FormVehicleSaver.Designer.cs" />
+    <Compile Remove="Forms\Settings\FormModules.cs" />
+    <Compile Remove="Forms\Settings\FormModules.Designer.cs" />
+    <Compile Remove="obj\x86\Debug\.NETFramework,Version=v4.5.AssemblyAttributes.cs" />
+    <Compile Remove="obj\x86\Debug\.NETFramework,Version=v4.6.AssemblyAttributes.cs" />
+    <Compile Remove="obj\x86\Release\.NETFramework,Version=v4.5.AssemblyAttributes.cs" />
+    <Compile Remove="obj\x86\Release\.NETFramework,Version=v4.6.AssemblyAttributes.cs" />
+  </ItemGroup>
 </Project>
