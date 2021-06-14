@@ -33,11 +33,19 @@ namespace AgOpenGPS
             nudMinFixStepDistance.Value = (decimal)Properties.Settings.Default.setF_minFixStep;
             nudStartSpeed.Value = (decimal)Properties.Vehicle.Default.setVehicle_startSpeed;
 
-            hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight * 100);
+            if (Properties.Settings.Default.setIMU_fusionWeight > 0.2)
+            {
+                Properties.Settings.Default.setIMU_fusionWeight = 0.2;
+                Properties.Settings.Default.Save();
+                mf.ahrs.fusionWeight = 0.2;
+            }
+
+            hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight * 500);
             lblFusion.Text = (hsbarFusion.Value).ToString();
-            lblFusionIMU.Text = (50 - hsbarFusion.Value).ToString();
+            lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
 
             cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
+            cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
 
             hsbarFusion.Focus();
             nudMinimumFrameTime.Value = Properties.Settings.Default.SetGPS_udpWatchMsec;
@@ -45,14 +53,15 @@ namespace AgOpenGPS
 
         private void tabDHeading_Leave(object sender, EventArgs e)
         {
-            Properties.Settings.Default.setIMU_fusionWeight = (double)hsbarFusion.Value * 0.01;
-            mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.01;
+            Properties.Settings.Default.setIMU_fusionWeight = (double)hsbarFusion.Value * 0.002;
+            mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.002;
+
+            Properties.Settings.Default.setIMU_isDualAsIMU = mf.ahrs.isDualAsIMU = cboxIsDualAsIMU.Checked;
 
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 
-            Properties.Settings.Default.setGPS_isRTK = cboxIsRTK.Checked;
-            mf.isRTK = cboxIsRTK.Checked;
+            Properties.Settings.Default.setGPS_isRTK = mf.isRTK = cboxIsRTK.Checked;
 
             Properties.Settings.Default.Save();
         }
@@ -79,7 +88,7 @@ namespace AgOpenGPS
         private void hsbarFusion_ValueChanged(object sender, EventArgs e)
         {
             lblFusion.Text = (hsbarFusion.Value).ToString();
-            lblFusionIMU.Text = (50 - hsbarFusion.Value).ToString();
+            lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
         }
 
         private void nudMinFixStepDistance_Click(object sender, EventArgs e)
@@ -119,7 +128,6 @@ namespace AgOpenGPS
             Properties.Settings.Default.setIMU_invertRoll = cboxDataInvertRoll.Checked;
 
             mf.ahrs.rollFilter = Properties.Settings.Default.setIMU_rollFilter;
-            mf.ahrs.fusionWeight = Properties.Settings.Default.setIMU_fusionWeight;
             mf.ahrs.isRollInvert = Properties.Settings.Default.setIMU_invertRoll;
 
             Properties.Settings.Default.Save();
@@ -182,6 +190,9 @@ namespace AgOpenGPS
             cboxFeatureABLine.Checked = Properties.Settings.Default.setFeatures.isABLineOn;
             cboxFeatureCurve.Checked = Properties.Settings.Default.setFeatures.isCurveOn;
             cboxFeatureAutoSteer.Checked = Properties.Settings.Default.setFeatures.isAutoSteerOn;
+
+            cboxFeatureUTurn.Checked = Properties.Settings.Default.setFeatures.isUTurnOn;
+            cboxFeatureLateral.Checked = Properties.Settings.Default.setFeatures.isLateralOn;
         }
 
         private void tabBtns_Leave(object sender, EventArgs e)
@@ -209,6 +220,11 @@ namespace AgOpenGPS
             Properties.Settings.Default.setFeatures.isCurveOn = cboxFeatureCurve.Checked;
 
             Properties.Settings.Default.setFeatures.isAutoSteerOn = cboxFeatureAutoSteer.Checked;
+
+            Properties.Settings.Default.setFeatures.isLateralOn = cboxFeatureLateral.Checked;
+            Properties.Settings.Default.setFeatures.isUTurnOn = cboxFeatureUTurn.Checked;
+
+
 
             Properties.Settings.Default.Save();
         }
