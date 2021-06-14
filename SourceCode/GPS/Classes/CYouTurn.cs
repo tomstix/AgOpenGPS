@@ -38,17 +38,10 @@ namespace AgOpenGPS
         public int rowSkipsWidth2 = 3, turnSkips = 2;
 
         /// <summary>  /// distance from headland as offset where to start turn shape /// </summary>
-        public int youTurnStartOffset, C;
+        public int youTurnStartOffset;
 
         //guidance values
-        public double distanceFromCurrentLine, uturnDistanceFromBoundary, dxAB, dyAB;
-
-        //private int sA, sB, C, pA, pB;
-        //private int rA, rB;
-
-        public double distanceFromCurrentLineSteer, distanceFromCurrentLinePivot;
-        public double steerAngleGu, rEastSteer, rNorthSteer, rEastPivot, rNorthPivot;
-        public double pivotCurvatureOffset, lastCurveDistance = 10000;
+        public double distanceFromCurrentLine, uturnDistanceFromBoundary;
 
         private int A, B;
         private bool isHeadingSameWay = true;
@@ -1222,7 +1215,7 @@ namespace AgOpenGPS
                     }
 
                     //just need to make sure the points continue ascending or heading switches all over the place
-                    if (A > B) { C = A; A = B; B = C; }
+                    if (A > B) { int C = A; A = B; B = C; }
 
                     //minDistA = 100;
                     //int closestPt = 0;
@@ -1323,7 +1316,7 @@ namespace AgOpenGPS
                     }
 
                     //just need to make sure the points continue ascending or heading switches all over the place
-                    if (A > B) { C = A; A = B; B = C; }
+                    if (A > B) { int C = A; A = B; B = C; }
 
                     minDistA = 100;
                     int closestPt = 0;

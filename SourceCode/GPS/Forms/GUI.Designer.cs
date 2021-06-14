@@ -323,27 +323,12 @@ namespace AgOpenGPS
                     //btnContour.Text = InchXTE; //cross track error
                 }
 
-                if (isStanleyUsed)
+                if (curve.isBtnCurveOn || ABLine.isBtnABLineOn)
                 {
-                    if (curve.isBtnCurveOn || ABLine.isBtnABLineOn)
-                    {
-                        lblInty.Text = gyd.inty.ToString("N3");
-                    }
+                    lblInty.Text = gyd.inty.ToString("N3");
                 }
-                else
-                {
-                    if (curve.isBtnCurveOn)
-                    {
-                        lblInty.Text = curve.inty.ToString("N3");
-                    }
-
-                    else if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
-                    {
-                        lblInty.Text = ABLine.inty.ToString("N3");
-                    }
-
-                    else if (ct.isContourBtnOn) lblInty.Text = ct.inty.ToString("N3");
-                }
+                else if (ct.isContourBtnOn)
+                    lblInty.Text = ct.inty.ToString("N3");
 
                 secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
 
@@ -1007,7 +992,6 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            yt.isYouTurnTriggered = true;
                             yt.BuildManualYouTurn(false, true);
                             return;
                         }
@@ -1021,7 +1005,6 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            yt.isYouTurnTriggered = true;
                             yt.BuildManualYouTurn(true, true);
                             return;
                         }
