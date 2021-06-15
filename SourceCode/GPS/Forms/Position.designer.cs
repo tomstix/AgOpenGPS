@@ -552,7 +552,6 @@ namespace AgOpenGPS
                 default:
                     break;
             }
-        
 
             #region AutoSteer
 
@@ -561,20 +560,16 @@ namespace AgOpenGPS
 
             if (ct.isContourBtnOn)
             {
-                ct.DistanceFromContourLine(pivotAxlePos, steerAxlePos);
+                ct.GetCurrentContourLine(pivotAxlePos, steerAxlePos);
             }
-            else
+            else if (curve.isCurveSet && curve.isBtnCurveOn)
             {
-                if (curve.isCurveSet && curve.isBtnCurveOn)
-                {
-                    //do the calcs for AB Curve
-                    curve.GetCurrentCurveLine(pivotAxlePos, steerAxlePos);
-                }
-
-                if (ABLine.isABLineSet && ABLine.isBtnABLineOn)
-                {
-                    ABLine.GetCurrentABLine(pivotAxlePos, steerAxlePos);
-                }
+                //do the calcs for AB Curve
+                curve.GetCurrentCurveLine(pivotAxlePos, steerAxlePos);
+            }
+            else if (ABLine.isABLineSet && ABLine.isBtnABLineOn)
+            {
+                ABLine.GetCurrentABLine(pivotAxlePos, steerAxlePos);
             }
 
             // autosteer at full speed of updates
@@ -590,9 +585,9 @@ namespace AgOpenGPS
                 p_254.pgn[p_254.speedLo] = unchecked((byte)((int)(Math.Abs(pn.speed) * 10.0)));
                 //mc.machineControlData[mc.cnSpeed] = mc.autoSteerData[mc.sdSpeed];
 
-                if (!isAutoSteerBtnOn) //32020 means auto steer is off
+                if (!isAutoSteerBtnOn) //32000 means auto steer is off
                 {
-                    guidanceLineDistanceOff = 32020;
+                    guidanceLineDistanceOff = 32000;
                     p_254.pgn[p_254.status] = 0;
                 }
 
@@ -605,9 +600,8 @@ namespace AgOpenGPS
 
                 //convert to cm from mm and divide by 2 - lightbar
                 int distanceX2;
-                if (guidanceLineDistanceOff == 32020 || guidanceLineDistanceOff == 32000)
+                if (guidanceLineDistanceOff == 32000)
                     distanceX2 = 255;
-
                 else
                 {
                     distanceX2 = (int)(guidanceLineDistanceOff * 0.05);
@@ -841,7 +835,7 @@ namespace AgOpenGPS
             steerAxlePos.heading = fixHeading;
 
             //guidance look ahead distance based on time or tool width at least 
-            if (!ABLine.isLateralTriggered && !curve.isLateralTriggered)
+            if (!gyd.isLateralTriggered)
             {
                 double guidanceLookDist = (Math.Max(tool.toolWidth * 0.5, avgSpeed * 0.277777 * guidanceLookAheadTime));
                 guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);

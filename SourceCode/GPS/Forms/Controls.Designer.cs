@@ -24,7 +24,6 @@ namespace AgOpenGPS
                 //turn off youturn...
                 DisableYouTurnButtons();
             }
-
             else
             {
                 if (ABLine.isBtnABLineOn | curve.isBtnCurveOn)
@@ -193,7 +192,6 @@ namespace AgOpenGPS
                 ABLine.SetABLineByHeading();
                 ABLine.isABLineSet = true;
                 ABLine.isABLineLoaded = true;
-                yt.ResetYouTurn();
                 lblCurveLineName.Text = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
             }
             else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
@@ -211,32 +209,9 @@ namespace AgOpenGPS
                     curve.refList.Add(curve.curveArr[idx].curvePts[i]);
                 }
                 curve.isCurveSet = true;
-                yt.ResetYouTurn();
                 lblCurveLineName.Text = curve.curveArr[idx].Name;
             }
-        }
-
-        private void SetABLine(int num)
-        {
-                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
-                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
-                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
-                ABLine.SetABLineByHeading();
-                ABLine.isABLineSet = true;
-                ABLine.isABLineLoaded = true;
-                yt.ResetYouTurn();
-        }
-        private void SetCurveLine(int num)
-        {
-                int idx = curve.numCurveLineSelected - 1;
-                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
-                curve.refList?.Clear();
-                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
-                {
-                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
-                }
-                curve.isCurveSet = true;
-                yt.ResetYouTurn();
+            yt.ResetYouTurn();
         }
 
         //Section Manual and Auto
@@ -351,7 +326,7 @@ namespace AgOpenGPS
         }
         private void btnAutoYouTurn_Click(object sender, EventArgs e)
         {
-            yt.isTurnCreationTooClose = false;
+            yt.ResetYouTurn();
 
             if (bnd.bndArr.Count == 0)
             {
@@ -361,9 +336,6 @@ namespace AgOpenGPS
 
             if (!yt.isYouTurnBtnOn)
             {
-                //new direction so reset where to put turn diagnostic
-                yt.ResetCreatedYouTurn();
-
                 if (ABLine.isBtnABLineOn || curve.isBtnCurveOn)
                 {
                     if (!isAutoSteerBtnOn) btnAutoSteer.PerformClick();
@@ -371,10 +343,6 @@ namespace AgOpenGPS
                 else return;
 
                 yt.isYouTurnBtnOn = true;
-                yt.isTurnCreationTooClose = false;
-                yt.isTurnCreationNotCrossingError = false;
-                yt.ResetYouTurn();
-                p_239.pgn[p_239.uturn] = 0;
                 btnAutoYouTurn.Image = Properties.Resources.Youturn80;
             }
             else
@@ -384,14 +352,9 @@ namespace AgOpenGPS
                 yt.Set_Alternate_skips();
 
                 btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
-                yt.ResetYouTurn();
-
-                //new direction so reset where to put turn diagnostic
-                yt.ResetCreatedYouTurn();
-
-                //mc.autoSteerData[mc.sdX] = 0;
-                p_239.pgn[p_239.uturn] = 0;
             }
+            //mc.autoSteerData[mc.sdX] = 0;
+            p_239.pgn[p_239.uturn] = 0;
         }
 
         #endregion
@@ -1366,11 +1329,11 @@ namespace AgOpenGPS
         {
             if (ABLine.isBtnABLineOn)
             {
-                ABLine.MoveABLine(ABLine.distanceFromCurrentLinePivot);
+                ABLine.MoveABLine(gyd.distanceFromCurrentLinePivot);
             }
             else if (curve.isBtnCurveOn)
             {
-                curve.MoveABCurve(curve.distanceFromCurrentLinePivot);
+                curve.MoveABCurve(gyd.distanceFromCurrentLinePivot);
             }
             else
             {
@@ -1382,21 +1345,18 @@ namespace AgOpenGPS
         {
             if (!ct.isContourBtnOn)
             {
+                yt.ResetCreatedYouTurn();
                 if (ABLine.isABLineSet)
                 {
                     //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
-
                     ABLine.MoveABLine(dist);
                 }
                 else if (curve.isCurveSet)
                 {
                     //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
                     curve.MoveABCurve(dist);
-
                 }
                 else
                 {
@@ -1410,24 +1370,18 @@ namespace AgOpenGPS
         {
             if (!ct.isContourBtnOn)
             {
+                yt.ResetCreatedYouTurn();
                 if (ABLine.isABLineSet)
                 {
                     //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
-
                     ABLine.MoveABLine(-dist);
-
-                    //FileSaveABLine();
                 }
                 else if (curve.isCurveSet)
                 {
                     //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
-
                     curve.MoveABCurve(-dist);
-
                 }
                 else
                 {
@@ -1436,14 +1390,7 @@ namespace AgOpenGPS
                 }
             }
         }
-        private void btnSnapRight_Click(object sender, EventArgs e)
-        {
-            SnapRight();
-        }
-        private void btnSnapLeft_Click(object sender, EventArgs e)
-        {
-            SnapLeft();
-        }
+
         private void BtnMakeLinesFromBoundary_Click(object sender, EventArgs e)
         {
             if (ct.isContourBtnOn)

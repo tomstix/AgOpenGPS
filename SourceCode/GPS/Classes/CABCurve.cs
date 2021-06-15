@@ -12,13 +12,9 @@ namespace AgOpenGPS
         //flag for starting stop adding points
         public bool isBtnCurveOn, isCurveSet, isOkToAddDesPoints;
 
-        public double distanceFromCurrentLinePivot;
-        public double distanceFromRefLine;
-
         public bool isHeadingSameWay = true;
 
         public double howManyPathsAway;
-        public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
 
         public double refHeading, moveDistance;
         private int rA, rB;
@@ -26,12 +22,6 @@ namespace AgOpenGPS
         public int currentLocationIndex;
 
         public double aveLineHeading;
-
-        //pure pursuit values
-        public vec2 goalPointCu = new vec2(0, 0);
-
-        public vec2 radiusPointCu = new vec2(0, 0);
-        public double steerAngleCu, rEastCu, rNorthCu, ppRadiusCu, manualUturnHeading;
 
         //the list of points of the ref line.
         public List<vec3> refList = new List<vec3>();
@@ -44,7 +34,7 @@ namespace AgOpenGPS
         public List<CCurveLines> curveArr = new List<CCurveLines>();
         public int numCurveLines, numCurveLineSelected;
 
-        public bool isCurveValid, isLateralTriggered;
+        public bool isCurveValid;
 
         public double lastSecond = 0;
 
@@ -111,7 +101,7 @@ namespace AgOpenGPS
             }
 
             //reset the line over jump
-            isLateralTriggered = false;
+            mf.gyd.isLateralTriggered = false;
 
             if (rA >= refCount - 1 || rB >= refCount) return;
 
@@ -124,20 +114,20 @@ namespace AgOpenGPS
 
             //which side of the closest point are we on is next
             //calculate endpoints of reference line based on closest point
-            refPoint1.easting = refList[rA].easting - (Math.Sin(refList[rA].heading) * 100.0);
-            refPoint1.northing = refList[rA].northing - (Math.Cos(refList[rA].heading) * 100.0);
+            double easting1 = refList[rA].easting - (Math.Sin(refList[rA].heading) * 100.0);
+            double northing1 = refList[rA].northing - (Math.Cos(refList[rA].heading) * 100.0);
 
-            refPoint2.easting = refList[rA].easting + (Math.Sin(refList[rA].heading) * 100.0);
-            refPoint2.northing = refList[rA].northing + (Math.Cos(refList[rA].heading) * 100.0);
+            double easting2 = refList[rA].easting + (Math.Sin(refList[rA].heading) * 100.0);
+            double northing2 = refList[rA].northing + (Math.Cos(refList[rA].heading) * 100.0);
 
             //x2-x1
-            double dx = refPoint2.easting - refPoint1.easting;
+            double dx = easting2 - easting1;
             //z2-z1
-            double dz = refPoint2.northing - refPoint1.northing;
+            double dz = northing2 - northing1;
 
             //how far are we away from the reference line at 90 degrees - 2D cross product and distance
-            distanceFromRefLine = ((dz * mf.guidanceLookPos.easting) - (dx * mf.guidanceLookPos.northing) + (refPoint2.easting
-                                * refPoint1.northing) - (refPoint2.northing * refPoint1.easting))
+            double distanceFromRefLine = ((dz * mf.guidanceLookPos.easting) - (dx * mf.guidanceLookPos.northing) + (easting2
+                                * northing1) - (northing2 * easting1))
                                 / Math.Sqrt((dz * dz) + (dx * dx));
 
             double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.toolOffset : -mf.tool.toolOffset)) / widthMinusOverlap;
@@ -323,33 +313,13 @@ namespace AgOpenGPS
                 && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchValue != 0)))
                 BuildCurveCurrentList(pivot);
 
-            if (curList.Count > 0)
+            if (mf.isStanleyUsed)//Stanley
             {
-                if (mf.yt.isYouTurnTriggered && mf.yt.DistanceFromYouTurnLine())//do the pure pursuit from youTurn
-                {
-                    //now substitute what it thinks are AB line values with auto turn values
-                    steerAngleCu = mf.yt.steerAngleYT;
-                    distanceFromCurrentLinePivot = mf.yt.distanceFromCurrentLine;
-
-                    goalPointCu = mf.yt.goalPointYT;
-                    radiusPointCu.easting = mf.yt.radiusPointYT.easting;
-                    radiusPointCu.northing = mf.yt.radiusPointYT.northing;
-                    ppRadiusCu = mf.yt.ppRadiusYT;
-                }
-                else if (mf.isStanleyUsed)//Stanley
-                {
-                    mf.gyd.StanleyGuidanceCurve(pivot, steer, ref curList);
-                }
-                else// Pure Pursuit ------------------------------------------
-                {
-                    mf.gyd.PurePursuitGuidanceCurve(pivot, ref curList);
-                }
+                mf.gyd.StanleyGuidance(pivot, steer, ref curList, isHeadingSameWay);
             }
-            else
+            else// Pure Pursuit ------------------------------------------
             {
-                //invalid distance so tell AS module
-                distanceFromCurrentLinePivot = 32000;
-                mf.guidanceLineDistanceOff = 32000;
+                mf.gyd.PurePursuitGuidance(pivot, ref curList, isHeadingSameWay);
             }
         }
 
@@ -423,39 +393,6 @@ namespace AgOpenGPS
                     GL.Begin(PrimitiveType.LineStrip);
                     for (int h = 0; h < ptCount; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
-
-                    if (mf.isPureDisplayOn && !mf.isStanleyUsed)
-                    {
-                        if (ppRadiusCu < 200 && ppRadiusCu > -200)
-                        {
-                            const int numSegments = 100;
-                            double theta = glm.twoPI / numSegments;
-                            double c = Math.Cos(theta);//precalculate the sine and cosine
-                            double s = Math.Sin(theta);
-                            double x = ppRadiusCu;//we start at angle = 0
-                            double y = 0;
-
-                            GL.LineWidth(1);
-                            GL.Color3(0.53f, 0.530f, 0.950f);
-                            GL.Begin(PrimitiveType.LineLoop);
-                            for (int ii = 0; ii < numSegments; ii++)
-                            {
-                                //glVertex2f(x + cx, y + cy);//output vertex
-                                GL.Vertex3(x + radiusPointCu.easting, y + radiusPointCu.northing, 0);//output vertex
-                                double t = x;//apply the rotation matrix
-                                x = (c * x) - (s * y);
-                                y = (s * t) + (c * y);
-                            }
-                            GL.End();
-                        }
-
-                        //Draw lookahead Point
-                        GL.PointSize(8.0f);
-                        GL.Begin(PrimitiveType.Points);
-                        GL.Color3(1.0f, 0.95f, 0.195f);
-                        GL.Vertex3(goalPointCu.easting, goalPointCu.northing, 0.0);
-                        GL.End();
-                    }
 
                     mf.yt.DrawYouTurn();
                 }

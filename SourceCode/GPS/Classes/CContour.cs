@@ -9,31 +9,11 @@ namespace AgOpenGPS
         //copy of the mainform address
         private readonly FormGPS mf;
 
-        public bool isContourOn, isContourBtnOn, isRightPriority = true;
+        public bool isContourOn, isContourBtnOn;
 
-        // for closest line point to current fix
-        public double minDistance = 99999.0, refX, refZ;
-
-        public double distanceFromCurrentLinePivot;
-
-        private int A, B, C, stripNum;
-
-        public double abFixHeadingDelta, abHeading;
+        private int stripNum;
 
         public bool isHeadingSameWay = true;
-
-        public vec2 goalPointCT = new vec2(0, 0);
-        public double steerAngleCT;
-        public double rEastCT, rNorthCT;
-        public double ppRadiusCT;
-
-        public double pivotDistanceError, pivotDistanceErrorLast, pivotDerivative, pivotDerivativeSmoothed;
-        //derivative counters
-        private int counter2;
-        public double inty;
-        public double steerAngleSmoothed, pivotErrorTotal;
-        public double distSteerError, lastDistSteerError, derivativeDistError;
-
 
         //list of strip data individual points
         public List<vec3> ptList = new List<vec3>();
@@ -312,7 +292,6 @@ namespace AgOpenGPS
                         {
                             minDistA = dist;
                             stripNum = s;
-                            B = p;
                         }
                     }
                 }
@@ -328,7 +307,7 @@ namespace AgOpenGPS
             }
 
             //determine closest point
-            minDistance = 99999;
+            double minDistance = double.MaxValue;
             int pt = 0;
             for (int i = 0; i < ptCount; i++)
             {
@@ -342,11 +321,9 @@ namespace AgOpenGPS
                 }
             }
 
-            minDistance = Math.Sqrt(minDistance);
-
             //now we have closest point, the distance squared from it, and which patch and point its from
-            refX = stripList[stripNum][pt].easting;
-            refZ = stripList[stripNum][pt].northing;
+            double refX = stripList[stripNum][pt].easting;
+            double refZ = stripList[stripNum][pt].northing;
 
             double dx, dz, distanceFromRefLine;
 
@@ -374,9 +351,9 @@ namespace AgOpenGPS
 
 
             //are we going same direction as stripList was created?
-            bool isSameWay = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[stripNum][pt].heading) - Math.PI) < 1.4;
+            isHeadingSameWay = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[stripNum][pt].heading) - Math.PI) < 1.4;
 
-            double RefDist = (distanceFromRefLine + (isSameWay ? mf.tool.toolOffset : -mf.tool.toolOffset)) / (mf.tool.toolWidth - mf.tool.toolOverlap);
+            double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.toolOffset : -mf.tool.toolOffset)) / (mf.tool.toolWidth - mf.tool.toolOverlap);
 
             double howManyPathsAway;
             if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
@@ -404,7 +381,7 @@ namespace AgOpenGPS
                 start = pt - 35; if (start < 0) start = 0;
                 stop = pt + 35; if (stop > ptCount) stop = ptCount;
 
-                double distAway = (mf.tool.toolWidth - mf.tool.toolOverlap) * howManyPathsAway + (isSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset);
+                double distAway = (mf.tool.toolWidth - mf.tool.toolOverlap) * howManyPathsAway + (isHeadingSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset);
                 double distSqAway = (distAway * distAway) - 0.01;
 
                 for (int i = start; i < stop; i++)
@@ -455,261 +432,12 @@ namespace AgOpenGPS
         }
 
         //determine distance from contour guidance line
-        public void DistanceFromContourLine(vec3 pivot, vec3 steer)
+        public void GetCurrentContourLine(vec3 pivot, vec3 steer)
         {
-            double minDistA = 1000000, minDistB = 1000000;
-            int ptCount = ctList.Count;
-            //distanceFromCurrentLine = 9999;
-            if (ptCount > 8)
-            {
-                if (mf.isStanleyUsed)
-                {
-                    //find the closest 2 points to current fix
-                    for (int t = 0; t < ptCount; t++)
-                    {
-                        double dist = ((steer.easting - ctList[t].easting) * (steer.easting - ctList[t].easting))
-                                        + ((steer.northing - ctList[t].northing) * (steer.northing - ctList[t].northing));
-                        if (dist < minDistA)
-                        {
-                            minDistB = minDistA;
-                            B = A;
-                            minDistA = dist;
-                            A = t;
-                        }
-                        else if (dist < minDistB)
-                        {
-                            minDistB = dist;
-                            B = t;
-                        }
-                    }
-
-                    //just need to make sure the points continue ascending in list order or heading switches all over the place
-                    if (A > B) { C = A; A = B; B = C; }
-
-                    //get the distance from currently active AB line
-                    //x2-x1
-                    double dx = ctList[B].easting - ctList[A].easting;
-                    //z2-z1
-                    double dy = ctList[B].northing - ctList[A].northing;
-
-                    if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dy) < Double.Epsilon) return;
-
-                    //how far from current AB Line is fix
-                    distanceFromCurrentLinePivot = ((dy * steer.easting) - (dx * steer.northing) + (ctList[B].easting
-                                * ctList[A].northing) - (ctList[B].northing * ctList[A].easting))
-                                    / Math.Sqrt((dy * dy) + (dx * dx));
-
-                    abHeading = Math.Atan2(dx, dy);
-                    if (abHeading < 0) abHeading += glm.twoPI;
-
-                    isHeadingSameWay = Math.PI - Math.Abs(Math.Abs(pivot.heading - abHeading) - Math.PI) < glm.PIBy2;
-
-                    // calc point on ABLine closest to current position
-                    double U = (((steer.easting - ctList[A].easting) * dx) + ((steer.northing - ctList[A].northing) * dy))
-                                / ((dx * dx) + (dy * dy));
-
-                    rEastCT = ctList[A].easting + (U * dx);
-                    rNorthCT = ctList[A].northing + (U * dy);
-
-                    //distance is negative if on left, positive if on right
-                    if (isHeadingSameWay)
-                    {
-                        abFixHeadingDelta = (steer.heading - abHeading);
-                    }
-                    else
-                    {
-                        distanceFromCurrentLinePivot *= -1.0;
-                        abFixHeadingDelta = (steer.heading - abHeading + Math.PI);
-                    }
-
-                    //Fix the circular error
-                    if (abFixHeadingDelta > Math.PI) abFixHeadingDelta -= Math.PI;
-                    else if (abFixHeadingDelta < Math.PI) abFixHeadingDelta += Math.PI;
-
-                    if (abFixHeadingDelta > glm.PIBy2) abFixHeadingDelta -= Math.PI;
-                    else if (abFixHeadingDelta < -glm.PIBy2) abFixHeadingDelta += Math.PI;
-
-                    if (mf.isReverse) abFixHeadingDelta *= -1;
-
-                    abFixHeadingDelta *= mf.vehicle.stanleyHeadingErrorGain;
-                    if (abFixHeadingDelta > 0.74) abFixHeadingDelta = 0.74;
-                    if (abFixHeadingDelta < -0.74) abFixHeadingDelta = -0.74;
-
-                    steerAngleCT = Math.Atan((distanceFromCurrentLinePivot * mf.vehicle.stanleyDistanceErrorGain)
-                        / ((Math.Abs(mf.pn.speed) * 0.277777) + 1));
-
-                    if (steerAngleCT > 0.74) steerAngleCT = 0.74;
-                    if (steerAngleCT < -0.74) steerAngleCT = -0.74;
-
-                    steerAngleCT = glm.toDegrees((steerAngleCT + abFixHeadingDelta) * -1.0);
-
-                    if (steerAngleCT < -mf.vehicle.maxSteerAngle) steerAngleCT = -mf.vehicle.maxSteerAngle;
-                    if (steerAngleCT > mf.vehicle.maxSteerAngle) steerAngleCT = mf.vehicle.maxSteerAngle;
-                }
-                else
-                {
-                    //find the closest 2 points to current fix
-                    for (int t = 0; t < ptCount; t++)
-                    {
-                        double dist = ((pivot.easting - ctList[t].easting) * (pivot.easting - ctList[t].easting))
-                                        + ((pivot.northing - ctList[t].northing) * (pivot.northing - ctList[t].northing));
-                        if (dist < minDistA)
-                        {
-                            minDistB = minDistA;
-                            B = A;
-                            minDistA = dist;
-                            A = t;
-                        }
-                        else if (dist < minDistB)
-                        {
-                            minDistB = dist;
-                            B = t;
-                        }
-                    }
-
-                    //just need to make sure the points continue ascending in list order or heading switches all over the place
-                    if (A > B) { C = A; A = B; B = C; }
-
-                    //get the distance from currently active AB line
-                    //x2-x1
-                    double dx = ctList[B].easting - ctList[A].easting;
-                    //z2-z1
-                    double dy = ctList[B].northing - ctList[A].northing;
-
-                    if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dy) < Double.Epsilon) return;
-
-                    //how far from current AB Line is fix
-                    distanceFromCurrentLinePivot = ((dy * mf.pn.fix.easting) - (dx * mf.pn.fix.northing) + (ctList[B].easting
-                                * ctList[A].northing) - (ctList[B].northing * ctList[A].easting))
-                                    / Math.Sqrt((dy * dy) + (dx * dx));
-
-                    //integral slider is set to 0
-                    if (mf.vehicle.purePursuitIntegralGain != 0)
-                    {
-                        pivotDistanceError = distanceFromCurrentLinePivot * 0.2 + pivotDistanceError * 0.8;
-
-                        if (counter2++ > 4)
-                        {
-                            pivotDerivative = pivotDistanceError - pivotDistanceErrorLast;
-                            pivotDistanceErrorLast = pivotDistanceError;
-                            counter2 = 0;
-                            pivotDerivative *= 2;
-
-                            //limit the derivative
-                            //if (pivotDerivative > 0.03) pivotDerivative = 0.03;
-                            //if (pivotDerivative < -0.03) pivotDerivative = -0.03;
-                            //if (Math.Abs(pivotDerivative) < 0.01) pivotDerivative = 0;
-                        }
-
-                        //pivotErrorTotal = pivotDistanceError + pivotDerivative;
-
-                        if (mf.isAutoSteerBtnOn
-                            && Math.Abs(pivotDerivative) < (0.1)
-                            && mf.avgSpeed > 2.5
-                            && !mf.yt.isYouTurnTriggered)
-                        {
-                            //if over the line heading wrong way, rapidly decrease integral
-                            if ((inty < 0 && distanceFromCurrentLinePivot < 0) || (inty > 0 && distanceFromCurrentLinePivot > 0))
-                            {
-                                inty += pivotDistanceError * mf.vehicle.purePursuitIntegralGain * -0.06;
-                            }
-                            else
-                            {
-                                if (Math.Abs(distanceFromCurrentLinePivot) > 0.02)
-                                {
-                                    inty += pivotDistanceError * mf.vehicle.purePursuitIntegralGain * -0.02;
-                                    if (inty > 0.2) inty = 0.2;
-                                    else if (inty < -0.2) inty = -0.2;
-                                }
-                            }
-                        }
-                        else inty *= 0.95;
-                    }
-                    else inty = 0;
-
-                    if (mf.isReverse) inty = 0;
-
-
-                    isHeadingSameWay = Math.PI - Math.Abs(Math.Abs(pivot.heading - ctList[A].heading) - Math.PI) < glm.PIBy2;
-
-                    if (!isHeadingSameWay)
-                        distanceFromCurrentLinePivot *= -1.0;
-
-                    // ** Pure pursuit ** - calc point on ABLine closest to current position
-                    double U = (((pivot.easting - ctList[A].easting) * dx) + ((pivot.northing - ctList[A].northing) * dy))
-                            / ((dx * dx) + (dy * dy));
-
-                    rEastCT = ctList[A].easting + (U * dx);
-                    rNorthCT = ctList[A].northing + (U * dy);
-
-
-                    //update base on autosteer settings and distance from line
-                    double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
-
-                    bool ReverseHeading = mf.isReverse ? !isHeadingSameWay : isHeadingSameWay;
-
-                    int count = ReverseHeading ? 1 : -1;
-                    vec3 start = new vec3(rEastCT, rNorthCT, 0);
-                    double distSoFar = 0;
-
-                    for (int i = ReverseHeading ? B : A; i < ptCount && i >= 0; i += count)
-                    {
-                        // used for calculating the length squared of next segment.
-                        double tempDist = glm.Distance(start, ctList[i]);
-
-                        //will we go too far?
-                        if ((tempDist + distSoFar) > goalPointDistance)
-                        {
-                            double j = (goalPointDistance - distSoFar) / tempDist; // the remainder to yet travel
-
-                            goalPointCT.easting = (((1 - j) * start.easting) + (j * ctList[i].easting));
-                            goalPointCT.northing = (((1 - j) * start.northing) + (j * ctList[i].northing));
-                            break;
-                        }
-                        else distSoFar += tempDist;
-                        start = ctList[i];
-                    }
-
-                    //calc "D" the distance from pivot axle to lookahead point
-                    double goalPointDistanceSquared = glm.DistanceSquared(goalPointCT.northing, goalPointCT.easting, pivot.northing, pivot.easting);
-
-                    //calculate the the delta x in local coordinates and steering angle degrees based on wheelbase
-                    double localHeading;// = glm.twoPI - mf.fixHeading;
-
-                    if (isHeadingSameWay) localHeading = glm.twoPI - mf.fixHeading + inty;
-                    else localHeading = glm.twoPI - mf.fixHeading - inty;
-
-                    steerAngleCT = glm.toDegrees(Math.Atan(2 * (((goalPointCT.easting - pivot.easting) * Math.Cos(localHeading))
-                        + ((goalPointCT.northing - pivot.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase / goalPointDistanceSquared));
-
-                    if (mf.ahrs.imuRoll != 88888)
-                        steerAngleCT += mf.ahrs.imuRoll * -mf.gyd.sideHillCompFactor;
-
-                    if (steerAngleCT < -mf.vehicle.maxSteerAngle) steerAngleCT = -mf.vehicle.maxSteerAngle;
-                    if (steerAngleCT > mf.vehicle.maxSteerAngle) steerAngleCT = mf.vehicle.maxSteerAngle;
-
-                    //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
-                    double angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleCT))) / mf.vehicle.wheelbase;
-
-                    //clamp the steering angle to not exceed safe angular velocity
-                    if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
-                    {
-                        steerAngleCT = glm.toDegrees(steerAngleCT > 0 ?
-                                (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.pn.speed * 0.277777)))
-                            : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.pn.speed * 0.277777))));
-                    }
-                }
-
-                //fill in the autosteer variables
-                mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
-                mf.guidanceLineSteerAngle = (short)(steerAngleCT * 100);
-            }
+            if (mf.isStanleyUsed)
+                mf.gyd.StanleyGuidance(pivot, steer, ref ctList, isHeadingSameWay);
             else
-            {
-                //invalid distance so tell AS module
-                distanceFromCurrentLinePivot = 32000;
-                mf.guidanceLineDistanceOff = 32000;
-            }
+                mf.gyd.PurePursuitGuidance(pivot, ref ctList, isHeadingSameWay);
         }
 
         //start stop and add points to list
@@ -917,43 +645,6 @@ namespace AgOpenGPS
             //    GL.Vertex3(conList[closestRefPoint].x, conList[closestRefPoint].z, 0);
             //    GL.End();
             //}
-
-            if (mf.isPureDisplayOn && distanceFromCurrentLinePivot != 32000 && !mf.isStanleyUsed)
-            {
-                //if (ppRadiusCT < 50 && ppRadiusCT > -50)
-                //{
-                //    const int numSegments = 100;
-                //    double theta = glm.twoPI / numSegments;
-                //    double c = Math.Cos(theta);//precalculate the sine and cosine
-                //    double s = Math.Sin(theta);
-                //    double x = ppRadiusCT;//we start at angle = 0
-                //    double y = 0;
-
-                //    GL.LineWidth(1);
-                //    GL.Color3(0.795f, 0.230f, 0.7950f);
-                //    GL.Begin(PrimitiveType.LineLoop);
-                //    for (int ii = 0; ii < numSegments; ii++)
-                //    {
-                //        //glVertex2f(x + cx, y + cy);//output vertex
-                //        GL.Vertex3(x + radiusPointCT.easting, y + radiusPointCT.northing, 0);//output vertex
-
-                //        //apply the rotation matrix
-                //        double t = x;
-                //        x = (c * x) - (s * y);
-                //        y = (s * t) + (c * y);
-                //    }
-                //    GL.End();
-                //}
-
-                //Draw lookahead Point
-                GL.PointSize(6.0f);
-                GL.Begin(PrimitiveType.Points);
-
-                GL.Color3(1.0f, 0.95f, 0.095f);
-                GL.Vertex3(goalPointCT.easting, goalPointCT.northing, 0.0);
-                GL.End();
-                GL.PointSize(1.0f);
-            }
         }
 
         //Reset the contour to zip

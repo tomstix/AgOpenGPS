@@ -324,12 +324,10 @@ namespace AgOpenGPS
                     //btnContour.Text = InchXTE; //cross track error
                 }
 
-                if (curve.isBtnCurveOn || ABLine.isBtnABLineOn)
+                if (curve.isBtnCurveOn || ABLine.isBtnABLineOn || ct.isContourBtnOn)
                 {
                     lblInty.Text = gyd.inty.ToString("N3");
                 }
-                else if (ct.isContourBtnOn)
-                    lblInty.Text = ct.inty.ToString("N3");
 
                 secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
 
@@ -1002,7 +1000,7 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            yt.BuildManualYouTurn(false, true);
+                            yt.BuildManualYouTurn(false);
                             return;
                         }
                     }
@@ -1015,7 +1013,7 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            yt.BuildManualYouTurn(true, true);
+                            yt.BuildManualYouTurn(true);
                             return;
                         }
                     }
@@ -1104,8 +1102,8 @@ namespace AgOpenGPS
                 oglZoom.Width = 180;
                 oglZoom.Height = 180;
             }
-        } 
-        
+        }
+
         //Function to delete flag
         public void DeleteSelectedFlag()
         {
@@ -1120,6 +1118,7 @@ namespace AgOpenGPS
                 for (int i = 0; i < flagCnt; i++) flagPts[i].ID = i + 1;
             }
         }
+
         public void EnableYouTurnButtons()
         {
             yt.ResetYouTurn();
@@ -1129,9 +1128,9 @@ namespace AgOpenGPS
 
             btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
         }
+
         public void DisableYouTurnButtons()
         {
-
             //btnAutoYouTurn.Enabled = false;
 
             yt.isYouTurnBtnOn = false;
