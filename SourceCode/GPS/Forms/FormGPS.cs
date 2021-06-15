@@ -675,20 +675,8 @@ namespace AgOpenGPS
         {
             if (!yt.isYouTurnTriggered)
             {
-                //is it turning right already?
-                if (yt.isYouTurnRight)
-                {
-                    yt.isYouTurnRight = false;
-                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
-                    yt.ResetCreatedYouTurn();
-                }
-                else
-                {
-                    //make it turn the other way
-                    yt.isYouTurnRight = true;
-                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
-                    yt.ResetCreatedYouTurn();
-                }
+                yt.isYouTurnRight = !yt.isYouTurnRight;
+                yt.ResetYouTurn();
             }
             else
             {

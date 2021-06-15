@@ -326,17 +326,48 @@ namespace AgOpenGPS
 
                     //draw contour line if button on 
                     if (ct.isContourBtnOn)
-                    {
                         ct.DrawContourLine();
-                    }
-                    else// draw the current and reference AB Lines or CurveAB Ref and line
+                    else if (curve.isBtnCurveOn)
+                        curve.DrawCurve();
+                    else if (ABLine.isBtnABLineOn)
+                        ABLine.DrawABLines();
+                    else if (panelDrag.Visible)
+                        recPath.DrawRecordedLine();
+
+                    if (isAutoSteerBtnOn && isPureDisplayOn && !isStanleyUsed)
                     {
-                        if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();
-                        if (curve.isBtnCurveOn) curve.DrawCurve();
+                        //Draw lookahead Point
+                        GL.PointSize(8.0f);
+                        GL.Begin(PrimitiveType.Points);
+                        GL.Color3(1.0f, 0.95f, 0.195f);
+                        GL.Vertex3(gyd.goalPoint.easting, gyd.goalPoint.northing, 0.0);
+                        GL.End();
+                        GL.PointSize(1.0f);
+
+                        if (gyd.ppRadius < 200 && gyd.ppRadius > -200)
+                        {
+                            const int numSegments = 100;
+                            double theta = glm.twoPI / numSegments;
+                            double c = Math.Cos(theta);//precalculate the sine and cosine
+                            double s = Math.Sin(theta);
+                            double x = gyd.ppRadius;//we start at angle = 0
+                            double y = 0;
+
+                            GL.LineWidth(1);
+                            GL.Color3(0.53f, 0.530f, 0.950f);
+                            GL.Begin(PrimitiveType.LineLoop);
+                            for (int ii = 0; ii < numSegments; ii++)
+                            {
+                                //glVertex2f(x + cx, y + cy);//output vertex
+                                GL.Vertex3(x + gyd.radiusPoint.easting, y + gyd.radiusPoint.northing, 0);//output vertex
+                                double t = x;//apply the rotation matrix
+                                x = (c * x) - (s * y);
+                                y = (s * t) + (c * y);
+                            }
+                            GL.End();
+                        }
                     }
 
-                    recPath.DrawRecordedLine();
-                    recPath.DrawDubins();
 
                     //draw Boundaries
                     bnd.DrawBoundaryLines();
@@ -1466,8 +1497,8 @@ namespace AgOpenGPS
                         //raw current AB Line
                         GL.Begin(PrimitiveType.Lines);
                         GL.Color3(0.9f, 0.20f, 0.90f);
-                        GL.Vertex3(ABLine.currentABLineP1.easting, ABLine.currentABLineP1.northing, 0.0);
-                        GL.Vertex3(ABLine.currentABLineP2.easting, ABLine.currentABLineP2.northing, 0.0);
+                        GL.Vertex3(ABLine.curlist[0].easting, ABLine.curlist[0].northing, 0.0);
+                        GL.Vertex3(ABLine.curlist[1].easting, ABLine.curlist[1].northing, 0.0);
                         GL.End();
                     }
 
@@ -1874,8 +1905,7 @@ namespace AgOpenGPS
 
             if (ct.isContourBtnOn || ABLine.isBtnABLineOn || curve.isBtnCurveOn)
             {
-
-                if (guidanceLineDistanceOff != 32000 && guidanceLineDistanceOff != 32020)
+                if (guidanceLineDistanceOff != 32000)
                 {
                     // in millimeters
                     avgPivDistance = avgPivDistance * 0.5 + guidanceLineDistanceOff * 0.5;

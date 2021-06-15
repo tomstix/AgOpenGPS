@@ -9,16 +9,14 @@ namespace AgOpenGPS
         public double abHeading, abLength;
         public double angVel;
 
-        public bool isABValid, isLateralTriggered;
+        public bool isABValid;
 
         //the current AB guidance line
-        public vec3 currentABLineP1 = new vec3(0.0, 0.0, 0.0);
-        public vec3 currentABLineP2 = new vec3(0.0, 1.0, 0.0);
-
-        public double distanceFromCurrentLinePivot;
-        public double distanceFromRefLine;
-        //pure pursuit values
-        public vec2 goalPointAB = new vec2(0, 0);
+        public List<vec3> curlist = new List<vec3>
+            {
+                new vec3(),
+                new vec3()
+            };
 
         //List of all available ABLines
         public List<CABLines> lineArr = new List<CABLines>();
@@ -31,11 +29,6 @@ namespace AgOpenGPS
         public bool isHeadingSameWay = true;
         public bool isBtnABLineOn;
 
-        //public bool isOnTramLine;
-        //public int tramBasedOn;
-        public double ppRadiusAB;
-        public vec2 radiusPointAB = new vec2(0, 0);
-        public double rEastAB, rNorthAB;
         //the reference line endpoints
         public vec2 refABLineP1 = new vec2(0.0, 0.0);
         public vec2 refABLineP2 = new vec2(0.0, 1.0);
@@ -45,7 +38,6 @@ namespace AgOpenGPS
         public vec2 refPoint2 = new vec2(0.3, 0.3);
 
         public double snapDistance, lastSecond = 0;
-        public double steerAngleAB;
         public int lineWidth;
 
         //design
@@ -82,11 +74,11 @@ namespace AgOpenGPS
             //z2-z1
             dy = refABLineP2.northing - refABLineP1.northing;
 
-            distanceFromRefLine = ((dy * mf.guidanceLookPos.easting) - (dx * mf.guidanceLookPos.northing) + (refABLineP2.easting
+            double distanceFromRefLine = ((dy * mf.guidanceLookPos.easting) - (dx * mf.guidanceLookPos.northing) + (refABLineP2.easting
                                     * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
                                         / Math.Sqrt((dy * dy) + (dx * dx));
 
-            isLateralTriggered = false;
+            mf.gyd.isLateralTriggered = false;
 
             isHeadingSameWay = Math.PI - Math.Abs(Math.Abs(pivot.heading - abHeading) - Math.PI) < glm.PIBy2;
 
@@ -102,14 +94,9 @@ namespace AgOpenGPS
             (Math.Sin(-abHeading) * ((widthMinusOverlap * howManyPathsAway) + (isHeadingSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset))) + refPoint1.northing);
 
             //create the new line extent points for current ABLine based on original heading of AB line
-            currentABLineP1.easting = point1.easting - (Math.Sin(abHeading) * abLength);
-            currentABLineP1.northing = point1.northing - (Math.Cos(abHeading) * abLength);
-
-            currentABLineP2.easting = point1.easting + (Math.Sin(abHeading) * abLength);
-            currentABLineP2.northing = point1.northing + (Math.Cos(abHeading) * abLength);
-
-            currentABLineP1.heading = abHeading;
-            currentABLineP2.heading = abHeading;
+            curlist.Clear();
+            curlist.Add(new vec3(point1.easting - (Math.Sin(abHeading) * abLength), point1.northing - (Math.Cos(abHeading) * abLength), abHeading));
+            curlist.Add(new vec3(point1.easting + (Math.Sin(abHeading) * abLength), point1.northing + (Math.Cos(abHeading) * abLength), abHeading));
 
             isABValid = true;
         }
@@ -120,23 +107,10 @@ namespace AgOpenGPS
             if (!isABValid || ((mf.secondsSinceStart - lastSecond) > 0.66 && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchValue != 0)))
                 BuildCurrentABLineList(pivot, steer);
 
-            if (mf.yt.isYouTurnTriggered && mf.yt.DistanceFromYouTurnLine())//do the pure pursuit from youTurn
-            {
-                //now substitute what it thinks are AB line values with auto turn values
-                steerAngleAB = mf.yt.steerAngleYT;
-                distanceFromCurrentLinePivot = mf.yt.distanceFromCurrentLine;
-
-                goalPointAB = mf.yt.goalPointYT;
-                radiusPointAB.easting = mf.yt.radiusPointYT.easting;
-                radiusPointAB.northing = mf.yt.radiusPointYT.northing;
-                ppRadiusAB = mf.yt.ppRadiusYT;
-            }
-            else if (mf.isStanleyUsed)//Stanley
-                mf.gyd.StanleyGuidanceABLine(currentABLineP1, currentABLineP2, pivot, steer);
+            if (mf.isStanleyUsed)//Stanley
+                mf.gyd.StanleyGuidance(pivot, steer, ref curlist, isHeadingSameWay);
             else//Pure Pursuit
-            {
-                mf.gyd.PurePursuitGuidance(currentABLineP1, currentABLineP2, pivot, steer);
-            }
+                mf.gyd.PurePursuitGuidance(pivot, ref curlist, isHeadingSameWay);
         }
 
         public void DrawABLines()
@@ -174,8 +148,8 @@ namespace AgOpenGPS
             GL.LineWidth(lineWidth);
             GL.Begin(PrimitiveType.Lines);
             GL.Color3(0.95f, 0.20f, 0.950f);
-            GL.Vertex3(currentABLineP1.easting, currentABLineP1.northing, 0.0);
-            GL.Vertex3(currentABLineP2.easting, currentABLineP2.northing, 0.0);
+            GL.Vertex3(curlist[0].easting, curlist[0].northing, 0.0);
+            GL.Vertex3(curlist[1].easting, curlist[1].northing, 0.0);
             GL.End();
 
             //ABLine currently being designed
@@ -218,70 +192,35 @@ namespace AgOpenGPS
 
                 if (isHeadingSameWay)
                 {
-                    GL.Vertex3((cosHeading * (toolWidth + toolOffset)) + currentABLineP1.easting, (sinHeading * (toolWidth + toolOffset)) + currentABLineP1.northing, 0);
-                    GL.Vertex3((cosHeading * (toolWidth + toolOffset)) + currentABLineP2.easting, (sinHeading * (toolWidth + toolOffset)) + currentABLineP2.northing, 0);
-                    GL.Vertex3((cosHeading * (-toolWidth + toolOffset)) + currentABLineP1.easting, (sinHeading * (-toolWidth + toolOffset)) + currentABLineP1.northing, 0);
-                    GL.Vertex3((cosHeading * (-toolWidth + toolOffset)) + currentABLineP2.easting, (sinHeading * (-toolWidth + toolOffset)) + currentABLineP2.northing, 0);
+                    GL.Vertex3((cosHeading * (toolWidth + toolOffset)) + curlist[0].easting, (sinHeading * (toolWidth + toolOffset)) + curlist[0].northing, 0);
+                    GL.Vertex3((cosHeading * (toolWidth + toolOffset)) + curlist[1].easting, (sinHeading * (toolWidth + toolOffset)) + curlist[1].northing, 0);
+                    GL.Vertex3((cosHeading * (-toolWidth + toolOffset)) + curlist[0].easting, (sinHeading * (-toolWidth + toolOffset)) + curlist[0].northing, 0);
+                    GL.Vertex3((cosHeading * (-toolWidth + toolOffset)) + curlist[1].easting, (sinHeading * (-toolWidth + toolOffset)) + curlist[1].northing, 0);
 
                     toolWidth *= 2;
-                    GL.Vertex3((cosHeading * toolWidth) + currentABLineP1.easting, (sinHeading * toolWidth) + currentABLineP1.northing, 0);
-                    GL.Vertex3((cosHeading * toolWidth) + currentABLineP2.easting, (sinHeading * toolWidth) + currentABLineP2.northing, 0);
-                    GL.Vertex3((cosHeading * (-toolWidth)) + currentABLineP1.easting, (sinHeading * (-toolWidth)) + currentABLineP1.northing, 0);
-                    GL.Vertex3((cosHeading * (-toolWidth)) + currentABLineP2.easting, (sinHeading * (-toolWidth)) + currentABLineP2.northing, 0);
+                    GL.Vertex3((cosHeading * toolWidth) + curlist[0].easting, (sinHeading * toolWidth) + curlist[0].northing, 0);
+                    GL.Vertex3((cosHeading * toolWidth) + curlist[1].easting, (sinHeading * toolWidth) + curlist[1].northing, 0);
+                    GL.Vertex3((cosHeading * (-toolWidth)) + curlist[0].easting, (sinHeading * (-toolWidth)) + curlist[0].northing, 0);
+                    GL.Vertex3((cosHeading * (-toolWidth)) + curlist[1].easting, (sinHeading * (-toolWidth)) + curlist[1].northing, 0);
                 }
                 else
                 {
-                    GL.Vertex3((cosHeading * (toolWidth - toolOffset)) + currentABLineP1.easting, (sinHeading * (toolWidth - toolOffset)) + currentABLineP1.northing, 0);
-                    GL.Vertex3((cosHeading * (toolWidth - toolOffset)) + currentABLineP2.easting, (sinHeading * (toolWidth - toolOffset)) + currentABLineP2.northing, 0);
-                    GL.Vertex3((cosHeading * (-toolWidth - toolOffset)) + currentABLineP1.easting, (sinHeading * (-toolWidth - toolOffset)) + currentABLineP1.northing, 0);
-                    GL.Vertex3((cosHeading * (-toolWidth - toolOffset)) + currentABLineP2.easting, (sinHeading * (-toolWidth - toolOffset)) + currentABLineP2.northing, 0);
+                    GL.Vertex3((cosHeading * (toolWidth - toolOffset)) + curlist[0].easting, (sinHeading * (toolWidth - toolOffset)) + curlist[0].northing, 0);
+                    GL.Vertex3((cosHeading * (toolWidth - toolOffset)) + curlist[1].easting, (sinHeading * (toolWidth - toolOffset)) + curlist[1].northing, 0);
+                    GL.Vertex3((cosHeading * (-toolWidth - toolOffset)) + curlist[0].easting, (sinHeading * (-toolWidth - toolOffset)) + curlist[0].northing, 0);
+                    GL.Vertex3((cosHeading * (-toolWidth - toolOffset)) + curlist[1].easting, (sinHeading * (-toolWidth - toolOffset)) + curlist[1].northing, 0);
 
                     toolWidth *= 2;
-                    GL.Vertex3((cosHeading * toolWidth) + currentABLineP1.easting, (sinHeading * toolWidth) + currentABLineP1.northing, 0);
-                    GL.Vertex3((cosHeading * toolWidth) + currentABLineP2.easting, (sinHeading * toolWidth) + currentABLineP2.northing, 0);
-                    GL.Vertex3((cosHeading * (-toolWidth)) + currentABLineP1.easting, (sinHeading * (-toolWidth)) + currentABLineP1.northing, 0);
-                    GL.Vertex3((cosHeading * (-toolWidth)) + currentABLineP2.easting, (sinHeading * (-toolWidth)) + currentABLineP2.northing, 0);
+                    GL.Vertex3((cosHeading * toolWidth) + curlist[0].easting, (sinHeading * toolWidth) + curlist[0].northing, 0);
+                    GL.Vertex3((cosHeading * toolWidth) + curlist[1].easting, (sinHeading * toolWidth) + curlist[1].northing, 0);
+                    GL.Vertex3((cosHeading * (-toolWidth)) + curlist[0].easting, (sinHeading * (-toolWidth)) + curlist[0].northing, 0);
+                    GL.Vertex3((cosHeading * (-toolWidth)) + curlist[1].easting, (sinHeading * (-toolWidth)) + curlist[1].northing, 0);
                 }
 
                 GL.End();
                 GL.Disable(EnableCap.LineStipple);
             }
 
-            //if (!mf.isStanleyUsed && mf.camera.camSetDistance > -100)
-            {
-                //Draw lookahead Point
-                GL.PointSize(8.0f);
-                GL.Begin(PrimitiveType.Points);
-                GL.Color3(1.0f, 1.0f, 0.0f);
-                GL.Vertex3(goalPointAB.easting, goalPointAB.northing, 0.0);
-                //GL.Vertex3(mf.gyd.rEastSteer, mf.gyd.rNorthSteer, 0.0);
-                //GL.Vertex3(mf.gyd.rEastPivot, mf.gyd.rNorthPivot, 0.0);
-                GL.End();
-                GL.PointSize(1.0f);
-
-                if (ppRadiusAB < 50 && ppRadiusAB > -50)
-                {
-                    const int numSegments = 100;
-                    double theta = glm.twoPI / numSegments;
-                    double c = Math.Cos(theta);//precalculate the sine and cosine
-                    double s = Math.Sin(theta);
-                    double x = ppRadiusAB;//we start at angle = 0
-                    double y = 0;
-
-                    GL.LineWidth(1);
-                    GL.Color3(0.53f, 0.530f, 0.950f);
-                    GL.Begin(PrimitiveType.LineLoop);
-                    for (int ii = 0; ii < numSegments; ii++)
-                    {
-                        //glVertex2f(x + cx, y + cy);//output vertex
-                        GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0);//output vertex
-                        double t = x;//apply the rotation matrix
-                        x = (c * x) - (s * y);
-                        y = (s * t) + (c * y);
-                    }
-                    GL.End();
-                }
-            }
 
             mf.yt.DrawYouTurn();
 
@@ -389,33 +328,13 @@ namespace AgOpenGPS
             refABLineP1 = new vec2(0.0, 0.0);
             refABLineP2 = new vec2(0.0, 1.0);
 
-            currentABLineP1 = new vec3(0.0, 0.0, 0.0);
-            currentABLineP2 = new vec3(0.0, 1.0, 0.0);
+            curlist[0] = new vec3(0.0, 0.0, 0.0);
+            curlist[1] = new vec3(0.0, 1.0, 0.0);
 
             abHeading = 0.0;
             howManyPathsAway = 0.0;
             isABLineSet = false;
             isABLineLoaded = false;
-        }
-
-        public void SetABLineByBPoint()
-        {
-            refPoint2.easting = mf.pn.fix.easting;
-            refPoint2.northing = mf.pn.fix.northing;
-
-            //calculate the AB Heading
-            abHeading = Math.Atan2(refPoint2.easting - refPoint1.easting, refPoint2.northing - refPoint1.northing);
-            if (abHeading < 0) abHeading += glm.twoPI;
-
-            //sin x cos z for endpoints, opposite for additional lines
-            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) * abLength);
-            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * abLength);
-
-            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) * abLength);
-            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * abLength);
-
-            isABLineSet = true;
-            isABLineLoaded = true;
         }
 
         public void SetABLineByHeading()

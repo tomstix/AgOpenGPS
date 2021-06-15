@@ -613,10 +613,7 @@ namespace AgOpenGPS
                 GL.End();
                 GL.PointSize(1.0f);
             }
-        }
 
-        public void DrawDubins()
-        {
             if (shuttleDubinsList.Count > 1)
             {
                 //GL.LineWidth(2);
