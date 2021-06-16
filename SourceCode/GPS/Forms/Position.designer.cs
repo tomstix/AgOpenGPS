@@ -403,21 +403,12 @@ namespace AgOpenGPS
                         if (ahrs.imuHeading != 99999)
                         {
                             //current gyro angle in radians
-                            double correctionHeading = (glm.toRadians(ahrs.imuHeading));
+                            double correctionHeading = glm.toRadians(ahrs.imuHeading);
 
                             //Difference between the IMU heading and the GPS heading
                             double gyroDelta = (correctionHeading + imuGPS_Offset) - gpsHeading;
                             if (gyroDelta < 0) gyroDelta += glm.twoPI;
 
-                            //calculate delta based on circular data problem 0 to 360 to 0, clamp to +- 2 Pi
-                            if (gyroDelta >= -glm.PIBy2 && gyroDelta <= glm.PIBy2) gyroDelta *= -1.0;
-                            else
-                            {
-                                if (gyroDelta > glm.PIBy2) { gyroDelta = glm.twoPI - gyroDelta; }
-                                else { gyroDelta = (glm.twoPI + gyroDelta) * -1.0; }
-                            }
-                            if (gyroDelta > glm.twoPI) gyroDelta -= glm.twoPI;
-                            if (gyroDelta < -glm.twoPI) gyroDelta += glm.twoPI;
 
                             //if the gyro and last corrected fix is < 10 degrees, super low pass for gps
                             if (Math.Abs(gyroDelta) < 0.18)
