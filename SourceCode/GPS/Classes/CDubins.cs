@@ -21,7 +21,7 @@ namespace AgOpenGPS
         public static double turningRadius = Properties.Vehicle.Default.setVehicle_minTurningRadius;
 
         //Position, Heading is in radians
-        private vec2 startPos, goalPos;
+        private vec2 startPos = new vec2(0.0,0.0), goalPos = new vec2(0.0, 0.0);
 
         private double startHeading, goalHeading;
 
@@ -47,21 +47,19 @@ namespace AgOpenGPS
             //clear out existing path of vec3 points
             dubinsShortestPathList.Clear();
 
-            int pathsCnt = pathDataList.Count;
             if (pathDataList.Count > 0)
             {
                 int cnt = pathDataList[0].pathCoordinates.Count;
                 if (cnt > 1)
                 {
                     //calculate the heading for each point
-                    for (int i = 0; i < cnt - 1; i += 5)
+                    for (int i = 1; i < cnt - 1; i += 5)
                     {
-                        vec3 pt = new vec3(pathDataList[0].pathCoordinates[i].easting, pathDataList[0].pathCoordinates[i].northing, 0)
-                        {
-                            heading = Math.Atan2(pathDataList[0].pathCoordinates[i + 1].easting - pathDataList[0].pathCoordinates[i].easting,
-                            pathDataList[0].pathCoordinates[i + 1].northing - pathDataList[0].pathCoordinates[i].northing)
-                        };
-                        dubinsShortestPathList.Add(pt);
+                        dubinsShortestPathList.Add(new vec3(
+                            pathDataList[0].pathCoordinates[i].easting,
+                            pathDataList[0].pathCoordinates[i].northing,
+                            Math.Atan2(pathDataList[0].pathCoordinates[i + 1].easting - pathDataList[0].pathCoordinates[i].easting,
+                            pathDataList[0].pathCoordinates[i + 1].northing - pathDataList[0].pathCoordinates[i].northing)));
                     }
                 }
             }
@@ -588,7 +586,7 @@ namespace AgOpenGPS
                 }
 
                 //Add the new coordinate to the path
-                finalPath.Add(currentPos);
+                finalPath.Add(new vec2(currentPos));
             }
         }
     }

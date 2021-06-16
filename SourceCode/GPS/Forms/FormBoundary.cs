@@ -412,8 +412,7 @@ namespace AgOpenGPS
                                         mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
                                         //add the point to boundary
-                                        vec3 bndPt = new vec3(easting, norting, 0);
-                                        mf.bnd.bndArr[i].bndLine.Add(bndPt);
+                                        mf.bnd.bndArr[i].bndLine.Add(new vec3(easting, norting, 0));
                                     }
 
                                     //build the boundary, make sure is clockwise for outer counter clockwise for inner

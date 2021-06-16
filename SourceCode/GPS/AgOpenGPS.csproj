@@ -183,12 +183,6 @@
     <Compile Include="Forms\Pickers\FormDrivePicker.Designer.cs">
       <DependentUpon>FormDrivePicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Pickers\FormTouchPick.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Pickers\FormTouchPick.Designer.cs">
-      <DependentUpon>FormTouchPick.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormHeadland.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -507,9 +501,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormDrivePicker.resx">
       <DependentUpon>FormDrivePicker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Pickers\FormTouchPick.resx">
-      <DependentUpon>FormTouchPick.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormHeadland.resx">
       <DependentUpon>FormHeadland.cs</DependentUpon>

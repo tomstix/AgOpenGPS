@@ -4,25 +4,6 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    public class CRecPathPt
-    {
-        public double easting { get; set; }
-        public double northing { get; set; }
-        public double heading { get; set; }
-        public double speed { get; set; }
-        public bool autoBtnState { get; set; }
-
-        //constructor
-        public CRecPathPt(double _easting, double _northing, double _heading, double _speed,
-                            bool _autoBtnState)
-        {
-            easting = _easting;
-            northing = _northing;
-            heading = _heading;
-            speed = _speed;
-            autoBtnState = _autoBtnState;
-        }
-    }
 
     public class CRecordedPath
     {
@@ -38,68 +19,37 @@ namespace AgOpenGPS
         //the recorded path from driving around
         public List<CRecPathPt> recList = new List<CRecPathPt>();
 
-        public int recListCount;
-
         //the dubins path to get there
         public List<CRecPathPt> shuttleDubinsList = new List<CRecPathPt>();
-
-        public int shuttleListCount;
 
         //list of vec3 points of Dubins shortest path between 2 points - To be converted to RecPt
         public List<vec3> shortestDubinsList = new List<vec3>();
 
-        //generated reference line
-        public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
-
-        public double distanceFromRefLine, distanceFromCurrentLinePivot;
-        private int A, B, C;
-
-        public int currentPositonIndex;
+        public int C;
 
         //pure pursuit values
         public vec3 pivotAxlePosRP = new vec3(0, 0, 0);
 
-        public vec3 homePos = new vec3();
-        public vec2 goalPointRP = new vec2(0, 0);
-        public double steerAngleRP, rEastRP, rNorthRP, ppRadiusRP;
-        public vec2 radiusPointRP = new vec2(0, 0);
-
         public bool isBtnFollowOn, isEndOfTheRecLine, isRecordOn;
         public bool isDrivingRecordedPath, isFollowingDubinsToPath, isFollowingRecPath, isFollowingDubinsHome;
-
-        public double pivotDistanceError, pivotDistanceErrorLast, pivotDerivative, pivotDerivativeSmoothed;
-        //derivative counters
-        private int counter2;
-        public double inty;
-        public double steerAngleSmoothed, pivotErrorTotal;
-        public double distSteerError, lastDistSteerError, derivativeDistError;
 
         public bool StartDrivingRecordedPath()
         {
             //create the dubins path based on start and goal to start of recorded path
-            A = B = C = 0;
-            recListCount = recList.Count;
-            if (recListCount < 5) return false;
-
-            //the goal is the first point of path, the start is the current position
-            vec3 goal = new vec3(recList[0].easting, recList[0].northing, recList[0].heading);
-
-            //save a copy of where we started.
-            homePos = mf.pivotAxlePos;
+            C = 0;
+            if (recList.Count < 5) return false;
 
             //get the dubins for approach to recorded path
-            GetDubinsPath(goal);
-            shuttleListCount = shuttleDubinsList.Count;
+            GetDubinsPath(new vec3(recList[0].easting, recList[0].northing, recList[0].heading));
 
             //has a valid dubins path been created?
-            if (shuttleListCount == 0) return false;
+            if (shuttleDubinsList.Count == 0) return false;
 
             //technically all good if we get here so set all the flags
             isFollowingDubinsHome = false;
             isFollowingRecPath = false;
             isFollowingDubinsToPath = true;
             isEndOfTheRecLine = false;
-            currentPositonIndex = 0;
             isDrivingRecordedPath = true;
             return true;
         }
@@ -117,13 +67,13 @@ namespace AgOpenGPS
 
                 pivotAxlePosRP = mf.pivotAxlePos;
 
-                //StanleyDubinsPath(shuttleListCount);
-                PurePursuitDubins(shuttleListCount);
+                List<vec3> tt = new List<vec3>(shuttleDubinsList);
+                mf.gyd.PurePursuitGuidance(mf.pivotAxlePos, ref tt, true);
 
                 //check if close to recorded path
                 int cnt = shuttleDubinsList.Count;
-                pathCount = cnt - B;
-                if (pathCount < 8)
+                pathCount = cnt - C;
+                if (pathCount < 9)
                 {
                     double distSqr = glm.DistanceSquared(pivotAxlePosRP.northing, pivotAxlePosRP.easting, recList[0].northing, recList[0].easting);
                     if (distSqr < 2)
@@ -140,8 +90,8 @@ namespace AgOpenGPS
             {
                 pivotAxlePosRP = mf.pivotAxlePos;
 
-                //StanleyRecPath(recListCount);
-                PurePursuitRecPath(recListCount);
+                List<vec3> tt = new List<vec3>(recList);
+                mf.gyd.PurePursuitGuidance(mf.pivotAxlePos, ref tt, true);
 
                 //if end of the line then stop
                 if (!isEndOfTheRecLine)
@@ -184,8 +134,8 @@ namespace AgOpenGPS
             if (isFollowingDubinsHome)
             {
                 int cnt = shuttleDubinsList.Count;
-                pathCount = cnt - B;
-                if (pathCount < 3)
+                pathCount = cnt - C;
+                if (pathCount < 4)
                 {
                     StopDrivingRecordedPath();
                     return;
@@ -194,8 +144,8 @@ namespace AgOpenGPS
                 mf.sim.stepDistance = shuttleDubinsList[C].speed / 35;
                 pivotAxlePosRP = mf.pivotAxlePos;
 
-                //StanleyDubinsPath(shuttleListCount);
-                PurePursuitDubins(shuttleListCount);
+                //List<vec3> tt = new List<vec3>(shuttleDubinsList);
+                //mf.gyd.PurePursuitGuidance(mf.pivotAxlePos, ref tt, true);
             }
         }
 
@@ -223,12 +173,10 @@ namespace AgOpenGPS
             pivotAxlePosRP = mf.pivotAxlePos;
 
             //bump it forward
-            vec3 pt2 = new vec3
-            {
-                easting = pivotAxlePosRP.easting + (Math.Sin(pivotAxlePosRP.heading) * 3),
-                northing = pivotAxlePosRP.northing + (Math.Cos(pivotAxlePosRP.heading) * 3),
-                heading = pivotAxlePosRP.heading
-            };
+            vec3 pt2 = new vec3(
+                pivotAxlePosRP.easting + (Math.Sin(pivotAxlePosRP.heading) * 3),
+                pivotAxlePosRP.northing + (Math.Cos(pivotAxlePosRP.heading) * 3),
+                pivotAxlePosRP.heading);
 
             //get the dubins path vec3 point coordinates of turn
             shortestDubinsList.Clear();
@@ -251,344 +199,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void PurePursuitRecPath(int ptCount)
-        {
-            //find the closest 2 points to current fix
-            double minDistA = 9999999999;
-            double dist, dx, dz;
-
-
-            //set the search range close to current position
-            int top = currentPositonIndex + 5;
-            if (top > ptCount) top = ptCount;
-
-            for (int t = currentPositonIndex; t < top; t++)
-            {
-                dist = ((pivotAxlePosRP.easting - recList[t].easting) * (pivotAxlePosRP.easting - recList[t].easting))
-                                + ((pivotAxlePosRP.northing - recList[t].northing) * (pivotAxlePosRP.northing - recList[t].northing));
-                if (dist < minDistA)
-                {
-                    minDistA = dist;
-                    A = t;
-                }
-            }
-
-            //Save the closest point
-            C = A;
-
-            //next point is the next in list
-            B = A + 1;
-            if (B == ptCount)
-            {
-                //don't go past the end of the list - "end of the line" trigger
-                A--;
-                B--;
-                isEndOfTheRecLine = true;
-            }
-
-            //save current position
-            currentPositonIndex = A;
-
-            //get the distance from currently active AB line
-            dx = recList[B].easting - recList[A].easting;
-            dz = recList[B].northing - recList[A].northing;
-
-            if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return;
-
-            //abHeading = Math.Atan2(dz, dx);
-
-            //how far from current AB Line is fix
-            distanceFromCurrentLinePivot = ((dz * pivotAxlePosRP.easting) - (dx * pivotAxlePosRP.northing) + (recList[B].easting
-                        * recList[A].northing) - (recList[B].northing * recList[A].easting))
-                            / Math.Sqrt((dz * dz) + (dx * dx));
-
-            //integral slider is set to 0
-            if (mf.vehicle.purePursuitIntegralGain != 0)
-            {
-                pivotDistanceError = distanceFromCurrentLinePivot * 0.2 + pivotDistanceError * 0.8;
-
-                if (counter2++ > 4)
-                {
-                    pivotDerivative = pivotDistanceError - pivotDistanceErrorLast;
-                    pivotDistanceErrorLast = pivotDistanceError;
-                    counter2 = 0;
-                    pivotDerivative *= 2;
-
-                    //limit the derivative
-                    //if (pivotDerivative > 0.03) pivotDerivative = 0.03;
-                    //if (pivotDerivative < -0.03) pivotDerivative = -0.03;
-                    //if (Math.Abs(pivotDerivative) < 0.01) pivotDerivative = 0;
-                }
-
-                //pivotErrorTotal = pivotDistanceError + pivotDerivative;
-
-                if (mf.isAutoSteerBtnOn
-                    && Math.Abs(pivotDerivative) < (0.1)
-                    && mf.avgSpeed > 2.5
-                    && !mf.yt.isYouTurnTriggered)
-                //&& Math.Abs(pivotDistanceError) < 0.2)
-
-                {
-                    //if over the line heading wrong way, rapidly decrease integral
-                    if ((inty < 0 && distanceFromCurrentLinePivot < 0) || (inty > 0 && distanceFromCurrentLinePivot > 0))
-                    {
-                        inty += pivotDistanceError * mf.vehicle.purePursuitIntegralGain * -0.04;
-                    }
-                    else
-                    {
-                        if (Math.Abs(distanceFromCurrentLinePivot) > 0.02)
-                        {
-                            inty += pivotDistanceError * mf.vehicle.purePursuitIntegralGain * -0.02;
-                            if (inty > 0.2) inty = 0.2;
-                            else if (inty < -0.2) inty = -0.2;
-                        }
-                    }
-                }
-                else inty *= 0.95;
-            }
-            else inty = 0;
-
-            if (mf.isReverse) inty = 0;
-
-            // ** Pure pursuit ** - calc point on ABLine closest to current position
-            double U = (((pivotAxlePosRP.easting - recList[A].easting) * dx)
-                        + ((pivotAxlePosRP.northing - recList[A].northing) * dz))
-                        / ((dx * dx) + (dz * dz));
-
-            rEastRP = recList[A].easting + (U * dx);
-            rNorthRP = recList[A].northing + (U * dz);
-
-            //update base on autosteer settings and distance from line
-            double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
-
-            bool ReverseHeading = !mf.isReverse;
-
-            int count = ReverseHeading ? 1 : -1;
-            CRecPathPt start = new CRecPathPt(rEastRP, rNorthRP, 0, 0, false);
-            double distSoFar = 0;
-
-            for (int i = ReverseHeading ? B : A; i < ptCount && i >= 0; i += count)
-            {
-                // used for calculating the length squared of next segment.
-                double tempDist = Math.Sqrt((start.easting - recList[i].easting) * (start.easting - recList[i].easting)
-                    + (start.northing - recList[i].northing) * (start.northing - recList[i].northing));
-
-                //will we go too far?
-                if ((tempDist + distSoFar) > goalPointDistance)
-                {
-                    double j = (goalPointDistance - distSoFar) / tempDist; // the remainder to yet travel
-
-                    goalPointRP.easting = (((1 - j) * start.easting) + (j * recList[i].easting));
-                    goalPointRP.northing = (((1 - j) * start.northing) + (j * recList[i].northing));
-                    break;
-                }
-                else distSoFar += tempDist;
-                start = recList[i];
-            }
-
-            //calc "D" the distance from pivotAxlePosRP axle to lookahead point
-            double goalPointDistanceSquared = glm.DistanceSquared(goalPointRP.northing, goalPointRP.easting, pivotAxlePosRP.northing, pivotAxlePosRP.easting);
-
-            //calculate the the delta x in local coordinates and steering angle degrees based on wheelbase
-            //double localHeading = glm.twoPI - mf.fixHeading;
-
-            double localHeading = glm.twoPI - mf.fixHeading + inty;
-
-            ppRadiusRP = goalPointDistanceSquared / (2 * (((goalPointRP.easting - pivotAxlePosRP.easting) * Math.Cos(localHeading)) + ((goalPointRP.northing - pivotAxlePosRP.northing) * Math.Sin(localHeading))));
-
-            steerAngleRP = glm.toDegrees(Math.Atan(2 * (((goalPointRP.easting - pivotAxlePosRP.easting) * Math.Cos(localHeading))
-                + ((goalPointRP.northing - pivotAxlePosRP.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase / goalPointDistanceSquared));
-
-            if (steerAngleRP < -mf.vehicle.maxSteerAngle) steerAngleRP = -mf.vehicle.maxSteerAngle;
-            if (steerAngleRP > mf.vehicle.maxSteerAngle) steerAngleRP = mf.vehicle.maxSteerAngle;
-
-            if (ppRadiusRP < -500) ppRadiusRP = -500;
-            if (ppRadiusRP > 500) ppRadiusRP = 500;
-
-            radiusPointRP.easting = pivotAxlePosRP.easting + (ppRadiusRP * Math.Cos(localHeading));
-            radiusPointRP.northing = pivotAxlePosRP.northing + (ppRadiusRP * Math.Sin(localHeading));
-
-            //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
-            double angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleRP))) / mf.vehicle.wheelbase;
-
-            //clamp the steering angle to not exceed safe angular velocity
-            if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
-            {
-                steerAngleRP = glm.toDegrees(steerAngleRP > 0 ?
-                        (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777)))
-                    : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777))));
-            }
-
-            //Convert to centimeters
-            mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
-            mf.guidanceLineSteerAngle = (short)(steerAngleRP * 100);
-        }
-
-        private void PurePursuitDubins(int ptCount)
-        {
-            double dist, dx, dz;
-            double minDistA = 1000000, minDistB = 1000000;
-
-
-            //find the closest 2 points to current fix
-            for (int t = 0; t < ptCount; t++)
-            {
-                dist = ((pivotAxlePosRP.easting - shuttleDubinsList[t].easting) * (pivotAxlePosRP.easting - shuttleDubinsList[t].easting))
-                                + ((pivotAxlePosRP.northing - shuttleDubinsList[t].northing) * (pivotAxlePosRP.northing - shuttleDubinsList[t].northing));
-                if (dist < minDistA)
-                {
-                    minDistB = minDistA;
-                    B = A;
-                    minDistA = dist;
-                    A = t;
-                }
-                else if (dist < minDistB)
-                {
-                    minDistB = dist;
-                    B = t;
-                }
-            }
-
-            //just need to make sure the points continue ascending or heading switches all over the place
-            if (A > B) { C = A; A = B; B = C; }
-
-            //currentLocationIndex = A;
-
-            //get the distance from currently active AB line
-            dx = shuttleDubinsList[B].easting - shuttleDubinsList[A].easting;
-            dz = shuttleDubinsList[B].northing - shuttleDubinsList[A].northing;
-
-            if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return;
-
-            //abHeading = Math.Atan2(dz, dx);
-
-            //how far from current AB Line is fix
-            distanceFromCurrentLinePivot = ((dz * pivotAxlePosRP.easting) - (dx * pivotAxlePosRP.northing) + (shuttleDubinsList[B].easting
-                        * shuttleDubinsList[A].northing) - (shuttleDubinsList[B].northing * shuttleDubinsList[A].easting))
-                            / Math.Sqrt((dz * dz) + (dx * dx));
-
-            //integral slider is set to 0
-            if (mf.vehicle.purePursuitIntegralGain != 0)
-            {
-                pivotDistanceError = distanceFromCurrentLinePivot * 0.2 + pivotDistanceError * 0.8;
-
-                if (counter2++ > 4)
-                {
-                    pivotDerivative = pivotDistanceError - pivotDistanceErrorLast;
-                    pivotDistanceErrorLast = pivotDistanceError;
-                    counter2 = 0;
-                    pivotDerivative *= 2;
-
-                    //limit the derivative
-                    //if (pivotDerivative > 0.03) pivotDerivative = 0.03;
-                    //if (pivotDerivative < -0.03) pivotDerivative = -0.03;
-                    //if (Math.Abs(pivotDerivative) < 0.01) pivotDerivative = 0;
-                }
-
-                //pivotErrorTotal = pivotDistanceError + pivotDerivative;
-
-                if (mf.isAutoSteerBtnOn
-                    && Math.Abs(pivotDerivative) < (0.1)
-                    && mf.avgSpeed > 2.5
-                    && !mf.yt.isYouTurnTriggered)
-
-                {
-                    //if over the line heading wrong way, rapidly decrease integral
-                    if ((inty < 0 && distanceFromCurrentLinePivot < 0) || (inty > 0 && distanceFromCurrentLinePivot > 0))
-                    {
-                        inty += pivotDistanceError * mf.vehicle.purePursuitIntegralGain * -0.04;
-                    }
-                    else
-                    {
-                        if (Math.Abs(distanceFromCurrentLinePivot) > 0.02)
-                        {
-                            inty += pivotDistanceError * mf.vehicle.purePursuitIntegralGain * -0.02;
-                            if (inty > 0.2) inty = 0.2;
-                            else if (inty < -0.2) inty = -0.2;
-                        }
-                    }
-                }
-                else inty *= 0.95;
-            }
-            else inty = 0;
-
-            if (mf.isReverse) inty = 0;
-
-            // ** Pure pursuit ** - calc point on ABLine closest to current position
-            double U = (((pivotAxlePosRP.easting - shuttleDubinsList[A].easting) * dx)
-                        + ((pivotAxlePosRP.northing - shuttleDubinsList[A].northing) * dz))
-                        / ((dx * dx) + (dz * dz));
-
-            rEastRP = shuttleDubinsList[A].easting + (U * dx);
-            rNorthRP = shuttleDubinsList[A].northing + (U * dz);
-
-            //update base on autosteer settings and distance from line
-            double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
-
-            bool ReverseHeading = !mf.isReverse;
-
-            int count = ReverseHeading ? 1 : -1;
-            CRecPathPt start = new CRecPathPt(rEastRP, rNorthRP, 0, 0, false);
-            double distSoFar = 0;
-
-            for (int i = ReverseHeading ? B : A; i < ptCount && i >= 0; i += count)
-            {
-                // used for calculating the length squared of next segment.
-                double tempDist = Math.Sqrt((start.easting - shuttleDubinsList[i].easting) * (start.easting - shuttleDubinsList[i].easting)
-                    + (start.northing - shuttleDubinsList[i].northing) * (start.northing - shuttleDubinsList[i].northing));
-
-                //will we go too far?
-                if ((tempDist + distSoFar) > goalPointDistance)
-                {
-                    double j = (goalPointDistance - distSoFar) / tempDist; // the remainder to yet travel
-
-                    goalPointRP.easting = (((1 - j) * start.easting) + (j * shuttleDubinsList[i].easting));
-                    goalPointRP.northing = (((1 - j) * start.northing) + (j * shuttleDubinsList[i].northing));
-                    break;
-                }
-                else distSoFar += tempDist;
-                start = shuttleDubinsList[i];
-            }
-
-            //calc "D" the distance from pivotAxlePosRP axle to lookahead point
-            double goalPointDistanceSquared = glm.DistanceSquared(goalPointRP.northing, goalPointRP.easting, pivotAxlePosRP.northing, pivotAxlePosRP.easting);
-
-            //calculate the the delta x in local coordinates and steering angle degrees based on wheelbase
-            //double localHeading = glm.twoPI - mf.fixHeading;
-
-            double localHeading = glm.twoPI - mf.fixHeading + inty;
-
-            ppRadiusRP = goalPointDistanceSquared / (2 * (((goalPointRP.easting - pivotAxlePosRP.easting) * Math.Cos(localHeading)) + ((goalPointRP.northing - pivotAxlePosRP.northing) * Math.Sin(localHeading))));
-
-            steerAngleRP = glm.toDegrees(Math.Atan(2 * (((goalPointRP.easting - pivotAxlePosRP.easting) * Math.Cos(localHeading))
-                + ((goalPointRP.northing - pivotAxlePosRP.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase / goalPointDistanceSquared));
-
-            if (steerAngleRP < -mf.vehicle.maxSteerAngle) steerAngleRP = -mf.vehicle.maxSteerAngle;
-            if (steerAngleRP > mf.vehicle.maxSteerAngle) steerAngleRP = mf.vehicle.maxSteerAngle;
-
-            if (ppRadiusRP < -500) ppRadiusRP = -500;
-            if (ppRadiusRP > 500) ppRadiusRP = 500;
-
-            radiusPointRP.easting = pivotAxlePosRP.easting + (ppRadiusRP * Math.Cos(localHeading));
-            radiusPointRP.northing = pivotAxlePosRP.northing + (ppRadiusRP * Math.Sin(localHeading));
-
-            //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
-            double angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleRP))) / mf.vehicle.wheelbase;
-
-            //clamp the steering angle to not exceed safe angular velocity
-            if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
-            {
-                steerAngleRP = glm.toDegrees(steerAngleRP > 0 ?
-                        (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777)))
-                    : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777))));
-            }
-
-            //Convert to centimeters
-            mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
-            mf.guidanceLineSteerAngle = (short)(steerAngleRP * 100);
-        }
-
-
         public void DrawRecordedLine()
         {
             int ptCount = recList.Count;
@@ -599,20 +209,6 @@ namespace AgOpenGPS
             for (int h = 0; h < ptCount; h++) GL.Vertex3(recList[h].easting, recList[h].northing, 0);
             GL.End();
 
-            if (mf.isPureDisplayOn)
-            {
-                //Draw lookahead Point
-                GL.PointSize(8.0f);
-                GL.Begin(PrimitiveType.Points);
-
-                //GL.Color(1.0f, 1.0f, 0.25f);
-                //GL.Vertex(rEast, rNorth, 0.0);
-
-                GL.Color3(1.0f, 0.5f, 0.95f);
-                GL.Vertex3(rEastRP, rNorthRP, 0.0);
-                GL.End();
-                GL.PointSize(1.0f);
-            }
 
             if (shuttleDubinsList.Count > 1)
             {

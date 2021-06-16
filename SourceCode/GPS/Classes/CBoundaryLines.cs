@@ -4,21 +4,6 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    //public class vec3
-    //{
-    //    public double easting { get; set; }
-    //    public double northing { get; set; }
-    //    public double heading { get; set; }
-
-    //    //constructor
-    //    public vec3(double _easting, double _northing, double _heading)
-    //    {
-    //        easting = _easting;
-    //        northing = _northing;
-    //        heading = _heading;
-    //    }
-    //}
-
     public class CBoundaryLines
     {
         //constructor
@@ -60,25 +45,22 @@ namespace AgOpenGPS
             bndLine.Clear();
 
             //first point needs last, first, second points
-            vec3 pt3 = arr[0];
-            pt3.heading = Math.Atan2(arr[1].easting - arr[cnt].easting, arr[1].northing - arr[cnt].northing);
-            if (pt3.heading < 0) pt3.heading += glm.twoPI;
-            bndLine.Add(pt3);
+            double heading = Math.Atan2(arr[1].easting - arr[cnt].easting, arr[1].northing - arr[cnt].northing);
+            if (heading < 0) heading += glm.twoPI;
+            bndLine.Add(new vec3(arr[0].easting, arr[0].northing, heading));
 
             //middle points
             for (int i = 1; i < cnt; i++)
             {
-                pt3 = arr[i];
-                pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
-                if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                bndLine.Add(pt3);
+                heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
+                if (heading < 0) heading += glm.twoPI;
+                bndLine.Add(new vec3(arr[i].easting, arr[i].northing, heading));
             }
 
             //last and first point
-            pt3 = arr[cnt];
-            pt3.heading = Math.Atan2(arr[0].easting - arr[cnt - 1].easting, arr[0].northing - arr[cnt - 1].northing);
-            if (pt3.heading < 0) pt3.heading += glm.twoPI;
-            bndLine.Add(pt3);
+            heading = Math.Atan2(arr[0].easting - arr[cnt - 1].easting, arr[0].northing - arr[cnt - 1].northing);
+            if (heading < 0) heading += glm.twoPI;
+            bndLine.Add(new vec3(arr[0].easting, arr[0].northing, heading));
         }
 
         public void FixBoundaryLine(int bndNum)
@@ -104,10 +86,10 @@ namespace AgOpenGPS
                 distance = glm.Distance(bndLine[i], bndLine[j]);
                 if (distance > spacing * 1.5)
                 {
-                    vec3 pointB = new vec3((bndLine[i].easting + bndLine[j].easting) / 2.0,
-                        (bndLine[i].northing + bndLine[j].northing) / 2.0, bndLine[i].heading);
-
-                    bndLine.Insert(j, pointB);
+                    bndLine.Insert(j, new vec3((
+                        bndLine[i].easting + bndLine[j].easting) / 2.0,
+                        (bndLine[i].northing + bndLine[j].northing) / 2.0,
+                        bndLine[i].heading));
                     bndCount = bndLine.Count;
                     i--;
                 }
@@ -124,10 +106,10 @@ namespace AgOpenGPS
                 distance = glm.Distance(bndLine[i], bndLine[j]);
                 if (distance > spacing * 1.6)
                 {
-                    vec3 pointB = new vec3((bndLine[i].easting + bndLine[j].easting) / 2.0,
-                        (bndLine[i].northing + bndLine[j].northing) / 2.0, bndLine[i].heading);
-
-                    bndLine.Insert(j, pointB);
+                    bndLine.Insert(j, new vec3(
+                        (bndLine[i].easting + bndLine[j].easting) / 2.0,
+                        (bndLine[i].northing + bndLine[j].northing) / 2.0,
+                        bndLine[i].heading));
                     bndCount = bndLine.Count;
                     i--;
                 }
@@ -190,25 +172,22 @@ namespace AgOpenGPS
             int j = bndLine.Count - 1;
             //clear the list, constant is easting, multiple is northing
             calcList.Clear();
-            vec2 constantMultiple = new vec2(0, 0);
 
             for (int i = 0; i < bndLine.Count; j = i++)
             {
                 //check for divide by zero
                 if (Math.Abs(bndLine[i].northing - bndLine[j].northing) < 0.00000000001)
                 {
-                    constantMultiple.easting = bndLine[i].easting;
-                    constantMultiple.northing = 0;
-                    calcList.Add(constantMultiple);
+                    calcList.Add(new vec2(bndLine[i].easting, 0));
                 }
                 else
                 {
                     //determine constant and multiple and add to list
-                    constantMultiple.easting = bndLine[i].easting - ((bndLine[i].northing * bndLine[j].easting)
+                    calcList.Add(new vec2(
+                    bndLine[i].easting - ((bndLine[i].northing * bndLine[j].easting)
                                     / (bndLine[j].northing - bndLine[i].northing)) + ((bndLine[i].northing * bndLine[i].easting)
-                                        / (bndLine[j].northing - bndLine[i].northing));
-                    constantMultiple.northing = (bndLine[j].easting - bndLine[i].easting) / (bndLine[j].northing - bndLine[i].northing);
-                    calcList.Add(constantMultiple);
+                                        / (bndLine[j].northing - bndLine[i].northing)),
+                    (bndLine[j].easting - bndLine[i].easting) / (bndLine[j].northing - bndLine[i].northing)));
                 }
             }
         }
@@ -218,25 +197,22 @@ namespace AgOpenGPS
             int j = bndLineEar.Count - 1;
             //clear the list, constant is easting, multiple is northing
             calcListEar.Clear();
-            vec2 constantMultiple = new vec2(0, 0);
 
             for (int i = 0; i < bndLineEar.Count; j = i++)
             {
                 //check for divide by zero
                 if (Math.Abs(bndLineEar[i].northing - bndLineEar[j].northing) < 0.00000000001)
                 {
-                    constantMultiple.easting = bndLineEar[i].easting;
-                    constantMultiple.northing = 0;
-                    calcListEar.Add(constantMultiple);
+                    calcListEar.Add(new vec2(bndLineEar[i].easting, 0));
                 }
                 else
                 {
+                    calcListEar.Add(new vec2(
                     //determine constant and multiple and add to list
-                    constantMultiple.easting = bndLineEar[i].easting - ((bndLineEar[i].northing * bndLineEar[j].easting)
+                    bndLineEar[i].easting - ((bndLineEar[i].northing * bndLineEar[j].easting)
                                     / (bndLineEar[j].northing - bndLineEar[i].northing)) + ((bndLineEar[i].northing * bndLineEar[i].easting)
-                                        / (bndLineEar[j].northing - bndLineEar[i].northing));
-                    constantMultiple.northing = (bndLineEar[j].easting - bndLineEar[i].easting) / (bndLineEar[j].northing - bndLineEar[i].northing);
-                    calcListEar.Add(constantMultiple);
+                                        / (bndLineEar[j].northing - bndLineEar[i].northing)),
+                    (bndLineEar[j].easting - bndLineEar[i].easting) / (bndLineEar[j].northing - bndLineEar[i].northing)));
                 }
             }
         }
@@ -254,24 +230,6 @@ namespace AgOpenGPS
                 || (bndLine[j].northing < testPointv3.northing && bndLine[i].northing >= testPointv3.northing))
                 {
                     oddNodes ^= ((testPointv3.northing * calcList[i].northing) + calcList[i].easting < testPointv3.easting);
-                }
-            }
-            return oddNodes; //true means inside.
-        }
-
-        public bool IsPointInsideBoundary(vec2 testPointv2)
-        {
-            if (calcList.Count < 3) return false;
-            int j = bndLine.Count - 1;
-            bool oddNodes = false;
-
-            //test against the constant and multiples list the test point
-            for (int i = 0; i < bndLine.Count; j = i++)
-            {
-                if ((bndLine[i].northing < testPointv2.northing && bndLine[j].northing >= testPointv2.northing)
-                || (bndLine[j].northing < testPointv2.northing && bndLine[i].northing >= testPointv2.northing))
-                {
-                    oddNodes ^= ((testPointv2.northing * calcList[i].northing) + calcList[i].easting < testPointv2.easting);
                 }
             }
             return oddNodes; //true means inside.
@@ -353,7 +311,6 @@ namespace AgOpenGPS
         {
             int ptCount = bndLine.Count;
             if (ptCount < 1) return false;
-            bool isClockwise = true;
 
             area = 0;         // Accumulates area in the loop
             int j = ptCount - 1;  // The last vertex is the 'previous' one to the first
@@ -362,11 +319,10 @@ namespace AgOpenGPS
             {
                 area += (bndLine[j].easting + bndLine[i].easting) * (bndLine[j].northing - bndLine[i].northing);
             }
-            if (area < 0) isClockwise = false;
 
             area = Math.Abs(area / 2);
 
-            return isClockwise;
+            return area >= 0;
         }
     }
 }

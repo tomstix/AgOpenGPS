@@ -323,6 +323,12 @@ namespace AgOpenGPS
                 //just need to make sure the points continue ascending or heading switches all over the place
                 else if (pA > pB) { int C = pA; pA = pB; pB = C; }
 
+                if (mf.recPath.isFollowingRecPath || mf.recPath.isFollowingDubinsToPath || mf.recPath.isFollowingDubinsHome)
+                {
+                    mf.recPath.C = pA;
+                    if (mf.recPath.isFollowingRecPath && pB >= ptCount-1)
+                        mf.recPath.isEndOfTheRecLine = true;
+                }
                 //get the distance from currently active AB line
                 dx = Points[pB].easting - Points[pA].easting;
                 dy = Points[pB].northing - Points[pA].northing;

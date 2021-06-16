@@ -17,7 +17,7 @@ namespace AgOpenGPS
 
         private bool isA, isSet;
         public double headWidth = 0;
-        private int A, B, C, D, E, start = 99999, end = 99999;
+        private int start = -1, end = -1;
         private double totalHeadlandWidth = 0;
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
@@ -25,7 +25,6 @@ namespace AgOpenGPS
         //list of coordinates of boundary line
         public List<vec3> headLineTemplate = new List<vec3>();
 
-        private vec3[] hdx2;
         private vec3[] hdArr;
 
         public FormHeadland(Form callingForm)
@@ -68,9 +67,6 @@ namespace AgOpenGPS
 
         public void BuildHeadLineTemplateFromBoundary()
         {
-            //to fill the list of line points
-            vec3 point = new vec3();
-
             totalHeadlandWidth = 0;
             lblHeadlandWidth.Text = "0";
             nudDistance.Value = 0;
@@ -80,34 +76,21 @@ namespace AgOpenGPS
             headLineTemplate.Clear();
 
             int ptCount = mf.bnd.bndArr[0].bndLine.Count;
-            for (int i = ptCount - 1; i >= 0; i--)
+
+            hdArr = new vec3[ptCount];
+
+            for (int i = 0; i < ptCount; i++)
             {
                 //calculate the point inside the boundary
-                point.easting = mf.bnd.bndArr[0].bndLine[i].easting;
-                point.northing = mf.bnd.bndArr[0].bndLine[i].northing;
-                point.heading = mf.bnd.bndArr[0].bndLine[i].heading;
-                headLineTemplate.Add(point);
+                headLineTemplate.Insert(0, new vec3(
+                    mf.bnd.bndArr[0].bndLine[i].easting,
+                    mf.bnd.bndArr[0].bndLine[i].northing,
+                    mf.bnd.bndArr[0].bndLine[i].heading));
             }
-
-            start = end = 99999;
-            isSet = false;
-
-            int cnt = headLineTemplate.Count;
-
-            hdArr = new vec3[cnt];
             headLineTemplate.CopyTo(hdArr);
 
-            hdx2 = new vec3[cnt * 2];
-
-            for (int i = 0; i < cnt; i++)
-            {
-                hdx2[i] = hdArr[i];
-            }
-
-            for (int i = cnt; i < cnt * 2; i++)
-            {
-                hdx2[i] = hdArr[i - cnt];
-            }
+            start = end = -1;
+            isSet = false;
         }
 
         private void RebuildHeadLineTemplate()
@@ -122,8 +105,7 @@ namespace AgOpenGPS
             int cnt = hdArr.Length;
             for (int i = 0; i < cnt; i++)
             {
-                vec3 pt = new vec3(hdArr[i]);
-                headLineTemplate.Add(pt);
+                headLineTemplate.Add(new vec3(hdArr[i]));
             }
 
             cnt = headLineTemplate.Count;
@@ -131,19 +113,7 @@ namespace AgOpenGPS
             hdArr = new vec3[cnt];
             headLineTemplate.CopyTo(hdArr);
 
-            hdx2 = new vec3[cnt * 2];
-
-            for (int i = 0; i < cnt; i++)
-            {
-                hdx2[i] = hdArr[i];
-            }
-
-            for (int i = cnt; i < cnt * 2; i++)
-            {
-                hdx2[i] = hdArr[i - cnt];
-            }
-
-            start = end = 99999;
+            start = end = -1;
             isSet = false;
         }
 
@@ -224,7 +194,10 @@ namespace AgOpenGPS
         {
             double width = (double)nudSetDistance.Value * mf.ftOrMtoM;
 
-            if (end > headLineTemplate.Count)
+            if (((hdArr.Length - end + start) % hdArr.Length) < ((hdArr.Length - start + end) % hdArr.Length)) { int index = start; start = end; end = index; }
+            if (((hdArr.Length - start + end) % hdArr.Length) < 1) return;
+
+            if (start > end)
             {
                 for (int i = start; i < hdArr.Length; i++)
                 {
@@ -235,7 +208,6 @@ namespace AgOpenGPS
                     hdArr[i].heading = headLineTemplate[i].heading;
                 }
 
-                end -= hdArr.Length;
                 for (int i = 0; i < end; i++)
                 {
                     hdArr[i].easting = headLineTemplate[i].easting
@@ -259,8 +231,7 @@ namespace AgOpenGPS
             }
 
             isSet = false;
-            start = 99999;
-            end = 99999;
+            start = end = -1;
             RebuildHeadLineTemplate();
         }
 
@@ -281,8 +252,7 @@ namespace AgOpenGPS
             FixTurnLine(width, headLineTemplate, 2);
 
             isSet = false;
-            start = 99999;
-            end = 99999;
+            start = end = -1;
             RebuildHeadLineTemplate();
         }
 
@@ -294,9 +264,10 @@ namespace AgOpenGPS
             for (int i = 0; i < headLineTemplate.Count; i++)
             {
                 //calculate the point inside the boundary
-                hdArr[i].easting = headLineTemplate[i].easting + (-Math.Sin(glm.PIBy2 + headLineTemplate[i].heading) * width);
-                hdArr[i].northing = headLineTemplate[i].northing + (-Math.Cos(glm.PIBy2 + headLineTemplate[i].heading) * width);
-                hdArr[i].heading = headLineTemplate[i].heading;
+                hdArr[i] = new vec3(
+                    headLineTemplate[i].easting + (-Math.Sin(glm.PIBy2 + headLineTemplate[i].heading) * width),
+                    headLineTemplate[i].northing + (-Math.Cos(glm.PIBy2 + headLineTemplate[i].heading) * width),
+                    headLineTemplate[i].heading);
             }
 
             lblHeadlandWidth.Text = (width * mf.m2FtOrM).ToString("N2");
@@ -305,8 +276,7 @@ namespace AgOpenGPS
             FixTurnLine(width, headLineTemplate, 2);
 
             isSet = false;
-            start = 99999;
-            end = 99999;
+            start = end = -1;
             RebuildHeadLineTemplate();
         }
         private void oglSelf_Paint(object sender, PaintEventArgs e)
@@ -368,8 +338,7 @@ namespace AgOpenGPS
             if (isSet)
             {
                 isSet = false;
-                start = 99999;
-                end = 99999;
+                start = end = -1;
                 return;
             }
 
@@ -378,13 +347,11 @@ namespace AgOpenGPS
             //Convert to Origin in the center of window, 800 pixels
             fixPt.X = pt.X - 350;
             fixPt.Y = (700 - pt.Y - 350);
-            vec3 plotPt = new vec3
-            {
-                //convert screen coordinates to field coordinates
-                easting = fixPt.X * maxFieldDistance / 632.0,
-                northing = fixPt.Y * maxFieldDistance / 632.0,
-                heading = 0
-            };
+            //convert screen coordinates to field coordinates
+            vec3 plotPt = new vec3(
+                fixPt.X * maxFieldDistance / 632.0,
+                fixPt.Y * maxFieldDistance / 632.0,
+                0);
 
             plotPt.easting += fieldCenterX;
             plotPt.northing += fieldCenterY;
@@ -392,88 +359,35 @@ namespace AgOpenGPS
             pint.easting = plotPt.easting;
             pint.northing = plotPt.northing;
 
-            if (isA)
+            double minDistA = double.MaxValue;
+
+            int ptCount = hdArr.Length;
+            int A = -1;
+            if (ptCount > 0)
             {
-                double minDistA = 1000000, minDistB = 1000000;
-                start = 99999; end = 99999;
-
-                int ptCount = hdx2.Length;
-
-                if (ptCount > 0)
+                //find the closest 2 points to current fix
+                for (int t = 0; t < ptCount; t++)
                 {
-                    //find the closest 2 points to current fix
-                    for (int t = 0; t < ptCount; t++)
+                    double dist = ((pint.easting - hdArr[t].easting) * (pint.easting - hdArr[t].easting))
+                                    + ((pint.northing - hdArr[t].northing) * (pint.northing - hdArr[t].northing));
+                    if (dist < minDistA)
                     {
-                        double dist = ((pint.easting - hdx2[t].easting) * (pint.easting - hdx2[t].easting))
-                                        + ((pint.northing - hdx2[t].northing) * (pint.northing - hdx2[t].northing));
-                        if (dist < minDistA)
-                        {
-                            minDistB = minDistA;
-                            B = A;
-                            minDistA = dist;
-                            A = t;
-                        }
-                        else if (dist < minDistB)
-                        {
-                            minDistB = dist;
-                            B = t;
-                        }
+                        minDistA = dist;
+                        A = t;
                     }
+                }
 
-                    //just need to make sure the points continue ascending or heading switches all over the place
-                    if (A > B) { E = A; A = B; B = E; }
-
+                if (isA)
+                {
                     start = A;
+                    isA = false;
                 }
-
-                isA = false;
-            }
-            else
-            {
-                double minDistA = 1000000, minDistB = 1000000;
-
-                int ptCount = hdx2.Length;
-
-                if (ptCount > 0)
+                else
                 {
-                    //find the closest 2 points to current point
-                    for (int t = 0; t < ptCount; t++)
-                    {
-                        double dist = ((pint.easting - hdx2[t].easting) * (pint.easting - hdx2[t].easting))
-                                        + ((pint.northing - hdx2[t].northing) * (pint.northing - hdx2[t].northing));
-                        if (dist < minDistA)
-                        {
-                            minDistB = minDistA;
-                            D = C;
-                            minDistA = dist;
-                            C = t;
-                        }
-                        else if (dist < minDistB)
-                        {
-                            minDistB = dist;
-                            D = t;
-                        }
-                    }
-
-                    //just need to make sure the points continue ascending or heading switches all over the place
-                    if (C > D) { E = C; C = D; D = E; }
+                    end = A;
+                    isA = true;
+                    isSet = true;
                 }
-
-                isA = true;
-
-                int A1 = Math.Abs(A - C);
-                int B1 = Math.Abs(A - D);
-                int C1 = Math.Abs(B - C);
-                int D1 = Math.Abs(B - D);
-
-                if (A1 <= B1 && A1 <= C1 && A1 <= D1) { start = A; end = C; }
-                else if (B1 <= A1 && B1 <= C1 && B1 <= D1) { start = A; end = D; }
-                else if (C1 <= B1 && C1 <= A1 && C1 <= D1) { start = B; end = C; }
-                else if (D1 <= B1 && D1 <= C1 && D1 <= A1) { start = B; end = D; }
-
-                if (start > end) { E = start; start = end; end = E; }
-
-                isSet = true;
             }
         }
 
@@ -483,21 +397,33 @@ namespace AgOpenGPS
             GL.Begin(PrimitiveType.Points);
 
             GL.Color3(0.990, 0.00, 0.250);
-            if (start != 99999) GL.Vertex3(hdx2[start].easting, hdx2[start].northing, 0);
+            if (start > -1) GL.Vertex3(hdArr[start].easting, hdArr[start].northing, 0);
 
             GL.Color3(0.990, 0.960, 0.250);
-            if (end != 99999) GL.Vertex3(hdx2[end].easting, hdx2[end].northing, 0);
+            if (end > -1) GL.Vertex3(hdArr[end].easting, hdArr[end].northing, 0);
             GL.End();
 
-            if (start != 99999 && end != 99999)
+            if (start >= 0 && end >= 0)
             {
                 GL.Color3(0.965, 0.250, 0.950);
                 //draw the turn line oject
                 GL.LineWidth(2.0f);
                 GL.Begin(PrimitiveType.LineStrip);
-                int ptCount = hdx2.Length;
+                int ptCount = hdArr.Length;
                 if (ptCount < 1) return;
-                for (int c = start; c < end; c++) GL.Vertex3(hdx2[c].easting, hdx2[c].northing, 0);
+
+                int start2 = start;
+                int end2 = end;
+                if (((hdArr.Length - end2 + start2) % hdArr.Length) < ((hdArr.Length - start2 + end2) % hdArr.Length)) { int index = start2; start2 = end2; end2 = index; }
+                if (((hdArr.Length - start2 + end2) % hdArr.Length) < 1) return;
+
+                if (start2 > end2)
+                {
+                    for (int c = start2; c < hdArr.Length; c++) GL.Vertex3(hdArr[c].easting, hdArr[c].northing, 0);
+                    for (int c = 0; c <= end2; c++) GL.Vertex3(hdArr[c].easting, hdArr[c].northing, 0);
+                }
+                else
+                    for (int c = start2; c <= end2; c++) GL.Vertex3(hdArr[c].easting, hdArr[c].northing, 0);
 
                 GL.End();
             }
@@ -573,7 +499,6 @@ namespace AgOpenGPS
             {
                 hdArr[i - 1].heading = Math.Atan2(hdArr[i - 1].easting - hdArr[i].easting, hdArr[i - 1].northing - hdArr[i].northing);
                 if (hdArr[i].heading < 0) hdArr[i].heading += glm.twoPI;
-                if (hdArr[i].heading > glm.twoPI) hdArr[i].heading -= glm.twoPI;
             }
 
             double delta = 0;
@@ -588,9 +513,7 @@ namespace AgOpenGPS
 
                 if (Math.Abs(delta) > 0.01)
                 {
-                    vec3 pt = new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading);
-
-                    mf.hd.headArr[0].hdLine.Add(pt);
+                    mf.hd.headArr[0].hdLine.Add(new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading));
                     delta = 0;
                 }
             }
@@ -599,10 +522,9 @@ namespace AgOpenGPS
 
             //for (int i = 0; i < hdArr.Length; i++)
             //{
-            //    vec3 pt = new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading);
-            //    mf.hd.headArr[0].hdLine.Add(pt);
+            //    mf.hd.headArr[0].hdLine.Add(new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading));
 
-            //    if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(pt)) mf.hd.headArr[0].isDrawList.Add(true);
+            //    if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(mf.hd.headArr[0].hdLine[mf.hd.headArr[0].hdLine.Count -1]) mf.hd.headArr[0].isDrawList.Add(true);
             //    else mf.hd.headArr[0].isDrawList.Add(false);
             //}
 
@@ -626,16 +548,17 @@ namespace AgOpenGPS
 
         private void btnDeletePoints_Click(object sender, EventArgs e)
         {
-            if (end > hdArr.Length)
+            if (((hdArr.Length - end + start) % hdArr.Length) < ((hdArr.Length - start + end) % hdArr.Length)) { int index = start; start = end; end = index; }
+            if (((hdArr.Length - start + end) % hdArr.Length) < 1) return;
+
+            if (start > end)
             {
                 headLineTemplate.RemoveRange(start, headLineTemplate.Count - start);
-
-                int endAdj = end - hdArr.Length;
-                headLineTemplate.RemoveRange(0, endAdj);
+                headLineTemplate.RemoveRange(0, end + 1);
             }
             else
             {
-                headLineTemplate.RemoveRange(start, end - start);
+                headLineTemplate.RemoveRange(start, end - start + 1);
             }
 
             int bndCount = headLineTemplate.Count;
@@ -647,11 +570,9 @@ namespace AgOpenGPS
                                                 headLineTemplate[j].easting, headLineTemplate[j].northing);
                 if (distanceSq > 2.3)
                 {
-                    vec3 pointB = new vec3((headLineTemplate[i].easting + headLineTemplate[j].easting) / 2.0,
+                    headLineTemplate.Insert(j, new vec3((headLineTemplate[i].easting + headLineTemplate[j].easting) / 2.0,
                         (headLineTemplate[i].northing + headLineTemplate[j].northing) / 2.0,
-                        headLineTemplate[j].heading);
-
-                    headLineTemplate.Insert(j, pointB);
+                        headLineTemplate[j].heading));
                     bndCount = headLineTemplate.Count;
                     i--;
                 }

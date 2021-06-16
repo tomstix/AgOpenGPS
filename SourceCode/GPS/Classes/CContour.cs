@@ -487,7 +487,6 @@ namespace AgOpenGPS
                 return;
             }
 
-            vec3 point = new vec3();
             double totalHeadWidth;
             int signPass;
 
@@ -517,11 +516,10 @@ namespace AgOpenGPS
             for (int i = ptCount - 1; i >= 0; i--)
             {
                 //calculate the point inside the boundary
-                point.easting = mf.bnd.bndArr[0].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.northing = mf.bnd.bndArr[0].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.heading = mf.bnd.bndArr[0].bndLine[i].heading - Math.PI;
-                if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
-                ptList.Add(point);
+                ptList.Add(new vec3(
+                    mf.bnd.bndArr[0].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth),
+                    mf.bnd.bndArr[0].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth),
+                    mf.bnd.bndArr[0].bndLine[i].heading + (mf.bnd.bndArr[0].bndLine[i].heading < Math.PI ? Math.PI : -Math.PI)));
             }
 
             //totalHeadWidth = (mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5 + 0.2 + (mf.tool.toolWidth - mf.tool.toolOverlap);
@@ -539,13 +537,12 @@ namespace AgOpenGPS
                 for (int i = ptCount - 1; i >= 0; i--)
                 {
                     //calculate the point inside the boundary
-                    point.easting = mf.bnd.bndArr[j].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
-                    point.northing = mf.bnd.bndArr[j].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
-                    point.heading = mf.bnd.bndArr[j].bndLine[i].heading - Math.PI;
-                    if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
+                    ptList.Add(new vec3(
+                        mf.bnd.bndArr[j].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth),
+                        mf.bnd.bndArr[j].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth),
+                        mf.bnd.bndArr[0].bndLine[i].heading + (mf.bnd.bndArr[0].bndLine[i].heading < Math.PI ? Math.PI : -Math.PI)));
 
                     //only add if inside actual field boundary
-                    ptList.Add(point);
                 }
 
                 //add the point list to the save list for appending to contour file

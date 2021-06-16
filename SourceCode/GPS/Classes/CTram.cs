@@ -105,7 +105,6 @@ namespace AgOpenGPS
             tramBndInnerArr?.Clear();
 
             //outside point
-            vec2 pt3 = new vec2();
 
             double distSq = ((tramWidth * 0.5) + halfWheelTrack) * ((tramWidth * 0.5) + halfWheelTrack) * 0.999;
 
@@ -113,12 +112,12 @@ namespace AgOpenGPS
             for (int i = 0; i < ptCount; i++)
             {
                 //calculate the point inside the boundary
-                pt3.easting = mf.bnd.bndArr[0].bndLine[i].easting -
-                    (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (tramWidth * 0.5 + halfWheelTrack));
-
-                pt3.northing = mf.bnd.bndArr[0].bndLine[i].northing -
-                    (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (tramWidth * 0.5 + halfWheelTrack));
-
+                vec2 pt3 = new vec2(
+                mf.bnd.bndArr[0].bndLine[i].easting -
+                    (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (tramWidth * 0.5 + halfWheelTrack)),
+                mf.bnd.bndArr[0].bndLine[i].northing -
+                    (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (tramWidth * 0.5 + halfWheelTrack))
+                );
                 bool Add = true;
 
                 for (int j = 0; j < ptCount; j++)
@@ -152,21 +151,18 @@ namespace AgOpenGPS
             int ptCount = mf.bnd.bndArr[0].bndLine.Count;
             tramBndOuterArr?.Clear();
 
-            //outside point
-            vec2 pt3 = new vec2();
-
             double distSq = ((tramWidth * 0.5) - halfWheelTrack) * ((tramWidth * 0.5) - halfWheelTrack) * 0.999;
 
             //make the boundary tram outer array
             for (int i = 0; i < ptCount; i++)
             {
                 //calculate the point inside the boundary
-                pt3.easting = mf.bnd.bndArr[0].bndLine[i].easting -
-                    (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (tramWidth * 0.5 - halfWheelTrack));
-
-                pt3.northing = mf.bnd.bndArr[0].bndLine[i].northing -
-                    (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (tramWidth * 0.5 - halfWheelTrack));
-
+                vec2 pt3 = new vec2(
+                mf.bnd.bndArr[0].bndLine[i].easting -
+                    (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (tramWidth * 0.5 - halfWheelTrack)),
+                mf.bnd.bndArr[0].bndLine[i].northing -
+                    (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (tramWidth * 0.5 - halfWheelTrack))
+                );
                 bool Add = true;
 
                 for (int j = 0; j < ptCount; j++)
