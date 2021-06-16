@@ -269,16 +269,10 @@ namespace AgOpenGPS
                             GL.Begin(PrimitiveType.TriangleStrip);
 
                             //left side of triangle
-                            vec2 pt = new vec2((cosSectionHeading * section[tool.numOfSections].positionLeft) + toolPos.easting,
-                                    (sinSectionHeading * section[tool.numOfSections].positionLeft) + toolPos.northing);
-
-                            GL.Vertex3(pt.easting, pt.northing, 0);
+                            GL.Vertex3(toolPos.easting + cosSectionHeading * section[tool.numOfSections].positionLeft, toolPos.northing + sinSectionHeading * section[tool.numOfSections].positionLeft, 0);
 
                             //Right side of triangle
-                            pt = new vec2((cosSectionHeading * section[tool.numOfSections].positionRight) + toolPos.easting,
-                               (sinSectionHeading * section[tool.numOfSections].positionRight) + toolPos.northing);
-
-                            GL.Vertex3(pt.easting, pt.northing, 0);
+                            GL.Vertex3(toolPos.easting + cosSectionHeading * section[tool.numOfSections].positionRight, toolPos.northing + sinSectionHeading * section[tool.numOfSections].positionRight, 0);
 
                             int last = section[tool.numOfSections].patchList[patchCount - 1].Count;
                             //antenna
@@ -298,16 +292,10 @@ namespace AgOpenGPS
                                     GL.Begin(PrimitiveType.TriangleStrip);
 
                                     //left side of triangle
-                                    vec2 pt = new vec2((cosSectionHeading * section[j].positionLeft) + toolPos.easting,
-                                            (sinSectionHeading * section[j].positionLeft) + toolPos.northing);
-
-                                    GL.Vertex3(pt.easting, pt.northing, 0);
+                                    GL.Vertex3(toolPos.easting + cosSectionHeading * section[j].positionLeft, toolPos.northing + sinSectionHeading * section[j].positionLeft, 0);
 
                                     //Right side of triangle
-                                    pt = new vec2((cosSectionHeading * section[j].positionRight) + toolPos.easting,
-                                       (sinSectionHeading * section[j].positionRight) + toolPos.northing);
-
-                                    GL.Vertex3(pt.easting, pt.northing, 0);
+                                    GL.Vertex3(toolPos.easting + cosSectionHeading * section[j].positionRight, toolPos.northing + sinSectionHeading * section[j].positionRight, 0);
 
                                     int last = section[j].patchList[patchCount - 1].Count;
                                     //antenna

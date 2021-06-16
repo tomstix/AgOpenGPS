@@ -33,9 +33,9 @@ namespace AgOpenGPS
         }
 
         // the list of possible bounds points
-        public List<vec4> bndClosestList = new List<vec4>();
+        public List<vec3> bndClosestList = new List<vec3>();
 
-        public int boundarySelected, closestBoundaryNum;
+        public int boundarySelected;
 
         //generated box for finding closest point
         public vec2 boxA = new vec2(9000, 9000), boxB = new vec2(9000, 9002);
@@ -90,7 +90,6 @@ namespace AgOpenGPS
 
             //determine if point is inside bounding box
             bndClosestList.Clear();
-            vec4 inBox;
             for (int i = 0; i < mf.bnd.bndArr.Count; i++)
             {
                 //skip the drive thru
@@ -112,13 +111,10 @@ namespace AgOpenGPS
                             - ((boxA.northing - boxD.northing) * (bndArr[i].bndLine[p].easting - boxD.easting))) < 0) { continue; }
 
                     //it's in the box, so add to list
-                    inBox.easting = bndArr[i].bndLine[p].easting;
-                    inBox.northing = bndArr[i].bndLine[p].northing;
-                    inBox.heading = bndArr[i].bndLine[p].heading;
-                    inBox.index = i;
-
-                    //which boundary/headland is it from
-                    bndClosestList.Add(inBox);
+                    bndClosestList.Add(new vec3(
+                        bndArr[i].bndLine[p].easting,
+                        bndArr[i].bndLine[p].northing,
+                        bndArr[i].bndLine[p].heading));
                 }
             }
 
@@ -140,7 +136,6 @@ namespace AgOpenGPS
                         closestBoundaryPt.easting = bndClosestList[i].easting;
                         closestBoundaryPt.northing = bndClosestList[i].northing;
                         closestBoundaryPt.heading = bndClosestList[i].heading;
-                        mf.bnd.closestBoundaryNum = bndClosestList[i].index;
                     }
                 }
                 if (closestBoundaryPt.heading < 0) closestBoundaryPt.heading += glm.twoPI;

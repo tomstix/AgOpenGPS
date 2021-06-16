@@ -98,11 +98,10 @@ namespace AgOpenGPS
         private void timer1_Tick(object sender, EventArgs e)
         {
             //MakeDubinsLineFromPivotToFlag();
-            vec3 steerAxlePosRP = mf.pivotAxlePos;
             if (mf.isMetric)
-                lblDistanceToFlag.Text = glm.Distance(steerAxlePosRP,
+                lblDistanceToFlag.Text = glm.Distance(mf.pivotAxlePos,
                     mf.flagPts[mf.flagNumberPicked - 1].easting, mf.flagPts[mf.flagNumberPicked - 1].northing).ToString("N2") + " m";
-            else lblDistanceToFlag.Text = (glm.Distance(steerAxlePosRP,
+            else lblDistanceToFlag.Text = (glm.Distance(mf.pivotAxlePos,
                 mf.flagPts[mf.flagNumberPicked - 1].easting, mf.flagPts[mf.flagNumberPicked - 1].northing) * glm.m2ft).ToString("N2") + " m";
 
         }

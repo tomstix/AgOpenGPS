@@ -14,8 +14,8 @@ namespace AgOpenGPS
         //the current AB guidance line
         public List<vec3> curlist = new List<vec3>
             {
-                new vec3(),
-                new vec3()
+                new vec3(0.0,0.0,0.0),
+                new vec3(0.0,0.0,0.0)
             };
 
         //List of all available ABLines
@@ -243,12 +243,9 @@ namespace AgOpenGPS
             double hcos = Math.Cos(abHeading);
 
             //divide up the AB line into segments
-            vec2 P1 = new vec2();
             for (int i = 0; i < 3200; i += 4)
             {
-                P1.easting = (hsin * i) + refABLineP1.easting;
-                P1.northing = (hcos * i) + refABLineP1.northing;
-                tramRef.Add(P1);
+                tramRef.Add(new vec2((hsin * i) + refABLineP1.easting, (hcos * i) + refABLineP1.northing));
             }
 
             //create list of list of points of triangle strip of AB Highlight
@@ -270,10 +267,12 @@ namespace AgOpenGPS
 
                 mf.tram.tramList.Add(mf.tram.tramArr);
 
+                double hSinWidth = hsin * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth);
+                double hCosWidth = hcos * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth);
+
                 for (int j = 0; j < tramRef.Count; j++)
                 {
-                    P1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].easting;
-                    P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].northing;
+                    vec2 P1 = new vec2(tramRef[j].easting + hSinWidth, tramRef[j].northing + hCosWidth);
 
                     if (isBndExist)
                     {
@@ -296,10 +295,12 @@ namespace AgOpenGPS
 
                 mf.tram.tramList.Add(mf.tram.tramArr);
 
+                double hSinWidth = hsin * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth);
+                double hCosWidth = hcos * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth);
+
                 for (int j = 0; j < tramRef.Count; j++)
                 {
-                    P1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].easting;
-                    P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].northing;
+                    vec2 P1 = new vec2(tramRef[j].easting + hSinWidth, tramRef[j].northing + hCosWidth);
 
                     if (isBndExist)
                     {
@@ -380,7 +381,7 @@ namespace AgOpenGPS
 
     public class CABLines
     {
-        public vec2 origin = new vec2();
+        public vec2 origin = new vec2(0.0,0.0);
         public double heading = 0;
         public string Name = "aa";
     }

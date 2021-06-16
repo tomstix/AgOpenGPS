@@ -321,7 +321,7 @@ namespace AgOpenGPS
             if (!isSA)
             {
                 isSA = true;
-                startFix = mf.pivotAxlePos;
+                startFix = new vec3(mf.pivotAxlePos);
                 dist = 0;
                 diameter = 0;
                 cntr = 0;

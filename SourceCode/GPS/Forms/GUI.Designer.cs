@@ -1041,7 +1041,11 @@ namespace AgOpenGPS
 
                 if (point.X > centerLeft - 40 && point.X < centerLeft + 40 && point.Y > centerUp - 60 && point.Y < centerUp + 60)
                 {
-                    Array.Clear(stepFixPts, 0, stepFixPts.Length);
+                    //going back and forth clear out the array so only 1 value
+                    for (int i = 0; i < stepFixPts.Length; i++)
+                    {
+                        stepFixPts[i] = new vecFix2Fix(0, 0, 0, 0);
+                    }
                     isFirstHeadingSet = false;
                     isReverse = false;
                     TimedMessageBox(2000, "Reset Direction", "Drive Forward > 1.5 kmh");

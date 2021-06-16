@@ -83,8 +83,7 @@ namespace AgOpenGPS
             double tx = 0.5f * (p0.easting * q1 + p1.easting * q2 + p2.easting * q3 + p3.easting * q4);
             double ty = 0.5f * (p0.northing * q1 + p1.northing * q2 + p2.northing * q3 + p3.northing * q4);
 
-            vec3 ret = new vec3(tx, ty, 0);
-            return ret;
+            return new vec3(tx, ty, 0);
 
             //f(t) = a_3 * t^3 + a_2 * t^2 + a_1 * t + a_0  cubic polynomial
             //vec3 a = 2.0 * p1;

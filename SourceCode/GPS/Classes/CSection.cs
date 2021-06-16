@@ -67,12 +67,12 @@ namespace AgOpenGPS
         public int rpSectionPosition = 0;
 
         //points in world space that start and end of section are in
-        public vec3 leftPoint;
-        public vec3 rightPoint;
+        public vec2 leftPoint = new vec2(0.0, 0.0);
+        public vec2 rightPoint = new vec2(0.0, 0.0);
 
         //used to determine left and right speed of section
-        public vec3 lastLeftPoint;
-        public vec3 lastRightPoint;
+        public vec2 lastLeftPoint = new vec2(0.0, 0.0);
+        public vec2 lastRightPoint = new vec2(0.0, 0.0);
 
         //whether or not this section is in boundary, headland
         public bool isInBoundary = true, isHydLiftInWorkArea = true;
@@ -108,16 +108,13 @@ namespace AgOpenGPS
 
                 patchList.Add(triangleList);
 
-                vec3 colur = new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B);
-                triangleList.Add(colur);
+                triangleList.Add(new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B));
 
                 //left side of triangle
-                vec3 point = new vec3(leftPoint.easting, leftPoint.northing, 0);
-                triangleList.Add(point);
+                triangleList.Add(new vec3(leftPoint.easting, leftPoint.northing, 0));
 
                 //Right side of triangle
-                point = new vec3(rightPoint.easting, rightPoint.northing, 0);
-                triangleList.Add(point);
+                triangleList.Add(new vec3(rightPoint.easting, rightPoint.northing, 0));
             }
         }
 
@@ -146,17 +143,10 @@ namespace AgOpenGPS
         public void AddMappingPoint()
         {
             //add two triangles for next step.
-            //left side
-            vec3 point = new vec3(leftPoint.easting, leftPoint.northing, 0);
-
             //add the point to List
-            triangleList.Add(point);
-
-            //Right side
-            vec3 point2 = new vec3(rightPoint.easting, rightPoint.northing, 0);
-
+            triangleList.Add(new vec3(leftPoint.easting, leftPoint.northing, 0));
             //add the point to the list
-            triangleList.Add(point2);
+            triangleList.Add(new vec3(rightPoint.easting, rightPoint.northing, 0));
 
             //count the triangle pairs
             numTriangles++;
@@ -202,12 +192,11 @@ namespace AgOpenGPS
                 patchList.Add(triangleList);
 
                 //Add Patch colour
-                vec3 colur = new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B);
-                triangleList.Add(colur);
+                triangleList.Add(new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B));
 
                 //add the points to List, yes its more points, but breaks up patches for culling
-                triangleList.Add(point);
-                triangleList.Add(point2);
+                triangleList.Add(new vec3(leftPoint.easting, leftPoint.northing, 0));
+                triangleList.Add(new vec3(rightPoint.easting, rightPoint.northing, 0));
             }
         }
     }

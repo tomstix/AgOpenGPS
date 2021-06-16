@@ -108,25 +108,22 @@ namespace AgOpenGPS
             int j = hdLine.Count - 1;
             //clear the list, constant is easting, multiple is northing
             calcList.Clear();
-            vec2 constantMultiple = new vec2(0, 0);
 
             for (int i = 0; i < hdLine.Count; j = i++)
             {
                 //check for divide by zero
                 if (Math.Abs(hdLine[i].northing - hdLine[j].northing) < double.Epsilon)
                 {
-                    constantMultiple.easting = hdLine[i].easting;
-                    constantMultiple.northing = 0;
-                    calcList.Add(constantMultiple);
+                    calcList.Add(new vec2(hdLine[i].easting, 0));
                 }
                 else
                 {
                     //determine constant and multiple and add to list
-                    constantMultiple.easting = hdLine[i].easting - ((hdLine[i].northing * hdLine[j].easting)
+                    calcList.Add(new vec2(
+                    hdLine[i].easting - ((hdLine[i].northing * hdLine[j].easting)
                                     / (hdLine[j].northing - hdLine[i].northing)) + ((hdLine[i].northing * hdLine[i].easting)
-                                        / (hdLine[j].northing - hdLine[i].northing));
-                    constantMultiple.northing = (hdLine[j].easting - hdLine[i].easting) / (hdLine[j].northing - hdLine[i].northing);
-                    calcList.Add(constantMultiple);
+                                        / (hdLine[j].northing - hdLine[i].northing)),
+                    (hdLine[j].easting - hdLine[i].easting) / (hdLine[j].northing - hdLine[i].northing)));
                 }
             }
         }
