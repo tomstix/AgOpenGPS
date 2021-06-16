@@ -169,25 +169,6 @@ namespace AgOpenGPS
 
             hdArr = new vec3[bndCount];
             foos.CopyTo(hdArr);
-
-            ////make sure distance isn't too big between points on Turn
-            //bndCount = foos.Count;
-            //for (int i = 0; i < bndCount; i++)
-            //{
-            //    int j = i + 1;
-            //    if (j == bndCount) j = 0;
-            //    distance = glm.DistanceSquared(foos[i].easting, foos[i].northing, foos[j].easting, foos[j].northing);
-            //    if (distance > 2.3)
-            //    {
-            //        vec3 pointB = new vec3((foos[i].easting + foos[j].easting) / 2.0,
-            //            (foos[i].northing + foos[j].northing) / 2.0,
-            //            foos[j].heading);
-
-            //        foos.Insert(j, pointB);
-            //        bndCount = foos.Count;
-            //        i--;
-            //    }
-            //}
         }
 
         private void btnSetDistance_Click(object sender, EventArgs e)
@@ -241,9 +222,9 @@ namespace AgOpenGPS
             for (int i = 0; i < headLineTemplate.Count; i++)
             {
                 //calculate the point inside the boundary
-                hdArr[i].easting = headLineTemplate[i].easting + (-Math.Sin(glm.PIBy2 + headLineTemplate[i].heading) * width);
-                hdArr[i].northing = headLineTemplate[i].northing + (-Math.Cos(glm.PIBy2 + headLineTemplate[i].heading) * width);
-                hdArr[i].heading = headLineTemplate[i].heading;
+                hdArr[i] = new vec3( headLineTemplate[i].easting + (-Math.Sin(glm.PIBy2 + headLineTemplate[i].heading) * width),
+                headLineTemplate[i].northing + (-Math.Cos(glm.PIBy2 + headLineTemplate[i].heading) * width),
+                headLineTemplate[i].heading);
             }
 
             totalHeadlandWidth += width;
@@ -559,23 +540,6 @@ namespace AgOpenGPS
             else
             {
                 headLineTemplate.RemoveRange(start, end - start + 1);
-            }
-
-            int bndCount = headLineTemplate.Count;
-            for (int i = 0; i < bndCount; i++)
-            {
-                int j = i + 1;
-                if (j == bndCount) j = 0;
-                double distanceSq = glm.DistanceSquared(headLineTemplate[i].easting, headLineTemplate[i].northing,
-                                                headLineTemplate[j].easting, headLineTemplate[j].northing);
-                if (distanceSq > 2.3)
-                {
-                    headLineTemplate.Insert(j, new vec3((headLineTemplate[i].easting + headLineTemplate[j].easting) / 2.0,
-                        (headLineTemplate[i].northing + headLineTemplate[j].northing) / 2.0,
-                        headLineTemplate[j].heading));
-                    bndCount = headLineTemplate.Count;
-                    i--;
-                }
             }
 
             int cnt = headLineTemplate.Count;

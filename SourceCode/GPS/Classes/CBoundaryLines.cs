@@ -74,50 +74,11 @@ namespace AgOpenGPS
 
             if (bndNum > 0) spacing *= 0.5;
 
-            int bndCount = bndLine.Count;
             double distance;
-
-            //make sure distance isn't too big between points on boundary
-            for (int i = 0; i < bndCount; i++)
-            {
-                int j = i + 1;
-
-                if (j == bndCount) j = 0;
-                distance = glm.Distance(bndLine[i], bndLine[j]);
-                if (distance > spacing * 1.5)
-                {
-                    bndLine.Insert(j, new vec3((
-                        bndLine[i].easting + bndLine[j].easting) / 2.0,
-                        (bndLine[i].northing + bndLine[j].northing) / 2.0,
-                        bndLine[i].heading));
-                    bndCount = bndLine.Count;
-                    i--;
-                }
-            }
-
-            //make sure distance isn't too big between points on boundary
-            bndCount = bndLine.Count;
-
-            for (int i = 0; i < bndCount; i++)
-            {
-                int j = i + 1;
-
-                if (j == bndCount) j = 0;
-                distance = glm.Distance(bndLine[i], bndLine[j]);
-                if (distance > spacing * 1.6)
-                {
-                    bndLine.Insert(j, new vec3(
-                        (bndLine[i].easting + bndLine[j].easting) / 2.0,
-                        (bndLine[i].northing + bndLine[j].northing) / 2.0,
-                        bndLine[i].heading));
-                    bndCount = bndLine.Count;
-                    i--;
-                }
-            }
 
             //make sure distance isn't too small between points on headland
             spacing *= 1.2;
-            bndCount = bndLine.Count;
+            int bndCount = bndLine.Count;
             for (int i = 0; i < bndCount - 1; i++)
             {
                 distance = glm.Distance(bndLine[i], bndLine[i + 1]);
