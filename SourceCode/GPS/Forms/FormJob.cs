@@ -67,25 +67,6 @@ namespace AgOpenGPS
             mf.CloseTopMosts();
         }
 
-        private void btnJobTouch_Click(object sender, EventArgs e)
-        {
-            mf.filePickerFileAndDirectory = "";
-
-            using (FormTouchPick form = new FormTouchPick(mf))
-            {
-                //returns full field.txt file dir name
-                if (form.ShowDialog() == DialogResult.Yes)
-                {
-                    mf.FileOpenField(mf.filePickerFileAndDirectory);
-                    Close();
-                }
-                else
-                {
-                    return;
-                }
-            }
-        }
-
         private void btnJobOpen_Click(object sender, EventArgs e)
         {
             mf.filePickerFileAndDirectory = "";

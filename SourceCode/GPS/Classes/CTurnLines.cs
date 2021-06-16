@@ -4,21 +4,6 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    //public class CTurnPt
-    //{
-    //    public double easting { get; set; }
-    //    public double northing { get; set; }
-    //    public double heading { get; set; }
-
-    //    //constructor
-    //    public CTurnPt(double _easting, double _northing, double _heading)
-    //    {
-    //        easting = _easting;
-    //        northing = _northing;
-    //        heading = _heading;
-    //    }
-    //}
-
     public class CTurnLines
     {
         //list of coordinates of boundary line
@@ -37,25 +22,22 @@ namespace AgOpenGPS
             turnLine.Clear();
 
             //first point needs last, first, second points
-            vec3 pt3 = arr[0];
-            pt3.heading = Math.Atan2(arr[1].easting - arr[cnt].easting, arr[1].northing - arr[cnt].northing);
-            if (pt3.heading < 0) pt3.heading += glm.twoPI;
-            turnLine.Add(pt3);
+            double heading = Math.Atan2(arr[1].easting - arr[cnt].easting, arr[1].northing - arr[cnt].northing);
+            if (heading < 0) heading += glm.twoPI;
+            turnLine.Add(new vec3(arr[0].easting, arr[0].northing, heading));
 
             //middle points
             for (int i = 1; i < cnt; i++)
             {
-                pt3 = arr[i];
-                pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
-                if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                turnLine.Add(pt3);
+                heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
+                if (heading < 0) heading += glm.twoPI;
+                turnLine.Add(new vec3(arr[i].easting, arr[i].northing, heading));
             }
 
             //last and first point
-            pt3 = arr[cnt];
-            pt3.heading = Math.Atan2(arr[0].easting - arr[cnt - 1].easting, arr[0].northing - arr[cnt - 1].northing);
-            if (pt3.heading < 0) pt3.heading += glm.twoPI;
-            turnLine.Add(pt3);
+            heading = Math.Atan2(arr[0].easting - arr[cnt - 1].easting, arr[0].northing - arr[cnt - 1].northing);
+            if (heading < 0) heading += glm.twoPI;
+            turnLine.Add(new vec3(arr[cnt].easting, arr[cnt].northing, heading));
         }
 
         public void ResetTurn()
@@ -89,24 +71,6 @@ namespace AgOpenGPS
                         lineCount = turnLine.Count;
                         j = -1;
                     }
-                }
-            }
-
-
-            //make sure distance isn't too big between points on Turn
-            bndCount = turnLine.Count;
-            for (int i = 0; i < bndCount; i++)
-            {
-                int j = i + 1;
-                if (j == bndCount) j = 0;
-                distance = glm.DistanceSquared(turnLine[i], turnLine[j]);
-                if (distance > (spacing * 1.8))
-                {
-                    vec3 pointB = new vec3((turnLine[i].easting + turnLine[j].easting) / 2.0, (turnLine[i].northing + turnLine[j].northing) / 2.0, turnLine[i].heading);
-
-                    turnLine.Insert(j, pointB);
-                    bndCount = turnLine.Count;
-                    i--;
                 }
             }
 
@@ -159,25 +123,22 @@ namespace AgOpenGPS
             int j = turnLine.Count - 1;
             //clear the list, constant is easting, multiple is northing
             calcList.Clear();
-            vec2 constantMultiple = new vec2(0, 0);
 
             for (int i = 0; i < turnLine.Count; j = i++)
             {
                 //check for divide by zero
                 if (Math.Abs(turnLine[i].northing - turnLine[j].northing) < 0.00000000001)
                 {
-                    constantMultiple.easting = turnLine[i].easting;
-                    constantMultiple.northing = 0;
-                    calcList.Add(constantMultiple);
+                    calcList.Add(new vec2(turnLine[i].easting, 0));
                 }
                 else
                 {
                     //determine constant and multiple and add to list
-                    constantMultiple.easting = turnLine[i].easting - ((turnLine[i].northing * turnLine[j].easting)
+                    calcList.Add(new vec2(
+                        turnLine[i].easting - ((turnLine[i].northing * turnLine[j].easting)
                                     / (turnLine[j].northing - turnLine[i].northing)) + ((turnLine[i].northing * turnLine[i].easting)
-                                        / (turnLine[j].northing - turnLine[i].northing));
-                    constantMultiple.northing = (turnLine[j].easting - turnLine[i].easting) / (turnLine[j].northing - turnLine[i].northing);
-                    calcList.Add(constantMultiple);
+                                        / (turnLine[j].northing - turnLine[i].northing)),
+                        (turnLine[j].easting - turnLine[i].easting) / (turnLine[j].northing - turnLine[i].northing)));
                 }
             }
         }
@@ -195,24 +156,6 @@ namespace AgOpenGPS
                 || (turnLine[j].northing < testPointv3.northing && turnLine[i].northing >= testPointv3.northing))
                 {
                     oddNodes ^= ((testPointv3.northing * calcList[i].northing) + calcList[i].easting < testPointv3.easting);
-                }
-            }
-            return oddNodes; //true means inside.
-        }
-
-        public bool IsPointInTurnWorkArea(vec2 testPointv2)
-        {
-            if (calcList.Count < 3) return false;
-            int j = turnLine.Count - 1;
-            bool oddNodes = false;
-
-            //test against the constant and multiples list the test point
-            for (int i = 0; i < turnLine.Count; j = i++)
-            {
-                if ((turnLine[i].northing < testPointv2.northing && turnLine[j].northing >= testPointv2.northing)
-                || (turnLine[j].northing < testPointv2.northing && turnLine[i].northing >= testPointv2.northing))
-                {
-                    oddNodes ^= ((testPointv2.northing * calcList[i].northing) + calcList[i].easting < testPointv2.easting);
                 }
             }
             return oddNodes; //true means inside.

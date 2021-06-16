@@ -26,7 +26,7 @@ namespace AgOpenGPS
         }
 
         // the list of possible bounds points
-        public List<vec4> turnClosestList = new List<vec4>();
+        public List<vec3> turnClosestList = new List<vec3>();
 
         public int turnSelected, closestTurnNum;
 
@@ -42,8 +42,8 @@ namespace AgOpenGPS
         public void FindClosestTurnPoint(bool isYouTurnRight, vec3 fromPt, double headAB)
         {
             //initial scan is straight ahead of pivot point of vehicle to find the right turnLine/boundary
-            vec3 pt = new vec3();
-            vec3 rayPt = new vec3();
+            vec3 pt = new vec3(0.0, 0.0, 0.0);
+            vec3 rayPt = new vec3(0.0, 0.0, 0.0);
 
             bool isFound = false;
             int closestTurnNum = 99;
@@ -113,7 +113,6 @@ namespace AgOpenGPS
             turnClosestList.Clear();
 
             mf.turn.closestTurnNum = closestTurnNum;
-            vec4 inBox;
 
             int ptCount = turnArr[closestTurnNum].turnLine.Count;
             for (int p = 0; p < ptCount; p++)
@@ -131,13 +130,10 @@ namespace AgOpenGPS
                         - ((boxA.northing - boxD.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxD.easting))) < 0) { continue; }
 
                 //it's in the box, so add to list
-                inBox.easting = turnArr[closestTurnNum].turnLine[p].easting;
-                inBox.northing = turnArr[closestTurnNum].turnLine[p].northing;
-                inBox.heading = turnArr[closestTurnNum].turnLine[p].heading;
-                inBox.index = closestTurnNum;
-
-                //which turn/headland is it from
-                turnClosestList.Add(inBox);
+                turnClosestList.Add(new vec3(
+                    turnArr[closestTurnNum].turnLine[p].easting,
+                    turnArr[closestTurnNum].turnLine[p].northing,
+                    turnArr[closestTurnNum].turnLine[p].heading));
             }
 
             if (turnClosestList.Count == 0)
@@ -187,13 +183,10 @@ namespace AgOpenGPS
                             - ((boxA.northing - boxD.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxD.easting))) < 0) { continue; }
 
                     //it's in the box, so add to list
-                    inBox.easting = turnArr[closestTurnNum].turnLine[p].easting;
-                    inBox.northing = turnArr[closestTurnNum].turnLine[p].northing;
-                    inBox.heading = turnArr[closestTurnNum].turnLine[p].heading;
-                    inBox.index = closestTurnNum;
-
-                    //which turn/headland is it from
-                    turnClosestList.Add(inBox);
+                    turnClosestList.Add(new vec3(
+                        turnArr[closestTurnNum].turnLine[p].easting,
+                        turnArr[closestTurnNum].turnLine[p].northing,
+                        turnArr[closestTurnNum].turnLine[p].heading));
                 }
             }
             //which of the points is closest
@@ -266,9 +259,6 @@ namespace AgOpenGPS
                 return;
             }
 
-            //to fill the list of line points
-            vec3 point = new vec3();
-
             //determine how wide a headland space
             double totalHeadWidth = mf.yt.uturnDistanceFromBoundary;
 
@@ -278,17 +268,15 @@ namespace AgOpenGPS
             for (int i = ptCount - 1; i >= 0; i--)
             {
                 //calculate the point inside the boundary
-                point.easting = mf.bnd.bndArr[0].bndLine[i].easting + (-Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.northing = mf.bnd.bndArr[0].bndLine[i].northing + (-Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.heading = mf.bnd.bndArr[0].bndLine[i].heading;
-                if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
+                //to fill the list of line points
+                vec3 point = new vec3(
+                    mf.bnd.bndArr[0].bndLine[i].easting + (-Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth),
+                    mf.bnd.bndArr[0].bndLine[i].northing + (-Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth),
+                    mf.bnd.bndArr[0].bndLine[i].heading < 0 ? mf.bnd.bndArr[0].bndLine[i].heading + glm.twoPI : mf.bnd.bndArr[0].bndLine[i].heading);
 
                 //only add if inside actual field boundary
                 if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(point))
-                {
-                    vec3 tPnt = new vec3(point.easting, point.northing, point.heading);
-                    turnArr[0].turnLine.Add(tPnt);
-                }
+                    turnArr[0].turnLine.Add(point);
             }
             turnArr[0].FixTurnLine(totalHeadWidth, mf.bnd.bndArr[0].bndLine, mf.tool.toolWidth * 0.33);
             turnArr[0].PreCalcTurnLines();
@@ -303,18 +291,16 @@ namespace AgOpenGPS
 
                 for (int i = ptCount - 1; i >= 0; i--)
                 {
+                    //to fill the list of line points
                     //calculate the point outside the boundary
-                    point.easting = mf.bnd.bndArr[j].bndLine[i].easting + (-Math.Sin(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
-                    point.northing = mf.bnd.bndArr[j].bndLine[i].northing + (-Math.Cos(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
-                    point.heading = mf.bnd.bndArr[j].bndLine[i].heading;
-                    if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
+                    vec3 point = new vec3(
+                        mf.bnd.bndArr[j].bndLine[i].easting + (-Math.Sin(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth),
+                        mf.bnd.bndArr[j].bndLine[i].northing + (-Math.Cos(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth),
+                        mf.bnd.bndArr[j].bndLine[i].heading %= glm.twoPI);
 
                     //only add if outside actual field boundary
                     if (!mf.bnd.bndArr[j].IsPointInsideBoundaryEar(point))
-                    {
-                        vec3 tPnt = new vec3(point.easting, point.northing, point.heading);
-                        turnArr[j].turnLine.Add(tPnt);
-                    }
+                        turnArr[j].turnLine.Add(point);
                 }
                 turnArr[j].FixTurnLine(totalHeadWidth, mf.bnd.bndArr[j].bndLine, mf.tool.toolWidth * 0.33);
                 turnArr[j].PreCalcTurnLines();

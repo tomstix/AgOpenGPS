@@ -133,12 +133,10 @@ namespace AgOpenGPS
                                     {
                                         line = reader.ReadLine();
                                         string[] words = line.Split(',');
-                                        vec3 vecPt = new vec3(
+                                        pointList.Add(new vec3(
                                         double.Parse(words[0], CultureInfo.InvariantCulture),
                                         double.Parse(words[1], CultureInfo.InvariantCulture),
-                                        double.Parse(words[2], CultureInfo.InvariantCulture));
-
-                                        pointList.Add(vecPt);
+                                        double.Parse(words[2], CultureInfo.InvariantCulture)));
                                     }
 
                                     int ptCount = pointList.Count;
@@ -437,12 +435,10 @@ namespace AgOpenGPS
                                     {
                                         line = reader.ReadLine();
                                         string[] words = line.Split(',');
-                                        vec3 vecPt = new vec3(
+                                        pointList.Add(new vec3(
                                         double.Parse(words[0], CultureInfo.InvariantCulture),
                                         double.Parse(words[1], CultureInfo.InvariantCulture),
-                                        double.Parse(words[2], CultureInfo.InvariantCulture));
-
-                                        pointList.Add(vecPt);
+                                        double.Parse(words[2], CultureInfo.InvariantCulture)));
                                     }
 
                                     int ptCount = pointList.Count;

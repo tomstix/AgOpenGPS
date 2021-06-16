@@ -197,6 +197,7 @@ namespace AgOpenGPS
             if (cnt > 6)
             {
                 vec3[] arr = new vec3[cnt];
+
                 curList.CopyTo(arr);
 
                 for (int i = 1; i < (curList.Count - 1); i++)
@@ -210,7 +211,6 @@ namespace AgOpenGPS
                 {
                     arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
                     if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
-                    if (arr[i].heading >= glm.twoPI) arr[i].heading -= glm.twoPI;
                 }
 
                 arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
@@ -246,7 +246,6 @@ namespace AgOpenGPS
                     {
                         arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
                         if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
-                        if (arr[i].heading >= glm.twoPI) arr[i].heading -= glm.twoPI;
                     }
 
                     arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
@@ -274,8 +273,7 @@ namespace AgOpenGPS
                         int loopTimes = (int)(distance / spacing + 1);
                         for (int j = 1; j < loopTimes; j++)
                         {
-                            vec3 pos = new vec3(glm.Catmull(j / (double)(loopTimes), arr[i], arr[i + 1], arr[i + 2], arr[i + 3]));
-                            curList.Add(pos);
+                            curList.Add(new vec3(glm.Catmull(j / (double)(loopTimes), arr[i], arr[i + 1], arr[i + 2], arr[i + 3])));
                         }
                     }
                 }
@@ -293,10 +291,9 @@ namespace AgOpenGPS
                 //middle points
                 for (int i = 1; i < cnt; i++)
                 {
-                    vec3 pt3 = arr[i];
-                    pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
-                    if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                    curList.Add(pt3);
+                    double heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
+                    if (heading < 0) heading += glm.twoPI;
+                    curList.Add(new vec3(arr[i].easting, arr[i].northing, heading));
                 }
             }
             lastSecond = mf.secondsSinceStart;
@@ -504,13 +501,9 @@ namespace AgOpenGPS
                                     }
                                 }
                             }
-                            else
+                            else if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(point))
                             {
-                                //need a first point to do distance
-                                if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(point))
-                                {
-                                    mf.tram.tramArr.Add(point);
-                                }
+                                mf.tram.tramArr.Add(point);
                             }
                         }
                         else
@@ -622,63 +615,55 @@ namespace AgOpenGPS
             //just go back if not very long
             if (!isCurveSet || cnt < 400) return;
 
-            //the temp array
-            vec3[] arr = new vec3[cnt];
+            //make a list to draw
+            smooList?.Clear();
 
             //read the points before and after the setpoint
             for (int s = 0; s < smPts / 2; s++)
             {
-                arr[s].easting = refList[s].easting;
-                arr[s].northing = refList[s].northing;
-                arr[s].heading = refList[s].heading;
-            }
-
-            for (int s = cnt - (smPts / 2); s < cnt; s++)
-            {
-                arr[s].easting = refList[s].easting;
-                arr[s].northing = refList[s].northing;
-                arr[s].heading = refList[s].heading;
+                smooList.Add(new vec3(refList[s]));
             }
 
             //average them - center weighted average
             for (int i = smPts / 2; i < cnt - (smPts / 2); i++)
             {
+                double easting = 0;
+                double northing = 0;
+
                 for (int j = -smPts / 2; j < smPts / 2; j++)
                 {
-                    arr[i].easting += refList[j + i].easting;
-                    arr[i].northing += refList[j + i].northing;
+                    easting += refList[j + i].easting;
+                    northing += refList[j + i].northing;
                 }
-                arr[i].easting /= smPts;
-                arr[i].northing /= smPts;
-                arr[i].heading = refList[i].heading;
+                easting /= smPts;
+                northing /= smPts;
+
+                smooList.Add(new vec3(easting, northing, refList[i].heading));
             }
 
-            //make a list to draw
-            smooList?.Clear();
-            for (int i = 0; i < cnt; i++)
+            for (int s = cnt - (smPts / 2); s < cnt; s++)
             {
-                smooList.Add(arr[i]);
+                smooList.Add(new vec3(refList[s]));
             }
         }
 
-        public void CalculateTurnHeadings()
+        public void CalculateTurnHeadings(ref List<vec3> Points)
         {
             //to calc heading based on next and previous points to give an average heading.
-            int cnt = refList.Count;
+            int cnt = Points.Count;
             if (cnt > 0)
             {
                 vec3[] arr = new vec3[cnt];
                 cnt--;
-                refList.CopyTo(arr);
-                refList.Clear();
+                Points.CopyTo(arr);
+                Points.Clear();
 
                 //middle points
                 for (int i = 1; i < cnt; i++)
                 {
-                    vec3 pt3 = arr[i];
-                    pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
-                    if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                    refList.Add(pt3);
+                    double heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
+                    if (heading < 0) heading += glm.twoPI;
+                    Points.Add(new vec3(arr[i].easting, arr[i].northing, heading));
                 }
             }
         }
@@ -700,9 +685,9 @@ namespace AgOpenGPS
             //calculate new headings on smoothed line
             for (int i = 1; i < cnt - 1; i++)
             {
-                arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
-                if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
-                refList.Add(arr[i]);
+                double heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
+                if (heading < 0) heading += glm.twoPI;
+                refList.Add(new vec3(arr[i].easting, arr[i].northing, heading));
             }
         }
 
@@ -728,7 +713,6 @@ namespace AgOpenGPS
 
         public bool PointOnLine(vec3 pt1, vec3 pt2, vec3 pt)
         {
-            vec2 r = new vec2(0, 0);
             if (pt1.northing == pt2.northing && pt1.easting == pt2.easting) { pt1.northing -= 0.00001; }
 
             double U = ((pt.northing - pt1.northing) * (pt2.northing - pt1.northing)) + ((pt.easting - pt1.easting) * (pt2.easting - pt1.easting));
@@ -737,8 +721,7 @@ namespace AgOpenGPS
 
             U /= Udenom;
 
-            r.northing = pt1.northing + (U * (pt2.northing - pt1.northing));
-            r.easting = pt1.easting + (U * (pt2.easting - pt1.easting));
+            vec2 r = new vec2(pt1.northing + U * (pt2.northing - pt1.northing), pt1.easting + U * (pt2.easting - pt1.easting));
 
             double minx, maxx, miny, maxy;
 
@@ -753,23 +736,17 @@ namespace AgOpenGPS
         //add extensons
         public void AddFirstLastPoints()
         {
-            int ptCnt = refList.Count - 1;
+            vec3 end = refList[refList.Count - 1];
             for (int i = 1; i < 200; i++)
             {
-                vec3 pt = new vec3(refList[ptCnt]);
-                pt.easting += (Math.Sin(pt.heading) * i);
-                pt.northing += (Math.Cos(pt.heading) * i);
-                refList.Add(pt);
+                refList.Add(new vec3(end.easting + Math.Sin(end.heading) * i, end.northing + Math.Cos(end.heading) * i, end.heading));
             }
 
             //and the beginning
             vec3 start = new vec3(refList[0]);
             for (int i = 1; i < 200; i++)
             {
-                vec3 pt = new vec3(start);
-                pt.easting -= (Math.Sin(pt.heading) * i);
-                pt.northing -= (Math.Cos(pt.heading) * i);
-                refList.Insert(0, pt);
+                refList.Insert(0, new vec3(start.easting - Math.Sin(start.heading) * i, start.northing - Math.Cos(start.heading) * i, start.heading));
             }
         }
 

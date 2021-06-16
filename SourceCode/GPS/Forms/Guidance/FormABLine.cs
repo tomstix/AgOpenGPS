@@ -349,10 +349,8 @@ namespace AgOpenGPS
                 mf.ABLine.isABValid = false;
                 int idx = lvLines.SelectedIndices[0];
 
-
                 mf.ABLine.lineArr[idx].heading += Math.PI;
-                if (mf.ABLine.lineArr[idx].heading > glm.twoPI) mf.ABLine.lineArr[idx].heading -= glm.twoPI;
-
+                mf.ABLine.lineArr[idx].heading %= glm.twoPI;
 
                 mf.FileSaveABLines();
 

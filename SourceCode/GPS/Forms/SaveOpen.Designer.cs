@@ -145,10 +145,10 @@ namespace AgOpenGPS
                                 {
                                     line = reader.ReadLine();
                                     string[] words = line.Split(',');
-                                    vec3 vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
+                                    curve.curveArr[curve.numCurveLines].curvePts.Add(new vec3(
+                                        double.Parse(words[0], CultureInfo.InvariantCulture),
                                         double.Parse(words[1], CultureInfo.InvariantCulture),
-                                        double.Parse(words[2], CultureInfo.InvariantCulture));
-                                    curve.curveArr[curve.numCurveLines].curvePts.Add(vecPt);
+                                        double.Parse(words[2], CultureInfo.InvariantCulture)));
                                 }
                                 curve.numCurveLines++;
                             }
@@ -465,7 +465,6 @@ namespace AgOpenGPS
                     {
                         fd.workedAreaTotal = 0;
                         fd.distanceUser = 0;
-                        vec3 vecFix = new vec3();
 
                         //read header
                         while (!reader.EndOfStream)
@@ -481,15 +480,14 @@ namespace AgOpenGPS
                             section[0].triangleList = new List<vec3>();
                             section[0].patchList.Add(section[0].triangleList);
 
-
                             for (int v = 0; v < verts; v++)
                             {
                                 line = reader.ReadLine();
                                 string[] words = line.Split(',');
-                                vecFix.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
-                                vecFix.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
-                                vecFix.heading = double.Parse(words[2], CultureInfo.InvariantCulture);
-                                section[0].triangleList.Add(vecFix);
+                                section[0].triangleList.Add(new vec3(
+                                    double.Parse(words[0], CultureInfo.InvariantCulture),
+                                    double.Parse(words[1], CultureInfo.InvariantCulture),
+                                    double.Parse(words[2], CultureInfo.InvariantCulture)));
                             }
 
                             //calculate area of this patch - AbsoluteValue of (Ax(By-Cy) + Bx(Cy-Ay) + Cx(Ay-By)/2)
@@ -554,8 +552,6 @@ namespace AgOpenGPS
                             line = reader.ReadLine();
                             int verts = int.Parse(line);
 
-                            vec3 vecFix = new vec3(0, 0, 0);
-
                             ct.ptList = new List<vec3>();
                             ct.stripList.Add(ct.ptList);
 
@@ -563,10 +559,10 @@ namespace AgOpenGPS
                             {
                                 line = reader.ReadLine();
                                 string[] words = line.Split(',');
-                                vecFix.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
-                                vecFix.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
-                                vecFix.heading = double.Parse(words[2], CultureInfo.InvariantCulture);
-                                ct.ptList.Add(vecFix);
+                                ct.ptList.Add(new vec3(
+                                    double.Parse(words[0], CultureInfo.InvariantCulture),
+                                    double.Parse(words[1], CultureInfo.InvariantCulture),
+                                    double.Parse(words[2], CultureInfo.InvariantCulture)));
                             }
                         }
                     }
@@ -709,16 +705,11 @@ namespace AgOpenGPS
                                 {
                                     line = reader.ReadLine();
                                     string[] words = line.Split(',');
-                                    vec3 vecPt = new vec3(
+
+                                    bnd.bndArr[k].bndLine.Add(new vec3(
                                     double.Parse(words[0], CultureInfo.InvariantCulture),
                                     double.Parse(words[1], CultureInfo.InvariantCulture),
-                                    double.Parse(words[2], CultureInfo.InvariantCulture));
-
-                                    //if (turnheading)
-                                    //{
-                                    //    vecPt.heading = vecPt.heading + Math.PI;
-                                    //}
-                                    bnd.bndArr[k].bndLine.Add(vecPt);
+                                    double.Parse(words[2], CultureInfo.InvariantCulture)));
                                 }
 
                                 bnd.bndArr[k].CalculateBoundaryArea();
@@ -802,11 +793,10 @@ namespace AgOpenGPS
                                 {
                                     line = reader.ReadLine();
                                     string[] words = line.Split(',');
-                                    vec3 vecPt = new vec3(
+                                    hd.headArr[k].hdLine.Add(new vec3(
                                         double.Parse(words[0], CultureInfo.InvariantCulture),
                                         double.Parse(words[1], CultureInfo.InvariantCulture),
-                                        double.Parse(words[2], CultureInfo.InvariantCulture));
-                                    hd.headArr[k].hdLine.Add(vecPt);
+                                        double.Parse(words[2], CultureInfo.InvariantCulture)));
                                 }
                                 hd.headArr[k].PreCalcHeadLines();
                             }
@@ -876,11 +866,10 @@ namespace AgOpenGPS
                                 {
                                     line = reader.ReadLine();
                                     string[] words = line.Split(',');
-                                    vec2 vecPt = new vec2(
-                                    double.Parse(words[0], CultureInfo.InvariantCulture),
-                                    double.Parse(words[1], CultureInfo.InvariantCulture));
 
-                                    tram.tramBndOuterArr.Add(vecPt);
+                                    tram.tramBndOuterArr.Add(new vec2(
+                                    double.Parse(words[0], CultureInfo.InvariantCulture),
+                                    double.Parse(words[1], CultureInfo.InvariantCulture)));
                                 }
                                 tram.displayMode = 1;
                             }
@@ -896,11 +885,10 @@ namespace AgOpenGPS
                                 {
                                     line = reader.ReadLine();
                                     string[] words = line.Split(',');
-                                    vec2 vecPt = new vec2(
-                                    double.Parse(words[0], CultureInfo.InvariantCulture),
-                                    double.Parse(words[1], CultureInfo.InvariantCulture));
 
-                                    tram.tramBndInnerArr.Add(vecPt);
+                                    tram.tramBndInnerArr.Add(new vec2(
+                                    double.Parse(words[0], CultureInfo.InvariantCulture),
+                                    double.Parse(words[1], CultureInfo.InvariantCulture)));
                                 }
                             }
 
@@ -921,11 +909,10 @@ namespace AgOpenGPS
                                     {
                                         line = reader.ReadLine();
                                         string[] words = line.Split(',');
-                                        vec2 vecPt = new vec2(
-                                        double.Parse(words[0], CultureInfo.InvariantCulture),
-                                        double.Parse(words[1], CultureInfo.InvariantCulture));
 
-                                        tram.tramArr.Add(vecPt);
+                                        tram.tramArr.Add(new vec2(
+                                        double.Parse(words[0], CultureInfo.InvariantCulture),
+                                        double.Parse(words[1], CultureInfo.InvariantCulture)));
                                     }
                                 }
                             }

@@ -122,11 +122,10 @@ namespace AgOpenGPS
                     double distance = glm.Distance(mf.curve.desList[i], mf.curve.desList[j]);
                     if (distance > 1.2)
                     {
-                        vec3 pointB = new vec3((mf.curve.desList[i].easting + mf.curve.desList[j].easting) / 2.0,
+                        mf.curve.desList.Insert(j, new vec3(
+                            (mf.curve.desList[i].easting + mf.curve.desList[j].easting) / 2.0,
                             (mf.curve.desList[i].northing + mf.curve.desList[j].northing) / 2.0,
-                            mf.curve.desList[i].heading);
-
-                        mf.curve.desList.Insert(j, pointB);
+                            mf.curve.desList[i].heading));
                         cnt = mf.curve.desList.Count;
                         i = -1;
                     }
@@ -147,7 +146,7 @@ namespace AgOpenGPS
                 //build the tail extensions
                 AddFirstLastPoints();
                 SmoothAB(4);
-                CalculateTurnHeadings();
+                mf.curve.CalculateTurnHeadings(ref mf.curve.desList);
 
                 panelAPlus.Visible = false;
                 panelName.Visible = true;
@@ -368,29 +367,27 @@ namespace AgOpenGPS
             //read the points before and after the setpoint
             for (int s = 0; s < smPts / 2; s++)
             {
-                arr[s].easting = mf.curve.desList[s].easting;
-                arr[s].northing = mf.curve.desList[s].northing;
-                arr[s].heading = mf.curve.desList[s].heading;
-            }
-
-            for (int s = cnt - (smPts / 2); s < cnt; s++)
-            {
-                arr[s].easting = mf.curve.desList[s].easting;
-                arr[s].northing = mf.curve.desList[s].northing;
-                arr[s].heading = mf.curve.desList[s].heading;
+                arr[s] = mf.curve.desList[s];
             }
 
             //average them - center weighted average
             for (int i = smPts / 2; i < cnt - (smPts / 2); i++)
             {
+                double easting = 0;
+                double northing = 0;
                 for (int j = -smPts / 2; j < smPts / 2; j++)
                 {
-                    arr[i].easting += mf.curve.desList[j + i].easting;
-                    arr[i].northing += mf.curve.desList[j + i].northing;
+                    easting += mf.curve.desList[j + i].easting;
+                    northing += mf.curve.desList[j + i].northing;
                 }
-                arr[i].easting /= smPts;
-                arr[i].northing /= smPts;
-                arr[i].heading = mf.curve.desList[i].heading;
+                easting /= smPts;
+                northing /= smPts;
+                arr[i] = new vec3(easting, northing, mf.curve.desList[i].heading);
+            }
+
+            for (int s = cnt - (smPts / 2); s < cnt; s++)
+            {
+                arr[s] = mf.curve.desList[s];
             }
 
             //make a list to draw
@@ -403,45 +400,17 @@ namespace AgOpenGPS
 
         public void AddFirstLastPoints()
         {
-            int ptCnt = mf.curve.desList.Count - 1;
+            vec3 end = mf.curve.desList[mf.curve.desList.Count - 1];
             for (int i = 1; i < 200; i++)
             {
-                vec3 pt = new vec3(mf.curve.desList[ptCnt]);
-                pt.easting += (Math.Sin(pt.heading) * i);
-                pt.northing += (Math.Cos(pt.heading) * i);
-                mf.curve.desList.Add(pt);
+                mf.curve.desList.Add(new vec3(end.easting + Math.Sin(end.heading) * i, end.northing + Math.Cos(end.heading) * i, end.heading));
             }
 
             //and the beginning
             vec3 start = new vec3(mf.curve.desList[0]);
             for (int i = 1; i < 200; i++)
             {
-                vec3 pt = new vec3(start);
-                pt.easting -= (Math.Sin(pt.heading) * i);
-                pt.northing -= (Math.Cos(pt.heading) * i);
-                mf.curve.desList.Insert(0, pt);
-            }
-        }
-
-        public void CalculateTurnHeadings()
-        {
-            //to calc heading based on next and previous points to give an average heading.
-            int cnt = mf.curve.desList.Count;
-            if (cnt > 0)
-            {
-                vec3[] arr = new vec3[cnt];
-                cnt--;
-                mf.curve.desList.CopyTo(arr);
-                mf.curve.desList.Clear();
-
-                //middle points
-                for (int i = 1; i < cnt; i++)
-                {
-                    vec3 pt3 = arr[i];
-                    pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
-                    if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                    mf.curve.desList.Add(pt3);
-                }
+                mf.curve.desList.Insert(0, new vec3(start.easting - Math.Sin(start.heading) * i, start.northing - Math.Cos(start.heading) * i, start.heading));
             }
         }
 
@@ -467,8 +436,7 @@ namespace AgOpenGPS
 
                 for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
                 {
-                    vec3 pt = new vec3(mf.curve.curveArr[idx].curvePts[i]);
-                    mf.curve.desList.Add(pt);
+                    mf.curve.desList.Add(new vec3(mf.curve.curveArr[idx].curvePts[i]));
                 }
             }
         }
@@ -528,29 +496,11 @@ namespace AgOpenGPS
             {
                 int idx = lvLines.SelectedIndices[0];
 
-                int cnt = mf.curve.curveArr[idx].curvePts.Count;
-                if (cnt > 0)
-                {
-                    mf.curve.curveArr[idx].curvePts.Reverse();
+                mf.curve.curveArr[idx].curvePts.Reverse();
+                mf.curve.CalculateTurnHeadings(ref mf.curve.curveArr[idx].curvePts);
 
-                    vec3[] arr = new vec3[cnt];
-                    cnt--;
-                    mf.curve.curveArr[idx].curvePts.CopyTo(arr);
-                    mf.curve.curveArr[idx].curvePts.Clear();
-
-                    mf.curve.curveArr[idx].aveHeading += Math.PI;
-                    if (mf.curve.curveArr[idx].aveHeading < 0) mf.curve.curveArr[idx].aveHeading += glm.twoPI;
-                    if (mf.curve.curveArr[idx].aveHeading > glm.twoPI) mf.curve.curveArr[idx].aveHeading -= glm.twoPI;
-
-                    for (int i = 1; i < cnt; i++)
-                    {
-                        vec3 pt3 = arr[i];
-                        pt3.heading += Math.PI;
-                        if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
-                        if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                        mf.curve.curveArr[idx].curvePts.Add(pt3);
-                    }
-                }
+                mf.curve.curveArr[idx].aveHeading += Math.PI;
+                mf.curve.curveArr[idx].aveHeading %= glm.twoPI;
 
                 mf.FileSaveCurveLines();
                 UpdateLineList();
