@@ -114,23 +114,6 @@ namespace AgOpenGPS
             int cnt = mf.curve.desList.Count;
             if (cnt > 3)
             {
-                //make sure distance isn't too big between points on Turn
-                for (int i = 0; i < cnt - 1; i++)
-                {
-                    int j = i + 1;
-                    //if (j == cnt) j = 0;
-                    double distance = glm.Distance(mf.curve.desList[i], mf.curve.desList[j]);
-                    if (distance > 1.2)
-                    {
-                        mf.curve.desList.Insert(j, new vec3(
-                            (mf.curve.desList[i].easting + mf.curve.desList[j].easting) / 2.0,
-                            (mf.curve.desList[i].northing + mf.curve.desList[j].northing) / 2.0,
-                            mf.curve.desList[i].heading));
-                        cnt = mf.curve.desList.Count;
-                        i = -1;
-                    }
-                }
-
                 //calculate average heading of line
                 double x = 0, y = 0;
                 foreach (vec3 pt in mf.curve.desList)

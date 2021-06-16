@@ -236,7 +236,7 @@ namespace AgOpenGPS
                 UturnHeading = Points[pA].heading;
                 rEast = Points[pA].easting + (U * dx);
                 rNorth = Points[pA].northing + (U * dy);
-                currentLocationIndex = pA;
+                currentLocationIndex = isHeadingSameWay ? pB : pA;
 
                 ////////// steer ///////////// get the distance from currently active AB segment of steer axle 
                 dx = Points[sB].easting - Points[sA].easting;
@@ -390,12 +390,13 @@ namespace AgOpenGPS
                 UturnHeading = Points[pA].heading;
                 rEast = Points[pA].easting + (U * dx);
                 rNorth = Points[pA].northing + (U * dy);
-                currentLocationIndex = pA;
 
                 //update base on autosteer settings and distance from line
                 double goalPointDistance = mf.vehicle.UpdateGoalPointDistance() * (mf.yt.isYouTurnTriggered ? 0.8 : 1.0);
 
                 bool ReverseHeading = mf.isReverse ? !isHeadingSameWay : isHeadingSameWay;
+
+                currentLocationIndex = isHeadingSameWay ? pB : pA;
 
                 int count = ReverseHeading ? 1 : -1;
                 vec3 start = new vec3(rEast, rNorth, 0);

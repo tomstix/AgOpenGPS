@@ -121,11 +121,11 @@ namespace AgOpenGPS
         {
             string coordinates = null;
             int startIndex;
-            int i;
+            int i = 0;
 
             using (System.IO.StreamReader reader = new System.IO.StreamReader(filename))
             {
-                i = mf.bnd.boundarySelected;
+                //i = mf.bnd.boundarySelected;
 
                 try
                 {

@@ -62,125 +62,94 @@ namespace AgOpenGPS
 
             ytList.Capacity = 128;
         }
+        public bool GetLineIntersection(vec2 PointAA, vec2 PointAB, vec2 PointBA, vec2 PointBB, out vec2 Crossing, out double TimeA, bool Limit = false)
+        {
+            TimeA = -1;
+            Crossing = new vec2(0.0,0.0);
+            double denominator = (PointAB.northing - PointAA.northing) * (PointBB.easting - PointBA.easting) - (PointBB.northing - PointBA.northing) * (PointAB.easting - PointAA.easting);
+
+            if (denominator != 0.0)
+            {
+                TimeA = ((PointBB.northing - PointBA.northing) * (PointAA.easting - PointBA.easting) - (PointAA.northing - PointBA.northing) * (PointBB.easting - PointBA.easting)) / denominator;
+
+                if (Limit || (TimeA > 0.0 && TimeA < 1.0))
+                {
+                    double TimeB = ((PointAB.northing - PointAA.northing) * (PointAA.easting - PointBA.easting) - (PointAA.northing - PointBA.northing) * (PointAB.easting - PointAA.easting)) / denominator;
+                    if (Limit || (TimeB > 0.0 && TimeB < 1.0))
+                    {
+                        Crossing = PointAA + (PointAB - PointAA) * TimeA;
+                        return true;
+                    }
+                    else return false;
+                }
+                else return false;
+            }
+            else return false;
+        }
 
         //Finds the point where an AB Curve crosses the turn line
-        public bool FindCurveTurnPoints()
+        public bool FindCurveTurnPoints(ref List<vec3> Points, bool isSameWay)
         {
             //find closet AB Curve point that will cross and go out of bounds
-            curListCount = mf.curve.curList.Count;
+            curListCount = Points.Count;
 
-            //otherwise we count down
-            bool isCountingUp = mf.curve.isHeadingSameWay;
             int index = -1;
-            //check if outside a border
 
-            if (isCountingUp)
+            int Count = isSameWay ? 1 : -1;
+            List<vec6> Crossings = new List<vec6>();
+
+            vec3 Start = new vec3(mf.gyd.rEast, mf.gyd.rNorth, 0), End;
+
+            for (int i = mf.gyd.currentLocationIndex; i >= 0 && i < Points.Count; i += Count)
             {
-                //for each point in succession keep going till a turnLine is found.
-                for (int j = mf.gyd.currentLocationIndex; j < curListCount; j++)
+                End = Points[i];
+                for (int j = 0; j < mf.bnd.bndArr.Count; j++)
                 {
-                    if (!mf.turn.turnArr[0].IsPointInTurnWorkArea(mf.curve.curList[j]))
-                    {                                        //it passed outer turnLine
-                        crossingIndex = j - 1;
-                        index = 0;
-                        goto CrossingFound;
-                    }
+                    if (!mf.bnd.bndArr[j].isSet) continue;
+                    if (mf.bnd.bndArr[j].isDriveThru) continue;
+                    if (mf.bnd.bndArr[j].isDriveAround) continue;
 
-                    for (int i = 1; i < mf.bnd.bndArr.Count; i++)
+                    if (mf.turn.turnArr[j].turnLine.Count > 1)
                     {
-                        //make sure not inside a non drivethru boundary
-                        if (!mf.bnd.bndArr[i].isSet) continue;
-                        if (mf.bnd.bndArr[i].isDriveThru) continue;
-                        if (mf.bnd.bndArr[i].isDriveAround) continue;
-                        if (mf.turn.turnArr[i].IsPointInTurnWorkArea(mf.curve.curList[j]))
+                        int k = mf.turn.turnArr[j].turnLine.Count - 1;
+                        for (int l = 0; l < mf.turn.turnArr[j].turnLine.Count; l++)
                         {
-                            crossingIndex = j - 1;
-                            index = i;
-                            goto CrossingFound;
+                            if (GetLineIntersection(Start, End, mf.turn.turnArr[j].turnLine[l], mf.turn.turnArr[j].turnLine[k], out vec2 Crossing, out double Time))
+                            {
+                                Crossings.Add(new vec6(Crossing.easting, Crossing.northing, Time, j, i, l));
+                            }
+                            k = l;
                         }
                     }
                 }
 
-                //escape for multiple for's
-                CrossingFound:;
-
-            }
-            else //counting down, going opposite way mf.curve was created.
-            {
-                for (int j = mf.gyd.currentLocationIndex; j > 0; j--)
+                if (Crossings.Count > 0)
                 {
-                    if (!mf.turn.turnArr[0].IsPointInTurnWorkArea(mf.curve.curList[j]))
-                    {                                        //it passed outer turnLine
-                        crossingIndex = j + 1;
-                        index = 0;
-                        goto CrossingFound;
-                    }
+                    Crossings.Sort((x, y) => x.time.CompareTo(y.time));
 
-                    for (int i = 1; i < mf.bnd.bndArr.Count; i++)
-                    {
-                        //make sure not inside a non drivethru boundary
-                        if (!mf.bnd.bndArr[i].isSet) continue;
-                        if (mf.bnd.bndArr[i].isDriveThru) continue;
-                        if (mf.bnd.bndArr[i].isDriveAround) continue;
-                        if (mf.turn.turnArr[i].IsPointInTurnWorkArea(mf.curve.curList[j]))
-                        {
-                            crossingIndex = j + 1;
-                            index = i;
-                            goto CrossingFound;
-                        }
-                    }
+                    mf.distancePivotToTurnLine = glm.Distance(mf.pivotAxlePos, Crossings[0].easting, Crossings[0].northing);
+
+                    break;
                 }
-
-                //escape for multiple for's, point and turnLine index are found
-                CrossingFound:;
+                Start = End;
             }
 
-            if (index == -1)
+            if (Crossings.Count == 0)
             {
                 isTurnCreationNotCrossingError = true;
                 return false;
             }
 
-            crossingCurvePoint.easting = mf.curve.curList[crossingIndex].easting;
-            crossingCurvePoint.northing = mf.curve.curList[crossingIndex].northing;
-            crossingCurvePoint.heading = mf.curve.curList[crossingIndex].heading;
+            index = Crossings[0].boundaryIndex;
+            crossingIndex = Crossings[0].crosssingIdx;
 
-            int turnNum = index;
+            crossingHeading = mf.turn.turnArr[index].turnLine[Crossings[0].turnLineIdx].heading;
 
+            crossingCurvePoint.easting = Points[crossingIndex].easting;
+            crossingCurvePoint.northing = Points[crossingIndex].northing;
+            crossingCurvePoint.heading = Points[crossingIndex].heading;
 
-            int curTurnLineCount = mf.turn.turnArr[turnNum].turnLine.Count;
-
-            //possible points close to AB Curve point
-            List<int> turnLineCloseList = new List<int>();
-
-            for (int j = 0; j < curTurnLineCount; j++)
-            {
-                if ((mf.turn.turnArr[turnNum].turnLine[j].easting - crossingCurvePoint.easting) < 2
-                    && (mf.turn.turnArr[turnNum].turnLine[j].easting - crossingCurvePoint.easting) > -2
-                    && (mf.turn.turnArr[turnNum].turnLine[j].northing - crossingCurvePoint.northing) < 2
-                    && (mf.turn.turnArr[turnNum].turnLine[j].northing - crossingCurvePoint.northing) > -2)
-                {
-                    turnLineCloseList.Add(j);
-                }
-            }
-
-            double dist1, dist2 = 99;
-            curTurnLineCount = turnLineCloseList.Count;
-            for (int i = 0; i < curTurnLineCount; i++)
-            {
-                dist1 = glm.Distance(mf.turn.turnArr[turnNum].turnLine[turnLineCloseList[i]].easting,
-                                        mf.turn.turnArr[turnNum].turnLine[turnLineCloseList[i]].northing,
-                                            crossingCurvePoint.easting, crossingCurvePoint.northing);
-                if (dist1 < dist2)
-                {
-                    index = turnLineCloseList[i];
-                    dist2 = dist1;
-                }
-            }
-
-            crossingHeading = mf.turn.turnArr[turnNum].turnLine[index].heading;
-
-            return crossingCurvePoint.easting != -20000 && crossingCurvePoint.easting != -20000;
+            return true;
         }
 
         public void AddSequenceLines(double head)
@@ -334,22 +303,15 @@ namespace AgOpenGPS
 
             if (youTurnPhase == 0)
             {
-                //how far are we from any turn boundary
-                mf.turn.FindClosestTurnPoint(isYouTurnRight, new vec3(mf.gyd.rEast, mf.gyd.rNorth, 0), headAB);
-
-                //or did we lose the turnLine - we are on the highway cuz we left the outer/inner turn boundary
-                if ((int)mf.turn.closestTurnPt.easting != -20000)
-                {
-                    mf.distancePivotToTurnLine = glm.Distance(mf.pivotAxlePos, mf.turn.closestTurnPt);
-                }
-                else
+                if (!FindCurveTurnPoints(ref mf.ABLine.curlist, mf.ABLine.isHeadingSameWay))
                 {
                     //Full emergency stop code goes here, it thinks its auto turn, but its not!
                     mf.distancePivotToTurnLine = -3333;
+                    return false;
                 }
 
                 //delta between AB heading and boundary closest point heading
-                boundaryAngleOffPerpendicular = Math.PI - Math.Abs(Math.Abs(mf.turn.closestTurnPt.heading - headAB) - Math.PI);
+                boundaryAngleOffPerpendicular = Math.PI - Math.Abs(Math.Abs(crossingCurvePoint.heading - headAB) - Math.PI);
                 boundaryAngleOffPerpendicular -= glm.PIBy2;
                 boundaryAngleOffPerpendicular *= -1;
                 if (boundaryAngleOffPerpendicular > 1.25) boundaryAngleOffPerpendicular = 1.25;
@@ -764,7 +726,7 @@ namespace AgOpenGPS
             switch (youTurnPhase)
             {
                 case 0: //find the crossing points
-                    if (FindCurveTurnPoints()) youTurnPhase = 1;
+                    if (FindCurveTurnPoints(ref mf.curve.curList, mf.curve.isHeadingSameWay)) youTurnPhase = 1;
                     ytList?.Clear();
                     break;
 
