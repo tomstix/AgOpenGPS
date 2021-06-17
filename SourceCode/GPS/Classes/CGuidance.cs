@@ -222,7 +222,7 @@ namespace AgOpenGPS
                                 / Math.Sqrt((dy * dy) + (dx * dx));
 
                 if (!isHeadingSameWay)
-                    distanceFromCurrentLinePivot *= -1.0;
+                    distanceFromCurrentLinePivot = -distanceFromCurrentLinePivot;
 
                 double U = (((pivot.easting - Points[pA].easting) * dx)
                                 + ((pivot.northing - Points[pA].northing) * dy))
@@ -271,7 +271,7 @@ namespace AgOpenGPS
 
         public void PurePursuitGuidance(vec3 pivot, ref List<vec3> curList, bool _isHeadingSameWay)
         {
-            bool ResetUturn = false;
+            bool isResetUturn = false;
             List<vec3> Points = mf.yt.isYouTurnTriggered ? mf.yt.ytList : curList;
             bool isHeadingSameWay = mf.yt.isYouTurnTriggered || _isHeadingSameWay;
 
@@ -317,7 +317,7 @@ namespace AgOpenGPS
                     //return and reset if too far away or end of the line
                     if (pB >= Points.Count - 1)
                     {
-                        ResetUturn = true;
+                        isResetUturn = true;
                     }
                 }
                 //just need to make sure the points continue ascending or heading switches all over the place
@@ -342,7 +342,7 @@ namespace AgOpenGPS
                             * Points[pA].northing) - (Points[pB].northing * Points[pA].easting))
                                 / length;
 
-                if (isHeadingSameWay)
+                if (!isHeadingSameWay)
                     distanceFromCurrentLinePivot *= -1.0;
 
                 if (!mf.yt.isYouTurnTriggered)
@@ -415,7 +415,7 @@ namespace AgOpenGPS
 
                     if (mf.yt.isYouTurnTriggered && i == Points.Count - 1)//goalPointDistance is longer than remaining u-turn
                     {
-                        ResetUturn = true;
+                        isResetUturn = true;
                     }
                 }
 
@@ -479,9 +479,9 @@ namespace AgOpenGPS
             else
             {
                 mf.guidanceLineDistanceOff = 32000;
-                ResetUturn = true;
+                isResetUturn = true;
             }
-            if (ResetUturn) mf.yt.ResetYouTurn();
+            if (isResetUturn) mf.yt.ResetYouTurn();
         }
     }
 }
