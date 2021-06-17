@@ -49,6 +49,22 @@ namespace AgOpenGPS
         }
     }
 
+    public class vec6 : vec2
+    {
+        public int crosssingIdx;
+        public int turnLineIdx;
+        public int boundaryIndex;
+        public double time;
+
+        public vec6(double _easting, double _northing, double _time, int _boundaryindex, int _crosssingidx, int _turnlineidx) : base(_easting, _northing)
+        {
+            time = _time;
+            boundaryIndex = _boundaryindex;
+            crosssingIdx = _crosssingidx;
+            turnLineIdx = _turnlineidx;
+        }
+    }
+
     public class vec2
     {
         public double easting; //easting

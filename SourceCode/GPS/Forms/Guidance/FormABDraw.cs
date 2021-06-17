@@ -336,22 +336,6 @@ namespace AgOpenGPS
             int cnt = mf.curve.refList.Count;
             if (cnt > 3)
             {
-                //make sure distance isn't too big between points on Turn
-                for (int i = 0; i < cnt - 1; i++)
-                {
-                    int j = i + 1;
-                    //if (j == cnt) j = 0;
-                    double distance = glm.Distance(mf.curve.refList[i], mf.curve.refList[j]);
-                    if (distance > 1.2)
-                    {
-                        mf.curve.refList.Insert(j, new vec3(
-                            (mf.curve.refList[i].easting + mf.curve.refList[j].easting) / 2.0,
-                            (mf.curve.refList[i].northing + mf.curve.refList[j].northing) / 2.0,
-                            mf.curve.refList[i].heading));
-                        cnt = mf.curve.refList.Count;
-                        i = -1;
-                    }
-                }
                 //who knows which way it actually goes
                 mf.curve.CalculateTurnHeadings(ref mf.curve.refList);
 
@@ -459,23 +443,6 @@ namespace AgOpenGPS
             int cnt = mf.curve.refList.Count;
             if (cnt > 3)
             {
-                //make sure distance isn't too big between points on Turn
-                for (int i = 0; i < cnt - 1; i++)
-                {
-                    int j = i + 1;
-                    //if (j == cnt) j = 0;
-                    double distance = glm.Distance(mf.curve.refList[i], mf.curve.refList[j]);
-                    if (distance > 1.6)
-                    {
-                        mf.curve.refList.Insert(j, new vec3(
-                            (mf.curve.refList[i].easting + mf.curve.refList[j].easting) / 2.0,
-                            (mf.curve.refList[i].northing + mf.curve.refList[j].northing) / 2.0,
-                            mf.curve.refList[i].heading));
-                        cnt = mf.curve.refList.Count;
-                        i = -1;
-                    }
-                }
-
                 //who knows which way it actually goes
                 mf.curve.CalculateTurnHeadings(ref mf.curve.refList);
 
