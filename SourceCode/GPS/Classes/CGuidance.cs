@@ -353,7 +353,7 @@ namespace AgOpenGPS
                 if (!mf.yt.isYouTurnTriggered)
                 {
                     //integral slider is set to 0
-                    if (mf.vehicle.purePursuitIntegralGain != 0 || mf.isReverse)
+                    if (mf.vehicle.purePursuitIntegralGain != 0 || !mf.isReverse)
                     {
                         pivotDistanceError = pivotDistanceError * 0.8 + distanceFromCurrentLinePivot * 0.2;
 
