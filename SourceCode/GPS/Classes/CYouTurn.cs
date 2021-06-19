@@ -41,13 +41,13 @@ namespace AgOpenGPS
         public bool isOutOfBounds = false;
 
         //sequence of operations of finding the next turn 0 to 3
-        public int youTurnPhase, curListCount;
+        public int youTurnPhase = -1, curListCount;
 
+        vec6 Crossing = new vec6(0, 0, double.MaxValue, -1, -1, -1);
         public vec3 crossingCurvePoint = new vec3(0.0,0.0,0.0);
         private double crossingHeading = 0;
         private int crossingIndex = 0;
 
-        //constructor
         public CYouTurn(FormGPS _f)
         {
             mf = _f;
@@ -59,7 +59,10 @@ namespace AgOpenGPS
 
             rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
             Set_Alternate_skips();
+
+            ytList.Capacity = 128;
         }
+
         public bool GetLineIntersection(vec2 PointAA, vec2 PointAB, vec2 PointBA, vec2 PointBB, out vec2 Crossing, out double TimeA, bool Limit = false)
         {
             TimeA = -1;
@@ -86,21 +89,18 @@ namespace AgOpenGPS
         }
 
         //Finds the point where an AB Curve crosses the turn line
-        public bool FindCurveTurnPoints(ref List<vec3> Points, bool isSameWay)
+        public bool FindTurnPoint(ref List<vec3> Points, bool isSameWay)
         {
             //find closet AB Curve point that will cross and go out of bounds
             curListCount = Points.Count;
 
-            int index = -1;
-
             int Count = isSameWay ? 1 : -1;
-            List<vec6> Crossings = new List<vec6>();
+            Crossing = new vec6(0,0,double.MaxValue,-1,-1,-1);
 
-            vec3 Start = new vec3(mf.gyd.rEast, mf.gyd.rNorth, 0), End;
+            vec3 Start = new vec3(mf.gyd.rEast, mf.gyd.rNorth, 0);
 
             for (int i = mf.gyd.currentLocationIndex; i >= 0 && i < Points.Count; i += Count)
             {
-                End = Points[i];
                 for (int j = 0; j < mf.bnd.bndArr.Count; j++)
                 {
                     if (!mf.bnd.bndArr[j].isSet) continue;
@@ -112,36 +112,34 @@ namespace AgOpenGPS
                         int k = mf.turn.turnArr[j].turnLine.Count - 1;
                         for (int l = 0; l < mf.turn.turnArr[j].turnLine.Count; l++)
                         {
-                            if (GetLineIntersection(Start, End, mf.turn.turnArr[j].turnLine[l], mf.turn.turnArr[j].turnLine[k], out vec2 Crossing, out double Time))
+                            if (GetLineIntersection(Start, Points[i], mf.turn.turnArr[j].turnLine[l], mf.turn.turnArr[j].turnLine[k], out vec2 _Crossing, out double Time))
                             {
-                                Crossings.Add(new vec6(Crossing.easting, Crossing.northing, Time, j, i, l));
+                                if (Time < Crossing.time)
+                                    Crossing = new vec6(_Crossing.easting, _Crossing.northing, Time, j, i, l);
                             }
                             k = l;
                         }
                     }
                 }
 
-                if (Crossings.Count > 0)
+                if (Crossing.boundaryIndex >= 0)
                 {
-                    Crossings.Sort((x, y) => x.time.CompareTo(y.time));
-
-                    mf.distancePivotToTurnLine = glm.Distance(mf.pivotAxlePos, Crossings[0].easting, Crossings[0].northing);
+                    mf.distancePivotToTurnLine = glm.Distance(mf.pivotAxlePos, Crossing.easting, Crossing.northing);
 
                     break;
                 }
-                Start = End;
+                Start = Points[i];
             }
 
-            if (Crossings.Count == 0)
+            if (Crossing.boundaryIndex == -1)
             {
                 isTurnCreationNotCrossingError = true;
                 return false;
             }
 
-            index = Crossings[0].boundaryIndex;
-            crossingIndex = Crossings[0].crosssingIdx;
+            crossingIndex = Crossing.crosssingIdx;
 
-            crossingHeading = mf.turn.turnArr[index].turnLine[Crossings[0].turnLineIdx].heading;
+            crossingHeading = mf.turn.turnArr[Crossing.boundaryIndex].turnLine[Crossing.turnLineIdx].heading;
 
             crossingCurvePoint.easting = Points[crossingIndex].easting;
             crossingCurvePoint.northing = Points[crossingIndex].northing;
@@ -301,10 +299,11 @@ namespace AgOpenGPS
 
             if (youTurnPhase == 0)
             {
-                if (!FindCurveTurnPoints(ref mf.ABLine.curlist, mf.ABLine.isHeadingSameWay))
+                if (!FindTurnPoint(ref mf.ABLine.curlist, mf.ABLine.isHeadingSameWay))
                 {
                     //Full emergency stop code goes here, it thinks its auto turn, but its not!
                     mf.distancePivotToTurnLine = -3333;
+                    ResetCreatedYouTurn();
                     return false;
                 }
 
@@ -724,7 +723,7 @@ namespace AgOpenGPS
             switch (youTurnPhase)
             {
                 case 0: //find the crossing points
-                    if (FindCurveTurnPoints(ref mf.curve.curList, mf.curve.isHeadingSameWay)) youTurnPhase = 1;
+                    if (FindTurnPoint(ref mf.curve.curList, mf.curve.isHeadingSameWay)) youTurnPhase = 1;
                     ytList?.Clear();
                     break;
 
@@ -904,7 +903,7 @@ namespace AgOpenGPS
 
         public void ResetCreatedYouTurn()
         {
-            youTurnPhase = 0;
+            youTurnPhase = -1;
             ytList?.Clear();
         }
 

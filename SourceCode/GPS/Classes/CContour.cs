@@ -28,6 +28,8 @@ namespace AgOpenGPS
         public CContour(FormGPS _f)
         {
             mf = _f;
+            ctList.Capacity = 128;
+            ptList.Capacity = 128;
         }
 
         public bool isLocked = false;
@@ -263,8 +265,6 @@ namespace AgOpenGPS
         private double lastSecond;
         public void BuildContourGuidanceLine(vec3 pivot)
         {
-            if ((mf.secondsSinceStart - lastSecond) < 3) return;
-
             lastSecond = mf.secondsSinceStart;
 
             int ptCount;
@@ -555,10 +555,10 @@ namespace AgOpenGPS
         //determine distance from contour guidance line
         public void GetCurrentContourLine(vec3 pivot, vec3 steer)
         {
-            if (mf.isStanleyUsed)
-                mf.gyd.StanleyGuidance(pivot, steer, ref ctList, isHeadingSameWay);
-            else
-                mf.gyd.PurePursuitGuidance(pivot, ref ctList, isHeadingSameWay);
+            if (ctList.Count < 2 || (mf.secondsSinceStart - lastSecond) > 2.0)
+                BuildContourGuidanceLine(pivot);
+
+            mf.gyd.CalculateSteerAngle(pivot, steer, ref ctList, isHeadingSameWay, mf.isStanleyUsed);
         }
 
         //draw the red follow me line

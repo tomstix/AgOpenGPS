@@ -13,6 +13,10 @@ namespace AgOpenGPS
             isSet = false;
             isDriveAround = false;
             isDriveThru = false;
+            bndLine.Capacity = 128;
+            calcList.Capacity = 128;
+            calcListEar.Capacity = 128;
+            bndLineEar.Capacity = 128;
         }
 
         //list of coordinates of boundary line

@@ -644,7 +644,8 @@ namespace AgOpenGPS
                         else
                         {
                             //now check to make sure we are not in an inner turn boundary - drive thru is ok
-                            if (yt.youTurnPhase != 3)
+                            if (yt.youTurnPhase < 0) yt.youTurnPhase++;
+                            else if (yt.youTurnPhase != 3)
                             {
                                 if (crossTrackError > 500)
                                 {
@@ -961,11 +962,7 @@ namespace AgOpenGPS
 
                 //All sections OFF so if on, turn off
                 else { if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); } }
-
-                //Build contour line if close enough to a patch
-                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos);
             }
-
         }
 
         //calculate the extreme tool left, right velocities, each section lookahead, and whether or not its going backwards

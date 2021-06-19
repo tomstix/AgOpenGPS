@@ -107,10 +107,7 @@ namespace AgOpenGPS
             if (!isABValid || ((mf.secondsSinceStart - lastSecond) > 0.66 && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchValue != 0)))
                 BuildCurrentABLineList(pivot, steer);
 
-            if (mf.isStanleyUsed)//Stanley
-                mf.gyd.StanleyGuidance(pivot, steer, ref curlist, isHeadingSameWay);
-            else//Pure Pursuit
-                mf.gyd.PurePursuitGuidance(pivot, ref curlist, isHeadingSameWay);
+            mf.gyd.CalculateSteerAngle(pivot, steer, ref curlist, isHeadingSameWay, mf.isStanleyUsed);
         }
 
         public void DrawABLines()
@@ -263,6 +260,8 @@ namespace AgOpenGPS
             for (int i = cntr; i < mf.tram.passes; i++)
             {
                 mf.tram.tramArr = new List<vec2>();
+                mf.tram.tramArr.Capacity = 128;
+
                 mf.tram.tramList.Add(mf.tram.tramArr);
 
                 double hSinWidth = hsin * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth);
@@ -289,6 +288,8 @@ namespace AgOpenGPS
             for (int i = cntr; i < mf.tram.passes; i++)
             {
                 mf.tram.tramArr = new List<vec2>();
+                mf.tram.tramArr.Capacity = 128;
+
                 mf.tram.tramList.Add(mf.tram.tramArr);
 
                 double hSinWidth = hsin * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth);

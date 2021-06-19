@@ -478,6 +478,8 @@ namespace AgOpenGPS
                             int verts = int.Parse(line);
 
                             section[0].triangleList = new List<vec3>();
+                            section[0].triangleList.Capacity = verts + 1;
+
                             section[0].patchList.Add(section[0].triangleList);
 
                             for (int v = 0; v < verts; v++)
@@ -553,6 +555,7 @@ namespace AgOpenGPS
                             int verts = int.Parse(line);
 
                             ct.ptList = new List<vec3>();
+                            ct.ptList.Capacity = verts + 1;
                             ct.stripList.Add(ct.ptList);
 
                             for (int v = 0; v < verts; v++)
