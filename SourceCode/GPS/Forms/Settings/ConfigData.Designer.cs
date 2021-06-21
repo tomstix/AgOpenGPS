@@ -72,6 +72,8 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setIMU_isReverseOn = mf.ahrs.isReverseOn = cboxIsReverseOn.Checked;
 
+            Properties.Settings.Default.setIMU_isReverseOn = mf.ahrs.isReverseOn = cboxIsReverseOn.Checked;
+
             Properties.Settings.Default.Save();
         }
 
