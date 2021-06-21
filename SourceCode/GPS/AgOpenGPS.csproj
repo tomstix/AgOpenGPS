@@ -3,7 +3,8 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFramework>net5.0-windows7.0</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -46,6 +47,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Maikebing.System.Windows.Forms.DataVisualization" Version="5.0.1" />
     <PackageReference Include="Resource.Embedder" Version="2.1.1" />
   </ItemGroup>
   <ItemGroup>
@@ -882,10 +884,6 @@
     <Compile Remove="Controls.Designer.cs" />
     <Compile Remove="FormSource.cs" />
     <Compile Remove="FormSource.Designer.cs" />
-    <Compile Remove="Forms\FormNumeric.cs" />
-    <Compile Remove="Forms\FormNumeric.Designer.cs" />
-    <Compile Remove="Forms\FormSwapAB.cs" />
-    <Compile Remove="Forms\FormSwapAB.Designer.cs" />
     <Compile Remove="Forms\Pickers\FormEnvPicker.cs" />
     <Compile Remove="Forms\Pickers\FormEnvPicker.Designer.cs" />
     <Compile Remove="Forms\Pickers\FormEnvSaver.cs" />

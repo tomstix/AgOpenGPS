@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFramework>net5.0-windows7.0</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -52,72 +53,50 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Forms\FormCommPicker.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Forms\FormCommPicker.cs" />
     <Compile Update="Forms\FormCommPicker.designer.cs">
       <DependentUpon>FormCommPicker.cs</DependentUpon>
     </Compile>
-    <Compile Update="Forms\FormCommSaver.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Forms\FormCommSaver.cs" />
     <Compile Update="Forms\FormCommSaver.designer.cs">
       <DependentUpon>FormCommSaver.cs</DependentUpon>
     </Compile>
-    <Compile Update="Forms\FormCommSetGPS.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Forms\FormCommSetGPS.cs" />
     <Compile Update="Forms\FormCommSetGPS.Designer.cs">
       <DependentUpon>FormCommSetGPS.cs</DependentUpon>
     </Compile>
-    <Compile Update="Forms\FormGPSData.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Forms\FormGPSData.cs" />
     <Compile Update="Forms\FormGPSData.Designer.cs">
       <DependentUpon>FormGPSData.cs</DependentUpon>
     </Compile>
-    <Compile Update="Forms\FormKeyboard.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Forms\FormKeyboard.cs" />
     <Compile Update="Forms\FormKeyboard.designer.cs">
       <DependentUpon>FormKeyboard.cs</DependentUpon>
     </Compile>
-    <Compile Update="Forms\FormLoop.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Forms\FormLoop.cs" />
     <Compile Update="Forms\FormLoop.Designer.cs">
       <DependentUpon>FormLoop.cs</DependentUpon>
     </Compile>
     <Compile Update="Forms\NMEA.Designer.cs">
       <DependentUpon>FormLoop.cs</DependentUpon>
     </Compile>
-    <Compile Update="Forms\FormNtrip.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Forms\FormNtrip.cs" />
     <Compile Update="Forms\FormNtrip.Designer.cs">
       <DependentUpon>FormNtrip.cs</DependentUpon>
     </Compile>
-    <Compile Update="Forms\FormNumeric.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Forms\FormNumeric.cs" />
     <Compile Update="Forms\FormNumeric.designer.cs">
       <DependentUpon>FormNumeric.cs</DependentUpon>
     </Compile>
-    <Compile Update="Forms\FormSource.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Forms\FormSource.cs" />
     <Compile Update="Forms\FormSource.designer.cs">
       <DependentUpon>FormSource.cs</DependentUpon>
     </Compile>
-    <Compile Update="Forms\FormTimedMessage.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Forms\FormTimedMessage.cs" />
     <Compile Update="Forms\FormTimedMessage.designer.cs">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </Compile>
-    <Compile Update="Forms\FormUDP.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Forms\FormUDP.cs" />
     <Compile Update="Forms\FormUDP.designer.cs">
       <DependentUpon>FormUDP.cs</DependentUpon>
     </Compile>
@@ -260,5 +239,8 @@
     <Compile Remove="Settings.cs" />
     <Compile Remove="Forms\FormSteerGraph.cs" />
     <Compile Remove="Forms\FormSteerGraph.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.IO.Ports" Version="5.0.1" />
   </ItemGroup>
 </Project>

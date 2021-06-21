@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFramework>net5.0-windows7.0</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -47,15 +48,11 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Forms\FormLoop.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Forms\FormLoop.cs" />
     <Compile Update="Forms\FormLoop.Designer.cs">
       <DependentUpon>FormLoop.cs</DependentUpon>
     </Compile>
-    <Compile Update="Forms\FormTimedMessage.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="Forms\FormTimedMessage.cs" />
     <Compile Update="Forms\FormTimedMessage.designer.cs">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </Compile>
