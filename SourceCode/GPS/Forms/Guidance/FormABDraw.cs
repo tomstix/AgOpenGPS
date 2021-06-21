@@ -736,8 +736,8 @@ namespace AgOpenGPS
         {
             if (mf.ABLine.numABLineSelected > 0)
             {
-                mf.ABLine.refPoint1 = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin;
-                mf.ABLine.abHeading = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading;
+                mf.ABLine.refList[1] = new vec3(mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin.easting, mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin.northing, mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading);
+
                 mf.ABLine.SetABLineByHeading();
 
                 if (mf.ABLine.isBtnABLineOn)

@@ -413,9 +413,7 @@ namespace AgOpenGPS
             if (ABLine.lineArr.Count > 0)
             {
                 ABLine.numABLineSelected = 1;
-                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
-                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
-                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
+                ABLine.refList[1] = new vec3(ABLine.lineArr[0].origin.easting, ABLine.lineArr[0].origin.northing, ABLine.lineArr[0].heading);
                 ABLine.SetABLineByHeading();
                 ABLine.isABLineSet = false;
                 ABLine.isABLineLoaded = true;

@@ -29,6 +29,13 @@ namespace AgOpenGPS
 
             if (rbtnHeadingHDT.Checked) gboxSingle.Enabled = false;
 
+            cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
+
+            cboxIsReverseOn.Checked = Properties.Settings.Default.setIMU_isReverseOn;
+
+            nudMinFixStepDistance.Value = (decimal)Properties.Settings.Default.setF_minFixStep;
+            nudStartSpeed.Value = (decimal)Properties.Vehicle.Default.setVehicle_startSpeed;
+
             if (Properties.Settings.Default.setIMU_fusionWeight > 0.2)
             {
                 Properties.Settings.Default.setIMU_fusionWeight = 0.2;
@@ -38,14 +45,6 @@ namespace AgOpenGPS
             hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight * 500);
             lblFusion.Text = (hsbarFusion.Value).ToString();
             lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
-
-            cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
-            cboxIsRTK_KillAutoSteer.Checked = Properties.Settings.Default.setGPS_isRTK_KillAutoSteer;
-
-            cboxIsReverseOn.Checked = Properties.Settings.Default.setIMU_isReverseOn;
-
-            nudMinFixStepDistance.Value = (decimal)Properties.Settings.Default.setF_minFixStep;
-            nudStartSpeed.Value = (decimal)Properties.Vehicle.Default.setVehicle_startSpeed;
 
             cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
 
@@ -68,6 +67,8 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setGPS_isRTK = mf.isRTK = cboxIsRTK.Checked;
             Properties.Settings.Default.setGPS_isRTK_KillAutoSteer = mf.isRTK_KillAutosteer = cboxIsRTK_KillAutoSteer.Checked;
+
+            Properties.Settings.Default.setIMU_isReverseOn = mf.ahrs.isReverseOn = cboxIsReverseOn.Checked;
 
             Properties.Settings.Default.setIMU_isReverseOn = mf.ahrs.isReverseOn = cboxIsReverseOn.Checked;
 

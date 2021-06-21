@@ -163,97 +163,85 @@ namespace AgOpenGPS
                 //just need to make sure the points continue ascending or heading switches all over the place
                 if (sA > sB) { int C = sA; sA = sB; sB = C; }
 
-                minDistA = minDistB = double.MaxValue;
-
-                if (isHeadingSameWay)
+                #region Stanley
+                if (isStanleyMode)
                 {
-                    dd = sB+1; cc = dd - 12;
-                    if (cc < 0) cc = 0;
-                }
-                else
-                {
-                    cc = sA; dd = sA + 12;
-                    if (dd > ptCount) dd = ptCount;
-                }
-
-                //find the closest 2 points of pivot back from steer
-                for (int j = cc; j < dd; j++)
-                {
-                    double dist = ((pivot.easting - Points[j].easting) * (pivot.easting - Points[j].easting))
-                                    + ((pivot.northing - Points[j].northing) * (pivot.northing - Points[j].northing));
-                    if (dist < minDistA)
+                    if (!mf.isReverse)
                     {
-                        minDistB = minDistA;
-                        pB = pA;
-                        minDistA = dist;
-                        pA = j;
+                        minDistA = minDistB = double.MaxValue;
+
+                        if (isHeadingSameWay)
+                        {
+                            cc = pA;
+                            dd = pB + 12;
+                            if (dd > ptCount) dd = ptCount;
+                        }
+                        else
+                        {
+                            cc = pA - 12;
+                            dd = pB + 1;
+                            if (cc < 0) cc = 0;
+                        }
+
+                        //find the closest 2 points of pivot back from steer
+                        for (int j = cc; j < dd; j++)
+                        {
+                            dist = ((steer.easting - Points[j].easting) * (steer.easting - Points[j].easting))
+                                            + ((steer.northing - Points[j].northing) * (steer.northing - Points[j].northing));
+                            if (dist < minDistA)
+                            {
+                                minDistB = minDistA;
+                                sB = sA;
+                                minDistA = dist;
+                                sA = j;
+                            }
+                            else if (dist < minDistB)
+                            {
+                                minDistB = dist;
+                                sB = j;
+                            }
+                        }
+
+                        //just need to make sure the points continue ascending or heading switches all over the place
+                        if (sA > sB) { int C = sA; sA = sB; sB = C; }
+
+                        if (mf.yt.isYouTurnTriggered)
+                        {
+                            //feed backward to turn slower to keep pivot on
+                            sA -= 7;
+                            if (sA < 0)
+                            {
+                                sA = 0;
+                            }
+                            sB = sA + 1;
+
+                            //return and reset if too far away or end of the line
+                            if (minDistA > 16 || sB >= ptCount - 8)
+                            {
+                                isResetUturn = true;
+                            }
+                        }
+
+                        ////////// steer ///////////// get the distance from currently active AB segment of steer axle 
+                        dx = Points[sB].easting - Points[sA].easting;
+                        dy = Points[sB].northing - Points[sA].northing;
+
+                        if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dy) < Double.Epsilon) return;
+
+                        //how far from current AB Line is fix
+                        distanceFromCurrentLineSteer = ((dy * steer.easting) - (dx * steer.northing) + (Points[sB].easting
+                                    * Points[sA].northing) - (Points[sB].northing * Points[sA].easting))
+                                        / Math.Sqrt((dy * dy) + (dx * dx));
+
+                        if (!isHeadingSameWay)
+                            distanceFromCurrentLineSteer = -distanceFromCurrentLineSteer;
+                        //create the integral offset
                     }
-                    else if (dist < minDistB)
-                    {
-                        minDistB = dist;
-                        pB = j;
-                    }
-                }
+                    else
+                        distanceFromCurrentLineSteer = distanceFromCurrentLinePivot;
 
-                //just need to make sure the points continue ascending or heading switches all over the place
-                if (pA > pB) { int C = pA; pA = pB; pB = C; }
-
-                if (mf.yt.isYouTurnTriggered)
-                {
-                    //feed backward to turn slower to keep pivot on
-                    sA -= 7;
-                    if (sA < 0)
-                    {
-                        sA = 0;
-                    }
-                    sB = sA + 1;
-
-                    //return and reset if too far away or end of the line
-                    if (minDistA > 16 || sB >= ptCount - 8)
-                    {
-                        ResetUturn = true;
-                    }
-                }
-
-                //get the pivot distance from currently active AB segment   ///////////  Pivot  ////////////
-                double dx = Points[pB].easting - Points[pA].easting;
-                double dy = Points[pB].northing - Points[pA].northing;
-
-                if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dy) < Double.Epsilon) return;
-
-                //how far from current AB Line is fix
-                distanceFromCurrentLinePivot = ((dy * pivot.easting) - (dx * pivot.northing) + (Points[pB].easting
-                            * Points[pA].northing) - (Points[pB].northing * Points[pA].easting))
-                                / Math.Sqrt((dy * dy) + (dx * dx));
-
-                if (!isHeadingSameWay)
-                    distanceFromCurrentLinePivot = -distanceFromCurrentLinePivot;
-
-                double U = (((pivot.easting - Points[pA].easting) * dx)
-                                + ((pivot.northing - Points[pA].northing) * dy))
-                                / ((dx * dx) + (dy * dy));
-
-                UturnHeading = Points[pA].heading;
-                rEast = Points[pA].easting + (U * dx);
-                rNorth = Points[pA].northing + (U * dy);
-                currentLocationIndex = isHeadingSameWay ? pB : pA;
-
-                ////////// steer ///////////// get the distance from currently active AB segment of steer axle 
-                dx = Points[sB].easting - Points[sA].easting;
-                dy = Points[sB].northing - Points[sA].northing;
-
-                if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dy) < Double.Epsilon) return;
-
-                //how far from current AB Line is fix
-                distanceFromCurrentLineSteer = ((dy * steer.easting) - (dx * steer.northing) + (Points[sB].easting
-                            * Points[sA].northing) - (Points[sB].northing * Points[sA].easting))
-                                / Math.Sqrt((dy * dy) + (dx * dx));
-
-                if (!isHeadingSameWay)
-                    distanceFromCurrentLineSteer *= -1.0;
-                //create the integral offset
-                if (!mf.yt.isYouTurnTriggered && inty != 0)
-                    distanceFromCurrentLineSteer -= inty;
+                    if (!mf.yt.isYouTurnTriggered && inty != 0)
+                        distanceFromCurrentLineSteer -= inty;
 
                 steerHeadingError = steer.heading - Points[sA].heading;
 
