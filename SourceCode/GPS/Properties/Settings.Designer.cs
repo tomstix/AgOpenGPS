@@ -12,7 +12,7 @@ namespace AgOpenGPS.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -926,17 +926,6 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::AgOpenGPS.CFeatureSettings setFeatures {
-            get {
-                return ((global::AgOpenGPS.CFeatureSettings)(this["setFeatures"]));
-            }
-            set {
-                this["setFeatures"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool setDisplay_isTextureOn {
             get {
@@ -1004,6 +993,65 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setAS_isAngVelGuidance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public double setAS_guidanceLookAheadTime {
+            get {
+                return ((double)(this["setAS_guidanceLookAheadTime"]));
+            }
+            set {
+                this["setAS_guidanceLookAheadTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::AgOpenGPS.CFeatureSettings setFeatures {
+            get {
+                return ((global::AgOpenGPS.CFeatureSettings)(this["setFeatures"]));
+            }
+            set {
+                this["setFeatures"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setIMU_isDualAsIMU {
+            get {
+                return ((bool)(this["setIMU_isDualAsIMU"]));
+            }
+            set {
+                this["setIMU_isDualAsIMU"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setAS_sideHillComp {
+            get {
+                return ((double)(this["setAS_sideHillComp"]));
+            }
+            set {
+                this["setAS_sideHillComp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setIMU_isReverseOn {
+            get {
+                return ((bool)(this["setIMU_isReverseOn"]));
+            }
+            set {
+                this["setIMU_isReverseOn"] = value;
             }
         }
     }

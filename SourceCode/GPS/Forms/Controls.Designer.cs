@@ -30,6 +30,8 @@ namespace AgOpenGPS
                 if (ABLine.isBtnABLineOn | curve.isBtnCurveOn)
                 {
                     EnableYouTurnButtons();
+                    ABLine.isABValid = false;
+                    curve.isCurveValid = false;
                 }
 
                 btnCycleLines.Image = Properties.Resources.ABLineCycle;
@@ -72,6 +74,8 @@ namespace AgOpenGPS
             //new direction so reset where to put turn diagnostic
             //yt.ResetCreatedYouTurn();
 
+            curve.isCurveValid = false;
+
             if (curve.isBtnCurveOn == false && curve.isCurveSet)
             {
                 //display the curve
@@ -103,6 +107,9 @@ namespace AgOpenGPS
         }
         private void btnABLine_Click(object sender, EventArgs e)
         {
+            //invalidate line
+            ABLine.isABValid = false;
+
             //check if window already exists
             Form f = Application.OpenForms["FormABCurve"];
 
@@ -124,9 +131,6 @@ namespace AgOpenGPS
             //if contour is on, turn it off
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
             //btnContourPriority.Enabled = true;
-
-            //make sure the other stuff is off
-            curve.isOkToAddPoints = false;
                 
             curve.isBtnCurveOn = false;
             btnCurve.Image = Properties.Resources.CurveOff;
@@ -174,7 +178,7 @@ namespace AgOpenGPS
             if (ABLine.numABLines == 0 && curve.numCurveLines == 0) return; 
 
                 //reset to generate new reference
-            curve.lastSecond = ABLine.lastSecond = 0;
+            ABLine.isABValid = false;
             curve.isCurveValid = false;
 
             if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)
@@ -190,6 +194,7 @@ namespace AgOpenGPS
                 ABLine.isABLineSet = true;
                 ABLine.isABLineLoaded = true;
                 yt.ResetYouTurn();
+                lblCurveLineName.Text = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
             }
             else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
             {
@@ -207,80 +212,8 @@ namespace AgOpenGPS
                 }
                 curve.isCurveSet = true;
                 yt.ResetYouTurn();
+                lblCurveLineName.Text = curve.curveArr[idx].Name;
             }
-
-
-            //if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)
-            //{
-            //    ABLine.moveDistance = 0;
-
-            //    if (ABLine.numABLineSelected == ABLine.numABLines) 
-            //    {
-            //        if (curve.numCurveLines > 0)
-            //        {
-            //            curve.numCurveLineSelected = 1;
-            //            ABLine.numABLineSelected = 1;
-            //            btnCurve.PerformClick();
-            //            SetCurveLine(curve.numCurveLineSelected);
-            //            return;
-            //        }
-            //        else
-            //        {
-            //            ABLine.numABLineSelected = 1;
-            //            SetABLine(ABLine.numABLineSelected);
-            //            return;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        ABLine.numABLineSelected++;
-            //        SetABLine(ABLine.numABLineSelected);
-            //        return;
-            //    }
-            //}
-
-            //else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
-            //{
-            //    curve.moveDistance = 0;
-
-            //    if (curve.numCurveLineSelected == curve.numCurveLines)
-            //    {
-            //        if (ABLine.numABLines > 0)
-            //        {
-            //            curve.numCurveLineSelected = 1;
-            //            ABLine.numABLineSelected = 1;
-            //            btnABLine.PerformClick();
-            //            SetABLine(ABLine.numABLineSelected);
-            //            return;
-            //        }
-            //        else
-            //        {
-            //            curve.numCurveLineSelected = 1;
-            //            SetCurveLine(curve.numCurveLineSelected);
-            //            return;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        curve.numCurveLineSelected++;
-            //        SetCurveLine(curve.numCurveLineSelected);
-            //        return;
-            //    }
-            //}
-
-            //if (ABLine.numABLines > 0)
-            //{
-            //    ABLine.numABLineSelected = 1;
-            //    btnABLine.PerformClick();
-            //    return;
-            //}
-
-            //if (curve.numCurveLines > 0)
-            //{
-            //    curve.numCurveLineSelected = 1;
-            //    btnCurve.PerformClick();
-            //    return;
-            //}
         }
 
         private void SetABLine(int num)
@@ -292,7 +225,6 @@ namespace AgOpenGPS
                 ABLine.isABLineSet = true;
                 ABLine.isABLineLoaded = true;
                 yt.ResetYouTurn();
-
         }
         private void SetCurveLine(int num)
         {
@@ -305,11 +237,6 @@ namespace AgOpenGPS
                 }
                 curve.isCurveSet = true;
                 yt.ResetYouTurn();
-        }
-
-        private void TurnOffABLine()
-        {
-
         }
 
         //Section Manual and Auto
@@ -1456,14 +1383,13 @@ namespace AgOpenGPS
         //Snaps
         private void btnContourPriority_Click(object sender, EventArgs e)
         {
-
             if (ABLine.isBtnABLineOn)
             {
-                ABLine.SnapABLine();
+                ABLine.MoveABLine(ABLine.distanceFromCurrentLinePivot);
             }
             else if (curve.isBtnCurveOn)
             {
-                curve.SnapABCurve();
+                curve.MoveABCurve(curve.distanceFromCurrentLinePivot);
             }
             else
             {
@@ -1556,8 +1482,6 @@ namespace AgOpenGPS
         }
         public void GetAB()
         {
-            curve.isOkToAddPoints = false;
-
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
             using (var form = new FormABDraw(this))
@@ -1972,8 +1896,6 @@ namespace AgOpenGPS
         }
         private void tramLinesMenuField_Click(object sender, EventArgs e)
         {
-            curve.isOkToAddPoints = false;
-
             if (ct.isContourBtnOn) btnContour.PerformClick(); 
 
             if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
@@ -2086,7 +2008,6 @@ namespace AgOpenGPS
             {
 
                 //make sure the other stuff is off
-                curve.isOkToAddPoints = false;
                 curve.isCurveSet = false;
                 //btnContourPriority.Enabled = false;
                 curve.isBtnCurveOn = false;
@@ -2195,15 +2116,11 @@ namespace AgOpenGPS
         #region Sim controls
         private void timerSim_Tick(object sender, EventArgs e)
         {
-            //if a GPS is connected disable sim
-            //if (!spGPS.IsOpen)
-            {
-                if (isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000)) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
-                else if (recPath.isDrivingRecordedPath) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
-                //else if (self.isSelfDriving) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
-                else sim.DoSimTick(sim.steerAngleScrollBar);
-            }
+            if (recPath.isDrivingRecordedPath || isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000))
+                sim.DoSimTick(guidanceLineSteerAngle * 0.01);
+            else sim.DoSimTick(sim.steerAngleScrollBar);
         }
+
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)
         {
             sim.steerAngleScrollBar = (hsbarSteerAngle.Value - 400) * 0.1;
@@ -2228,13 +2145,6 @@ namespace AgOpenGPS
         {
             sim.stepDistance = 0;
             hsbarStepDistance.Value = 0;
-        }
-        private void btnReverseDirection_Click(object sender, EventArgs e)
-        {
-            sim.headingTrue += Math.PI;
-            if (sim.headingTrue > (2.0 * Math.PI)) sim.headingTrue -= (2.0 * Math.PI);
-            if (sim.headingTrue < 0) sim.headingTrue += (2.0 * Math.PI);
-
         }
         #endregion
 

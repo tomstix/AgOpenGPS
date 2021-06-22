@@ -227,9 +227,6 @@
     <Setting Name="setIMU_isHeadingCorrectionFromAutoSteer" Type="System.String" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setFeatures" Type="AgOpenGPS.CFeatureSettings" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="setDisplay_isTextureOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -246,6 +243,21 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setAS_isAngVelGuidance" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setAS_guidanceLookAheadTime" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="setFeatures" Type="AgOpenGPS.CFeatureSettings" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="setIMU_isDualAsIMU" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setAS_sideHillComp" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setIMU_isReverseOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

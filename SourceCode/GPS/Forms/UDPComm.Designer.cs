@@ -60,9 +60,12 @@ namespace AgOpenGPS
                                 pn.ConvertWGS84ToLocal(Lat, Lon, out pn.fix.northing, out pn.fix.easting);
 
                                 //From dual antenna heading sentences
-                                float temp = BitConverter.ToSingle(data, 21); 
+                                float temp = BitConverter.ToSingle(data, 21);
                                 if (temp != float.MaxValue)
+                                {
                                     pn.headingTrueDual = temp;
+                                    if (ahrs.isDualAsIMU) ahrs.imuHeading = temp;
+                                }
 
                                 //from single antenna sentences (VTG,RMC)
                                 temp = BitConverter.ToSingle(data, 25);
@@ -133,12 +136,12 @@ namespace AgOpenGPS
 
                             if (ahrs.isRollInvert) rollK *= -0.1;
                             else rollK *= 0.1;
-                            rollK -= ahrs.rollZero;
+                            rollK -= ahrs.rollZero;                           
                             ahrs.imuRoll = ahrs.imuRoll * ahrs.rollFilter + rollK * (1 - ahrs.rollFilter);
 
                             //Angular velocity
                             ahrs.angVel = (Int16)((data[10] << 8) + data[9]);
-                            ahrs.angVel *= -1;
+                            ahrs.angVel /= -2;
 
                             //Log activity
                             //if (isLogNMEA)

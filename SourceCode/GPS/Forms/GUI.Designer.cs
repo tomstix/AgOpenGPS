@@ -51,6 +51,8 @@ namespace AgOpenGPS
         public bool isDay = true, isDayTime = true;
         public bool isKeyboardOn = true;
 
+        public bool isUTurnOn = true, isLateralOn = true;
+
         //master Manual and Auto, 3 states possible
         public enum btnStates { Off, Auto, On }
         public btnStates manualBtnState = btnStates.Off;
@@ -396,6 +398,9 @@ namespace AgOpenGPS
             btnABLine.Visible = Properties.Settings.Default.setFeatures.isABLineOn;
             btnCurve.Visible = Properties.Settings.Default.setFeatures.isCurveOn;
 
+            isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;
+            isLateralOn = Properties.Settings.Default.setFeatures.isLateralOn;
+
             if (isMetric)
             {
                 inchOrCm2m = 0.01;
@@ -517,8 +522,6 @@ namespace AgOpenGPS
 
             isKeyboardOn = Settings.Default.setDisplay_isKeyboardOn;
 
-
-
             if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "R";
             else btnAutoSteer.Text = "M";
 
@@ -543,6 +546,12 @@ namespace AgOpenGPS
 
             isAngVelGuidance = Properties.Settings.Default.setAS_isAngVelGuidance;
 
+            guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
+
+            gyd.sideHillCompFactor = Properties.Settings.Default.setAS_sideHillComp;
+
+            ahrs.isReverseOn = Properties.Settings.Default.setIMU_isReverseOn;
+
             //update the field data areas
             fd.UpdateFieldBoundaryGUIAreas();
 
@@ -552,6 +561,9 @@ namespace AgOpenGPS
             //Calculate total width and each section width
             SectionCalcWidths();
             LineUpManualBtns();
+
+            //fast or slow section update
+            isFastSections = Properties.Vehicle.Default.setSection_isFast;
 
             yt.rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
             cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
@@ -618,8 +630,7 @@ namespace AgOpenGPS
             {
                 using (var form = new Form_First())
                 {
-                    var result = form.ShowDialog(this);
-                    if (result != DialogResult.OK)
+                    if (form.ShowDialog(this) != DialogResult.OK)
                     {
                         Close();
                     }
@@ -980,9 +991,7 @@ namespace AgOpenGPS
                 //0 at bottom for opengl, 0 at top for windows, so invert Y value
                 Point point = oglMain.PointToClient(Cursor.Position);
 
-                //label3.Text = point.X.ToString();
-
-                if (point.Y < 140 && point.Y > 60)
+                if (point.Y < 90 && point.Y > 30)
                 {
                     int middle = oglMain.Width / 2 + oglMain.Width / 5;
                     if (point.X > middle - 80 && point.X < middle + 80)
@@ -992,7 +1001,7 @@ namespace AgOpenGPS
                     }
 
                     middle = oglMain.Width / 2 - oglMain.Width / 4;
-                    if (point.X > middle - 140 && point.X < middle)
+                    if (point.X > middle - 140 && point.X < middle && isUTurnOn)
                     {
                         if (yt.isYouTurnTriggered)
                         {
@@ -1000,14 +1009,13 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                             yt.isYouTurnTriggered = true;
                             yt.BuildManualYouTurn(false, true);
                             return;
                         }
                     }
 
-                    if (point.X > middle && point.X < middle + 140)
+                    if (point.X > middle && point.X < middle + 140 && isUTurnOn)
                     {
                         if (yt.isYouTurnTriggered)
                         {
@@ -1015,11 +1023,26 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                             yt.isYouTurnTriggered = true;
                             yt.BuildManualYouTurn(true, true);
                             return;
                         }
+                    }
+                }
+
+                if (point.Y < 150 && point.Y > 90)
+                {
+                    int middle = oglMain.Width / 2 - oglMain.Width / 4;
+                    if (point.X > middle - 140 && point.X < middle && isLateralOn)
+                    {
+                        yt.BuildManualYouLateral(false);
+                        return;
+                    }
+
+                    if (point.X > middle && point.X < middle + 140 && isLateralOn)
+                    {
+                        yt.BuildManualYouLateral(true);
+                        return;
                     }
                 }
 
@@ -1046,8 +1069,6 @@ namespace AgOpenGPS
 
                 if (point.X > oglMain.Width - 80)
                 {
-                    //int middle = oglMain.Width / 2 + oglMain.Width / 5;
-
                     //---
                     if (point.Y < 180 && point.Y > 90)
                     {
@@ -1072,24 +1093,9 @@ namespace AgOpenGPS
                     }
                 }
 
-
                 mouseX = point.X;
                 mouseY = oglMain.Height - point.Y;
                 leftMouseDownOnOpenGL = true;
-
-                //if (timeToShowMenus > 0)
-                //{
-                //    if (isJobStarted)
-                //    {
-                //        buttonPanelCounter = 0;
-                //        if (isJobStarted)
-                //        {
-                //            panelAB.Visible = true;
-                //            panelRight.Visible = true;
-                //        }
-                //        FixPanelsAndMenus(true);
-                //    }
-                //}
             }
         }
         private void oglZoom_MouseClick(object sender, MouseEventArgs e)
