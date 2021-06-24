@@ -1,0 +1,280 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "AgOpenGPS/1.0.0": {
+        "dependencies": {
+          "Maikebing.System.Windows.Forms.DataVisualization": "5.0.1",
+          "Resource.Embedder": "2.1.1",
+          "ColorPicker": "1.0.0.0",
+          "Control.Draggable": "1.0.7235.37687",
+          "Keypad": "4.3.10.0",
+          "OpenTK": "1.2.0.0",
+          "OpenTK.GLControl": "1.2.0.0",
+          "RepeatButtonControl": "1.0.0.0",
+          "WebEye.Controls.WinForms.WebCameraControl": "1.0.0.0"
+        },
+        "runtime": {
+          "AgOpenGPS.dll": {}
+        },
+        "resources": {
+          "fr/AgOpenGPS.resources.dll": {
+            "locale": "fr"
+          },
+          "af/AgOpenGPS.resources.dll": {
+            "locale": "af"
+          },
+          "da/AgOpenGPS.resources.dll": {
+            "locale": "da"
+          },
+          "de/AgOpenGPS.resources.dll": {
+            "locale": "de"
+          },
+          "es/AgOpenGPS.resources.dll": {
+            "locale": "es"
+          },
+          "it/AgOpenGPS.resources.dll": {
+            "locale": "it"
+          },
+          "nl/AgOpenGPS.resources.dll": {
+            "locale": "nl"
+          },
+          "pl/AgOpenGPS.resources.dll": {
+            "locale": "pl"
+          },
+          "ru/AgOpenGPS.resources.dll": {
+            "locale": "ru"
+          },
+          "sk/AgOpenGPS.resources.dll": {
+            "locale": "sk"
+          },
+          "uk/AgOpenGPS.resources.dll": {
+            "locale": "uk"
+          }
+        }
+      },
+      "Maikebing.System.Windows.Forms.DataVisualization/5.0.1": {
+        "dependencies": {
+          "System.Drawing.Common": "5.0.0",
+          "System.Drawing.Primitives": "4.3.0",
+          "System.Windows.Extensions": "5.0.0"
+        },
+        "runtime": {
+          "lib/net5.0-windows7.0/System.Windows.Forms.DataVisualization.dll": {
+            "assemblyVersion": "5.0.1.0",
+            "fileVersion": "5.0.1.0"
+          }
+        }
+      },
+      "Microsoft.NETCore.Platforms/5.0.0": {},
+      "Microsoft.NETCore.Targets/1.1.0": {},
+      "Microsoft.Win32.SystemEvents/5.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0"
+        }
+      },
+      "Resource.Embedder/2.1.1": {},
+      "System.Drawing.Common/5.0.0": {
+        "dependencies": {
+          "Microsoft.Win32.SystemEvents": "5.0.0"
+        }
+      },
+      "System.Drawing.Primitives/4.3.0": {
+        "dependencies": {
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0"
+        }
+      },
+      "System.Runtime/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0",
+          "Microsoft.NETCore.Targets": "1.1.0"
+        }
+      },
+      "System.Runtime.Extensions/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Windows.Extensions/5.0.0": {
+        "dependencies": {
+          "System.Drawing.Common": "5.0.0"
+        }
+      },
+      "ColorPicker/1.0.0.0": {
+        "runtime": {
+          "ColorPicker.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "Control.Draggable/1.0.7235.37687": {
+        "runtime": {
+          "Control.Draggable.dll": {
+            "assemblyVersion": "1.0.7235.37687",
+            "fileVersion": "1.0.7235.37687"
+          }
+        }
+      },
+      "Keypad/4.3.10.0": {
+        "runtime": {
+          "Keypad.dll": {
+            "assemblyVersion": "4.3.10.0",
+            "fileVersion": "4.3.10.0"
+          }
+        }
+      },
+      "OpenTK/1.2.0.0": {
+        "runtime": {
+          "OpenTK.dll": {
+            "assemblyVersion": "1.2.0.0",
+            "fileVersion": "1.2.2336.6514"
+          }
+        }
+      },
+      "OpenTK.GLControl/1.2.0.0": {
+        "runtime": {
+          "OpenTK.GLControl.dll": {
+            "assemblyVersion": "1.2.0.0",
+            "fileVersion": "1.2.2336.6514"
+          }
+        }
+      },
+      "RepeatButtonControl/1.0.0.0": {
+        "runtime": {
+          "RepeatButtonControl.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "WebEye.Controls.WinForms.WebCameraControl/1.0.0.0": {
+        "runtime": {
+          "WebEye.Controls.WinForms.WebCameraControl.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AgOpenGPS/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Maikebing.System.Windows.Forms.DataVisualization/5.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-IyTZfA2OJ62esL4vwXmV6qjkJMGcflydDeIhNG72Tdyyo14X9pgZOaxVakU2vEBDcQcmc6jTnw8wuQ/9MmBHZw==",
+      "path": "maikebing.system.windows.forms.datavisualization/5.0.1",
+      "hashPath": "maikebing.system.windows.forms.datavisualization.5.0.1.nupkg.sha512"
+    },
+    "Microsoft.NETCore.Platforms/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VyPlqzH2wavqquTcYpkIIAQ6WdenuKoFN0BdYBbCWsclXacSOHNQn66Gt4z5NBqEYW0FAPm5rlvki9ZiCij5xQ==",
+      "path": "microsoft.netcore.platforms/5.0.0",
+      "hashPath": "microsoft.netcore.platforms.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.NETCore.Targets/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg==",
+      "path": "microsoft.netcore.targets/1.1.0",
+      "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
+    },
+    "Microsoft.Win32.SystemEvents/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Bh6blKG8VAKvXiLe2L+sEsn62nc1Ij34MrNxepD2OCrS5cpCwQa9MeLyhVQPQ/R4Wlzwuy6wMK8hLb11QPDRsQ==",
+      "path": "microsoft.win32.systemevents/5.0.0",
+      "hashPath": "microsoft.win32.systemevents.5.0.0.nupkg.sha512"
+    },
+    "Resource.Embedder/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-K8yIH9BGrHh1S7EjdTJItMoNY/D8xsnYZ/NyowvtM19ghXaByEvkugEjiC+6OKgj8vr8nFUfptu2zvGN+SEWTw==",
+      "path": "resource.embedder/2.1.1",
+      "hashPath": "resource.embedder.2.1.1.nupkg.sha512"
+    },
+    "System.Drawing.Common/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SztFwAnpfKC8+sEKXAFxCBWhKQaEd97EiOL7oZJZP56zbqnLpmxACWA8aGseaUExciuEAUuR9dY8f7HkTRAdnw==",
+      "path": "system.drawing.common/5.0.0",
+      "hashPath": "system.drawing.common.5.0.0.nupkg.sha512"
+    },
+    "System.Drawing.Primitives/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1QU/c35gwdhvj77fkScXQQbjiVAqIL3fEYn/19NE0CV/ic5TN5PyWAft8HsrbRd4SBLEoErNCkWSzMDc0MmbRw==",
+      "path": "system.drawing.primitives/4.3.0",
+      "hashPath": "system.drawing.primitives.4.3.0.nupkg.sha512"
+    },
+    "System.Runtime/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-JufQi0vPQ0xGnAczR13AUFglDyVYt4Kqnz1AZaiKZ5+GICq0/1MH/mO/eAJHt/mHW1zjKBJd7kV26SrxddAhiw==",
+      "path": "system.runtime/4.3.0",
+      "hashPath": "system.runtime.4.3.0.nupkg.sha512"
+    },
+    "System.Runtime.Extensions/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-guW0uK0fn5fcJJ1tJVXYd7/1h5F+pea1r7FLSOz/f8vPEqbR2ZAknuRDvTQ8PzAilDveOxNjSfr0CHfIQfFk8g==",
+      "path": "system.runtime.extensions/4.3.0",
+      "hashPath": "system.runtime.extensions.4.3.0.nupkg.sha512"
+    },
+    "System.Windows.Extensions/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-c1ho9WU9ZxMZawML+ssPKZfdnrg/OjR3pe0m9v8230z3acqphwvPJqzAkH54xRYm5ntZHGG1EPP3sux9H3qSPg==",
+      "path": "system.windows.extensions/5.0.0",
+      "hashPath": "system.windows.extensions.5.0.0.nupkg.sha512"
+    },
+    "ColorPicker/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Control.Draggable/1.0.7235.37687": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Keypad/4.3.10.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "OpenTK/1.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "OpenTK.GLControl/1.2.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RepeatButtonControl/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WebEye.Controls.WinForms.WebCameraControl/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
