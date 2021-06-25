@@ -93,7 +93,7 @@
             this.btnVehicleLoad = new System.Windows.Forms.Button();
             this.btnVehicleDelete = new System.Windows.Forms.Button();
             this.lvVehicles = new System.Windows.Forms.ListView();
-            this.chVehicle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chVehicle = new System.Windows.Forms.ColumnHeader();
             this.label3 = new System.Windows.Forms.Label();
             this.tboxVehicleNameSave = new System.Windows.Forms.TextBox();
             this.tabVConfig = new System.Windows.Forms.TabPage();
@@ -216,15 +216,15 @@
             this.nudOverlap = new System.Windows.Forms.NumericUpDown();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabDHeading = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cboxIsReverseOn = new System.Windows.Forms.CheckBox();
             this.label104 = new System.Windows.Forms.Label();
             this.label103 = new System.Windows.Forms.Label();
             this.nudMinimumFrameTime = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.cboxIsRTK = new System.Windows.Forms.CheckBox();
             this.gboxSingle = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.cboxIsDualAsIMU = new System.Windows.Forms.CheckBox();
+            this.cboxIsReverseOn = new System.Windows.Forms.CheckBox();
             this.nudStartSpeed = new System.Windows.Forms.NumericUpDown();
             this.lblFusionIMU = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -508,7 +508,7 @@
             this.btnFeatureHides.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnFeatureHides.FlatAppearance.BorderSize = 0;
             this.btnFeatureHides.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFeatureHides.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFeatureHides.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnFeatureHides.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnFeatureHides.Image = global::AgOpenGPS.Properties.Resources.Con_FeatureMenu;
             this.btnFeatureHides.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -529,7 +529,7 @@
             this.btnTram.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnTram.FlatAppearance.BorderSize = 0;
             this.btnTram.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTram.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTram.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnTram.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnTram.Image = global::AgOpenGPS.Properties.Resources.Con_TramMenu;
             this.btnTram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -561,7 +561,7 @@
             this.btnMachineModule.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnMachineModule.FlatAppearance.BorderSize = 0;
             this.btnMachineModule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMachineModule.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMachineModule.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnMachineModule.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnMachineModule.Image = global::AgOpenGPS.Properties.Resources.ConS_ModulesMachine;
             this.btnMachineModule.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -581,7 +581,7 @@
             this.btnSteerModule.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSteerModule.FlatAppearance.BorderSize = 0;
             this.btnSteerModule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSteerModule.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSteerModule.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSteerModule.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSteerModule.Image = global::AgOpenGPS.Properties.Resources.ConS_ModulesSteer;
             this.btnSteerModule.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -601,7 +601,7 @@
             this.btnArduino.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnArduino.FlatAppearance.BorderSize = 0;
             this.btnArduino.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnArduino.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnArduino.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnArduino.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnArduino.Image = global::AgOpenGPS.Properties.Resources.Con_ModulesMenu;
             this.btnArduino.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -622,7 +622,7 @@
             this.btnUTurn.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnUTurn.FlatAppearance.BorderSize = 0;
             this.btnUTurn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnUTurn.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnUTurn.Image = global::AgOpenGPS.Properties.Resources.Con_UTurnMenu;
             this.btnUTurn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -654,7 +654,7 @@
             this.btnSubRoll.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubRoll.FlatAppearance.BorderSize = 0;
             this.btnSubRoll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubRoll.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubRoll.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSubRoll.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubRoll.Image = global::AgOpenGPS.Properties.Resources.ConS_SourcesRoll;
             this.btnSubRoll.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -674,7 +674,7 @@
             this.btnSubHeading.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubHeading.FlatAppearance.BorderSize = 0;
             this.btnSubHeading.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubHeading.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubHeading.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSubHeading.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubHeading.Image = global::AgOpenGPS.Properties.Resources.ConS_SourcesHeading;
             this.btnSubHeading.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -694,7 +694,7 @@
             this.btnDataSources.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnDataSources.FlatAppearance.BorderSize = 0;
             this.btnDataSources.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDataSources.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDataSources.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnDataSources.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnDataSources.Image = global::AgOpenGPS.Properties.Resources.Con_SourcesMenu;
             this.btnDataSources.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -729,7 +729,7 @@
             this.btnSubSwitches.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubSwitches.FlatAppearance.BorderSize = 0;
             this.btnSubSwitches.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubSwitches.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubSwitches.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSubSwitches.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubSwitches.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementSwitch;
             this.btnSubSwitches.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -749,7 +749,7 @@
             this.btnSubToolSettings.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubToolSettings.FlatAppearance.BorderSize = 0;
             this.btnSubToolSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubToolSettings.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubToolSettings.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSubToolSettings.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubToolSettings.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementSettings;
             this.btnSubToolSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -769,7 +769,7 @@
             this.btnSubSections.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubSections.FlatAppearance.BorderSize = 0;
             this.btnSubSections.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubSections.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubSections.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSubSections.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubSections.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementSection;
             this.btnSubSections.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -789,7 +789,7 @@
             this.btnSubHitch.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubHitch.FlatAppearance.BorderSize = 0;
             this.btnSubHitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubHitch.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubHitch.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSubHitch.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubHitch.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementHitch;
             this.btnSubHitch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -809,7 +809,7 @@
             this.btnSubToolConfig.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubToolConfig.FlatAppearance.BorderSize = 0;
             this.btnSubToolConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubToolConfig.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubToolConfig.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSubToolConfig.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubToolConfig.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementConfig;
             this.btnSubToolConfig.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -829,7 +829,7 @@
             this.btnTool.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnTool.FlatAppearance.BorderSize = 0;
             this.btnTool.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTool.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTool.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnTool.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnTool.Image = global::AgOpenGPS.Properties.Resources.Con_ImplementMenu;
             this.btnTool.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -880,7 +880,7 @@
             this.btnSubGuidance.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubGuidance.FlatAppearance.BorderSize = 0;
             this.btnSubGuidance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubGuidance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubGuidance.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSubGuidance.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubGuidance.Image = global::AgOpenGPS.Properties.Resources.ConS_ModulesSteer;
             this.btnSubGuidance.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -900,7 +900,7 @@
             this.btnSubAntenna.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubAntenna.FlatAppearance.BorderSize = 0;
             this.btnSubAntenna.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubAntenna.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubAntenna.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSubAntenna.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubAntenna.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementAntenna;
             this.btnSubAntenna.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -920,7 +920,7 @@
             this.btnSubDimensions.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubDimensions.FlatAppearance.BorderSize = 0;
             this.btnSubDimensions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubDimensions.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubDimensions.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSubDimensions.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubDimensions.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementHitch;
             this.btnSubDimensions.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -940,7 +940,7 @@
             this.btnSubVehicleConfig.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnSubVehicleConfig.FlatAppearance.BorderSize = 0;
             this.btnSubVehicleConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSubVehicleConfig.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubVehicleConfig.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnSubVehicleConfig.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSubVehicleConfig.Image = global::AgOpenGPS.Properties.Resources.ConS_VehicleConfig;
             this.btnSubVehicleConfig.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -960,7 +960,7 @@
             this.btnVehicle.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.btnVehicle.FlatAppearance.BorderSize = 0;
             this.btnVehicle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVehicle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVehicle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnVehicle.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnVehicle.Image = global::AgOpenGPS.Properties.Resources.Con_VehicleMenu;
             this.btnVehicle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1069,7 +1069,7 @@
             this.label101.ForeColor = System.Drawing.Color.Black;
             this.label101.Location = new System.Drawing.Point(335, 245);
             this.label101.Name = "label101";
-            this.label101.Size = new System.Drawing.Size(83, 16);
+            this.label101.Size = new System.Drawing.Size(82, 16);
             this.label101.TabIndex = 491;
             this.label101.Text = "Field Texture";
             // 
@@ -1081,7 +1081,7 @@
             this.chkDisplayFloor.FlatAppearance.BorderSize = 2;
             this.chkDisplayFloor.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkDisplayFloor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisplayFloor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDisplayFloor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chkDisplayFloor.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayFloor.Image = global::AgOpenGPS.Properties.Resources.ConD_FloorTexture;
             this.chkDisplayFloor.Location = new System.Drawing.Point(331, 264);
@@ -1097,7 +1097,7 @@
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label11.ForeColor = System.Drawing.Color.Black;
             this.label11.Location = new System.Drawing.Point(627, 502);
             this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -1112,7 +1112,7 @@
             this.label57.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label57.AutoSize = true;
             this.label57.BackColor = System.Drawing.Color.Transparent;
-            this.label57.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label57.ForeColor = System.Drawing.Color.Black;
             this.label57.Location = new System.Drawing.Point(376, 502);
             this.label57.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -1127,7 +1127,7 @@
             this.label42.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label42.AutoSize = true;
             this.label42.BackColor = System.Drawing.Color.Transparent;
-            this.label42.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label42.ForeColor = System.Drawing.Color.Black;
             this.label42.Location = new System.Drawing.Point(199, 502);
             this.label42.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -1142,7 +1142,7 @@
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(38, 502);
             this.label13.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -1159,7 +1159,7 @@
             this.label29.ForeColor = System.Drawing.Color.Black;
             this.label29.Location = new System.Drawing.Point(498, 262);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(65, 16);
+            this.label29.Size = new System.Drawing.Size(64, 16);
             this.label29.TabIndex = 484;
             this.label29.Text = "Menus On";
             this.label29.Visible = false;
@@ -1167,7 +1167,7 @@
             // nudMenusOnTime
             // 
             this.nudMenusOnTime.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudMenusOnTime.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudMenusOnTime.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudMenusOnTime.InterceptArrowKeys = false;
             this.nudMenusOnTime.Location = new System.Drawing.Point(492, 281);
             this.nudMenusOnTime.Maximum = new decimal(new int[] {
@@ -1190,7 +1190,7 @@
             this.label43.ForeColor = System.Drawing.Color.Black;
             this.label43.Location = new System.Drawing.Point(481, 11);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(58, 16);
+            this.label43.Size = new System.Drawing.Size(57, 16);
             this.label43.TabIndex = 482;
             this.label43.Text = "Polygons";
             // 
@@ -1201,7 +1201,7 @@
             this.label36.ForeColor = System.Drawing.Color.Black;
             this.label36.Location = new System.Drawing.Point(481, 130);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(61, 16);
+            this.label36.Size = new System.Drawing.Size(60, 16);
             this.label36.TabIndex = 481;
             this.label36.Text = "LogNMEA";
             // 
@@ -1212,7 +1212,7 @@
             this.label33.ForeColor = System.Drawing.Color.Black;
             this.label33.Location = new System.Drawing.Point(328, 130);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(61, 16);
+            this.label33.Size = new System.Drawing.Size(60, 16);
             this.label33.TabIndex = 480;
             this.label33.Text = "Keyboard";
             // 
@@ -1223,7 +1223,7 @@
             this.label31.ForeColor = System.Drawing.Color.Black;
             this.label31.Location = new System.Drawing.Point(328, 11);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(54, 16);
+            this.label31.Size = new System.Drawing.Size(53, 16);
             this.label31.TabIndex = 479;
             this.label31.Text = "Lightbar";
             // 
@@ -1234,7 +1234,7 @@
             this.chkExtraGuides.ForeColor = System.Drawing.Color.Black;
             this.chkExtraGuides.Location = new System.Drawing.Point(185, 245);
             this.chkExtraGuides.Name = "chkExtraGuides";
-            this.chkExtraGuides.Size = new System.Drawing.Size(66, 16);
+            this.chkExtraGuides.Size = new System.Drawing.Size(65, 16);
             this.chkExtraGuides.TabIndex = 478;
             this.chkExtraGuides.Text = "Guidelines";
             // 
@@ -1245,7 +1245,7 @@
             this.label28.ForeColor = System.Drawing.Color.Black;
             this.label28.Location = new System.Drawing.Point(185, 130);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(98, 16);
+            this.label28.Size = new System.Drawing.Size(97, 16);
             this.label28.TabIndex = 477;
             this.label28.Text = "Start Fullscreen";
             // 
@@ -1256,7 +1256,7 @@
             this.label27.ForeColor = System.Drawing.Color.Black;
             this.label27.Location = new System.Drawing.Point(185, 11);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(92, 16);
+            this.label27.Size = new System.Drawing.Size(91, 16);
             this.label27.TabIndex = 476;
             this.label27.Text = "Auto Day Night";
             // 
@@ -1267,7 +1267,7 @@
             this.chkSpeedo.ForeColor = System.Drawing.Color.Black;
             this.chkSpeedo.Location = new System.Drawing.Point(29, 245);
             this.chkSpeedo.Name = "chkSpeedo";
-            this.chkSpeedo.Size = new System.Drawing.Size(51, 16);
+            this.chkSpeedo.Size = new System.Drawing.Size(50, 16);
             this.chkSpeedo.TabIndex = 475;
             this.chkSpeedo.Text = "Speedo";
             // 
@@ -1278,7 +1278,7 @@
             this.chkGrid.ForeColor = System.Drawing.Color.Black;
             this.chkGrid.Location = new System.Drawing.Point(29, 130);
             this.chkGrid.Name = "chkGrid";
-            this.chkGrid.Size = new System.Drawing.Size(31, 16);
+            this.chkGrid.Size = new System.Drawing.Size(30, 16);
             this.chkGrid.TabIndex = 474;
             this.chkGrid.Text = "Grid";
             // 
@@ -1289,7 +1289,7 @@
             this.chkSky.ForeColor = System.Drawing.Color.Black;
             this.chkSky.Location = new System.Drawing.Point(26, 11);
             this.chkSky.Name = "chkSky";
-            this.chkSky.Size = new System.Drawing.Size(28, 16);
+            this.chkSky.Size = new System.Drawing.Size(27, 16);
             this.chkSky.TabIndex = 473;
             this.chkSky.Text = "Sky";
             // 
@@ -1297,7 +1297,7 @@
             // 
             this.unitsGroupBox.Controls.Add(this.rbtnDisplayImperial);
             this.unitsGroupBox.Controls.Add(this.rbtnDisplayMetric);
-            this.unitsGroupBox.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unitsGroupBox.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.unitsGroupBox.ForeColor = System.Drawing.Color.Black;
             this.unitsGroupBox.Location = new System.Drawing.Point(661, 3);
             this.unitsGroupBox.Name = "unitsGroupBox";
@@ -1314,7 +1314,7 @@
             this.rbtnDisplayImperial.FlatAppearance.BorderSize = 2;
             this.rbtnDisplayImperial.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnDisplayImperial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnDisplayImperial.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnDisplayImperial.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.rbtnDisplayImperial.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rbtnDisplayImperial.Image = global::AgOpenGPS.Properties.Resources.ConD_Imperial;
             this.rbtnDisplayImperial.Location = new System.Drawing.Point(22, 141);
@@ -1334,7 +1334,7 @@
             this.rbtnDisplayMetric.FlatAppearance.BorderSize = 2;
             this.rbtnDisplayMetric.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnDisplayMetric.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnDisplayMetric.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnDisplayMetric.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.rbtnDisplayMetric.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rbtnDisplayMetric.Image = global::AgOpenGPS.Properties.Resources.ConD_Metric;
             this.rbtnDisplayMetric.Location = new System.Drawing.Point(22, 25);
@@ -1353,7 +1353,7 @@
             this.chkDisplayLightbar.FlatAppearance.BorderSize = 2;
             this.chkDisplayLightbar.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkDisplayLightbar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisplayLightbar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDisplayLightbar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chkDisplayLightbar.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayLightbar.Image = global::AgOpenGPS.Properties.Resources.ConD_LightBar;
             this.chkDisplayLightbar.Location = new System.Drawing.Point(331, 30);
@@ -1372,7 +1372,7 @@
             this.chkDisplayKeyboard.FlatAppearance.BorderSize = 2;
             this.chkDisplayKeyboard.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkDisplayKeyboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisplayKeyboard.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDisplayKeyboard.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chkDisplayKeyboard.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayKeyboard.Image = global::AgOpenGPS.Properties.Resources.ConD_KeyBoard;
             this.chkDisplayKeyboard.Location = new System.Drawing.Point(331, 146);
@@ -1391,7 +1391,7 @@
             this.chkDisplayPolygons.FlatAppearance.BorderSize = 2;
             this.chkDisplayPolygons.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkDisplayPolygons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisplayPolygons.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDisplayPolygons.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chkDisplayPolygons.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayPolygons.Image = global::AgOpenGPS.Properties.Resources.ConD_Poligons;
             this.chkDisplayPolygons.Location = new System.Drawing.Point(484, 30);
@@ -1412,7 +1412,7 @@
             this.chkDisplayStartFullScreen.FlatAppearance.BorderSize = 2;
             this.chkDisplayStartFullScreen.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkDisplayStartFullScreen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisplayStartFullScreen.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDisplayStartFullScreen.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chkDisplayStartFullScreen.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayStartFullScreen.Image = global::AgOpenGPS.Properties.Resources.ConD_FullScreenBegin;
             this.chkDisplayStartFullScreen.Location = new System.Drawing.Point(188, 146);
@@ -1431,7 +1431,7 @@
             this.chkDisplayLogNMEA.FlatAppearance.BorderSize = 2;
             this.chkDisplayLogNMEA.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkDisplayLogNMEA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisplayLogNMEA.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDisplayLogNMEA.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chkDisplayLogNMEA.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayLogNMEA.Image = global::AgOpenGPS.Properties.Resources.ConD_LogNMEA;
             this.chkDisplayLogNMEA.Location = new System.Drawing.Point(484, 146);
@@ -1452,7 +1452,7 @@
             this.chkDisplayDayNight.FlatAppearance.BorderSize = 2;
             this.chkDisplayDayNight.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkDisplayDayNight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisplayDayNight.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDisplayDayNight.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chkDisplayDayNight.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayDayNight.Image = global::AgOpenGPS.Properties.Resources.ConD_AutoDayNight;
             this.chkDisplayDayNight.Location = new System.Drawing.Point(188, 30);
@@ -1473,7 +1473,7 @@
             this.chkDisplayGrid.FlatAppearance.BorderSize = 2;
             this.chkDisplayGrid.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkDisplayGrid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisplayGrid.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDisplayGrid.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chkDisplayGrid.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayGrid.Image = global::AgOpenGPS.Properties.Resources.ConD_Grid;
             this.chkDisplayGrid.Location = new System.Drawing.Point(29, 146);
@@ -1492,7 +1492,7 @@
             this.chkDisplaySky.FlatAppearance.BorderSize = 2;
             this.chkDisplaySky.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkDisplaySky.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisplaySky.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDisplaySky.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chkDisplaySky.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplaySky.Image = global::AgOpenGPS.Properties.Resources.ConD_Sky;
             this.chkDisplaySky.Location = new System.Drawing.Point(29, 30);
@@ -1511,7 +1511,7 @@
             this.chkDisplaySpeedo.FlatAppearance.BorderSize = 2;
             this.chkDisplaySpeedo.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkDisplaySpeedo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisplaySpeedo.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDisplaySpeedo.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chkDisplaySpeedo.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplaySpeedo.Image = global::AgOpenGPS.Properties.Resources.ConD_Speedometer;
             this.chkDisplaySpeedo.Location = new System.Drawing.Point(29, 264);
@@ -1530,7 +1530,7 @@
             this.chkDisplayExtraGuides.FlatAppearance.BorderSize = 2;
             this.chkDisplayExtraGuides.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkDisplayExtraGuides.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkDisplayExtraGuides.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDisplayExtraGuides.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chkDisplayExtraGuides.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayExtraGuides.Image = global::AgOpenGPS.Properties.Resources.ConD_ExtraGuides;
             this.chkDisplayExtraGuides.Location = new System.Drawing.Point(188, 264);
@@ -1549,7 +1549,7 @@
             this.btnVehicleSave.FlatAppearance.BorderSize = 0;
             this.btnVehicleSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Turquoise;
             this.btnVehicleSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVehicleSave.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.btnVehicleSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnVehicleSave.Image = global::AgOpenGPS.Properties.Resources.VehFileSave;
             this.btnVehicleSave.Location = new System.Drawing.Point(610, 520);
             this.btnVehicleSave.Name = "btnVehicleSave";
@@ -1566,7 +1566,7 @@
             this.btnVehicleSaveAs.FlatAppearance.BorderSize = 0;
             this.btnVehicleSaveAs.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Turquoise;
             this.btnVehicleSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVehicleSaveAs.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.btnVehicleSaveAs.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnVehicleSaveAs.Image = global::AgOpenGPS.Properties.Resources.VehFileSaveAs;
             this.btnVehicleSaveAs.Location = new System.Drawing.Point(193, 520);
             this.btnVehicleSaveAs.Name = "btnVehicleSaveAs";
@@ -1583,7 +1583,7 @@
             this.btnVehicleLoad.FlatAppearance.BorderSize = 0;
             this.btnVehicleLoad.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Turquoise;
             this.btnVehicleLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVehicleLoad.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.btnVehicleLoad.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnVehicleLoad.Image = global::AgOpenGPS.Properties.Resources.VehFileLoad;
             this.btnVehicleLoad.Location = new System.Drawing.Point(20, 520);
             this.btnVehicleLoad.Name = "btnVehicleLoad";
@@ -1599,7 +1599,7 @@
             this.btnVehicleDelete.FlatAppearance.BorderSize = 0;
             this.btnVehicleDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Turquoise;
             this.btnVehicleDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVehicleDelete.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.btnVehicleDelete.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnVehicleDelete.Image = global::AgOpenGPS.Properties.Resources.VehFileDelete;
             this.btnVehicleDelete.Location = new System.Drawing.Point(366, 520);
             this.btnVehicleDelete.Name = "btnVehicleDelete";
@@ -1614,7 +1614,7 @@
             this.lvVehicles.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.lvVehicles.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chVehicle});
-            this.lvVehicles.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvVehicles.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lvVehicles.FullRowSelect = true;
             this.lvVehicles.HideSelection = false;
             this.lvVehicles.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -1639,7 +1639,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(488, 426);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -1653,7 +1653,7 @@
             // 
             this.tboxVehicleNameSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxVehicleNameSave.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.tboxVehicleNameSave.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxVehicleNameSave.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tboxVehicleNameSave.Location = new System.Drawing.Point(458, 457);
             this.tboxVehicleNameSave.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxVehicleNameSave.Name = "tboxVehicleNameSave";
@@ -1754,7 +1754,7 @@
             // nudAntennaHeight
             // 
             this.nudAntennaHeight.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudAntennaHeight.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudAntennaHeight.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudAntennaHeight.InterceptArrowKeys = false;
             this.nudAntennaHeight.Location = new System.Drawing.Point(511, 208);
             this.nudAntennaHeight.Maximum = new decimal(new int[] {
@@ -1778,7 +1778,7 @@
             // nudAntennaPivot
             // 
             this.nudAntennaPivot.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudAntennaPivot.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudAntennaPivot.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudAntennaPivot.InterceptArrowKeys = false;
             this.nudAntennaPivot.Location = new System.Drawing.Point(245, 43);
             this.nudAntennaPivot.Maximum = new decimal(new int[] {
@@ -1807,7 +1807,7 @@
             // nudAntennaOffset
             // 
             this.nudAntennaOffset.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudAntennaOffset.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudAntennaOffset.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudAntennaOffset.InterceptArrowKeys = false;
             this.nudAntennaOffset.Location = new System.Drawing.Point(585, 414);
             this.nudAntennaOffset.Maximum = new decimal(new int[] {
@@ -1861,7 +1861,7 @@
             this.label60.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label60.Location = new System.Drawing.Point(575, 418);
             this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(77, 16);
+            this.label60.Size = new System.Drawing.Size(76, 16);
             this.label60.TabIndex = 477;
             this.label60.Text = "Turn Radius";
             // 
@@ -1871,7 +1871,7 @@
             this.label53.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label53.Location = new System.Drawing.Point(650, 115);
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(40, 16);
+            this.label53.Size = new System.Drawing.Size(39, 16);
             this.label53.TabIndex = 476;
             this.label53.Text = "Track";
             // 
@@ -1881,14 +1881,14 @@
             this.label44.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label44.Location = new System.Drawing.Point(87, 355);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(71, 16);
+            this.label44.Size = new System.Drawing.Size(70, 16);
             this.label44.TabIndex = 475;
             this.label44.Text = "Wheelbase";
             // 
             // nudVehicleTrack
             // 
             this.nudVehicleTrack.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudVehicleTrack.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudVehicleTrack.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudVehicleTrack.InterceptArrowKeys = false;
             this.nudVehicleTrack.Location = new System.Drawing.Point(589, 134);
             this.nudVehicleTrack.Maximum = new decimal(new int[] {
@@ -1917,7 +1917,7 @@
             // nudWheelbase
             // 
             this.nudWheelbase.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudWheelbase.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudWheelbase.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudWheelbase.InterceptArrowKeys = false;
             this.nudWheelbase.Location = new System.Drawing.Point(90, 374);
             this.nudWheelbase.Maximum = new decimal(new int[] {
@@ -1946,7 +1946,7 @@
             // nudMinTurnRadius
             // 
             this.nudMinTurnRadius.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudMinTurnRadius.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudMinTurnRadius.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudMinTurnRadius.InterceptArrowKeys = false;
             this.nudMinTurnRadius.Location = new System.Drawing.Point(578, 437);
             this.nudMinTurnRadius.Maximum = new decimal(new int[] {
@@ -2031,7 +2031,7 @@
             // label113
             // 
             this.label113.AutoSize = true;
-            this.label113.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label113.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label113.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label113.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label113.Location = new System.Drawing.Point(174, 371);
@@ -2044,7 +2044,7 @@
             // label112
             // 
             this.label112.AutoSize = true;
-            this.label112.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label112.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label112.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label112.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label112.Location = new System.Drawing.Point(54, 12);
@@ -2057,7 +2057,7 @@
             // label111
             // 
             this.label111.AutoSize = true;
-            this.label111.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label111.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label111.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label111.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label111.Location = new System.Drawing.Point(54, 186);
@@ -2070,7 +2070,7 @@
             // label110
             // 
             this.label110.AutoSize = true;
-            this.label110.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label110.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label110.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label110.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label110.Location = new System.Drawing.Point(470, 12);
@@ -2083,7 +2083,7 @@
             // label109
             // 
             this.label109.AutoSize = true;
-            this.label109.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label109.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label109.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label109.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label109.Location = new System.Drawing.Point(470, 178);
@@ -2096,7 +2096,7 @@
             // label108
             // 
             this.label108.AutoSize = true;
-            this.label108.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label108.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label108.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label108.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label108.Location = new System.Drawing.Point(470, 364);
@@ -2109,7 +2109,7 @@
             // label107
             // 
             this.label107.AutoSize = true;
-            this.label107.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label107.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label107.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label107.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label107.Location = new System.Drawing.Point(695, 468);
@@ -2123,7 +2123,7 @@
             // 
             this.nudGuidanceLookAhead.BackColor = System.Drawing.Color.AliceBlue;
             this.nudGuidanceLookAhead.DecimalPlaces = 1;
-            this.nudGuidanceLookAhead.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudGuidanceLookAhead.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudGuidanceLookAhead.InterceptArrowKeys = false;
             this.nudGuidanceLookAhead.Location = new System.Drawing.Point(675, 413);
             this.nudGuidanceLookAhead.Maximum = new decimal(new int[] {
@@ -2155,7 +2155,7 @@
             this.cboxAngVel.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxAngVel.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxAngVel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxAngVel.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxAngVel.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxAngVel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxAngVel.Location = new System.Drawing.Point(44, 423);
             this.cboxAngVel.Name = "cboxAngVel";
@@ -2170,7 +2170,7 @@
             // label102
             // 
             this.label102.AutoSize = true;
-            this.label102.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label102.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label102.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label102.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label102.Location = new System.Drawing.Point(262, 121);
@@ -2183,7 +2183,7 @@
             // nudABLength
             // 
             this.nudABLength.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudABLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudABLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudABLength.InterceptArrowKeys = false;
             this.nudABLength.Location = new System.Drawing.Point(254, 246);
             this.nudABLength.Maximum = new decimal(new int[] {
@@ -2211,7 +2211,7 @@
             // label79
             // 
             this.label79.AutoSize = true;
-            this.label79.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label79.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label79.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label79.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label79.Location = new System.Drawing.Point(298, 301);
@@ -2224,7 +2224,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label21.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label21.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label21.Location = new System.Drawing.Point(702, 127);
@@ -2237,7 +2237,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label20.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label20.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label20.Location = new System.Drawing.Point(706, 290);
@@ -2250,7 +2250,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label17.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label17.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label17.Location = new System.Drawing.Point(296, 121);
@@ -2263,7 +2263,7 @@
             // nudSnapDistance
             // 
             this.nudSnapDistance.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSnapDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSnapDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudSnapDistance.InterceptArrowKeys = false;
             this.nudSnapDistance.Location = new System.Drawing.Point(675, 236);
             this.nudSnapDistance.Maximum = new decimal(new int[] {
@@ -2286,7 +2286,7 @@
             // nudLightbarCmPerPixel
             // 
             this.nudLightbarCmPerPixel.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudLightbarCmPerPixel.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLightbarCmPerPixel.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudLightbarCmPerPixel.InterceptArrowKeys = false;
             this.nudLightbarCmPerPixel.Location = new System.Drawing.Point(254, 64);
             this.nudLightbarCmPerPixel.Minimum = new decimal(new int[] {
@@ -2309,7 +2309,7 @@
             // nudLineWidth
             // 
             this.nudLineWidth.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudLineWidth.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLineWidth.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudLineWidth.InterceptArrowKeys = false;
             this.nudLineWidth.Location = new System.Drawing.Point(674, 72);
             this.nudLineWidth.Maximum = new decimal(new int[] {
@@ -2350,7 +2350,7 @@
             this.cboxAutoSteerAuto.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxAutoSteerAuto.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkGreen;
             this.cboxAutoSteerAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxAutoSteerAuto.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxAutoSteerAuto.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cboxAutoSteerAuto.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.cboxAutoSteerAuto.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOn;
             this.cboxAutoSteerAuto.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -2410,7 +2410,7 @@
             this.gboxAttachment.Controls.Add(this.rbtnFixedRear);
             this.gboxAttachment.Controls.Add(this.rbtnFront);
             this.gboxAttachment.Controls.Add(this.rbtnTrailing);
-            this.gboxAttachment.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gboxAttachment.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.gboxAttachment.ForeColor = System.Drawing.Color.Black;
             this.gboxAttachment.Location = new System.Drawing.Point(45, 57);
             this.gboxAttachment.Name = "gboxAttachment";
@@ -2499,7 +2499,7 @@
             // nudTrailingHitchLength
             // 
             this.nudTrailingHitchLength.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudTrailingHitchLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudTrailingHitchLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudTrailingHitchLength.InterceptArrowKeys = false;
             this.nudTrailingHitchLength.Location = new System.Drawing.Point(152, 112);
             this.nudTrailingHitchLength.Maximum = new decimal(new int[] {
@@ -2527,7 +2527,7 @@
             // nudDrawbarLength
             // 
             this.nudDrawbarLength.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudDrawbarLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudDrawbarLength.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudDrawbarLength.InterceptArrowKeys = false;
             this.nudDrawbarLength.Location = new System.Drawing.Point(342, 112);
             this.nudDrawbarLength.Maximum = new decimal(new int[] {
@@ -2556,7 +2556,7 @@
             // nudTankHitch
             // 
             this.nudTankHitch.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudTankHitch.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudTankHitch.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudTankHitch.InterceptArrowKeys = false;
             this.nudTankHitch.Location = new System.Drawing.Point(433, 112);
             this.nudTankHitch.Maximum = new decimal(new int[] {
@@ -2651,7 +2651,7 @@
             // label106
             // 
             this.label106.BackColor = System.Drawing.Color.Transparent;
-            this.label106.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label106.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label106.ForeColor = System.Drawing.Color.Black;
             this.label106.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label106.Location = new System.Drawing.Point(633, 434);
@@ -2665,7 +2665,7 @@
             // 
             this.nudCutoffSpeed.BackColor = System.Drawing.Color.AliceBlue;
             this.nudCutoffSpeed.DecimalPlaces = 1;
-            this.nudCutoffSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudCutoffSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudCutoffSpeed.Increment = new decimal(new int[] {
             1,
             0,
@@ -2694,7 +2694,7 @@
             // 
             this.lblTurnOffBelowUnits.AutoSize = true;
             this.lblTurnOffBelowUnits.BackColor = System.Drawing.Color.Transparent;
-            this.lblTurnOffBelowUnits.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTurnOffBelowUnits.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblTurnOffBelowUnits.ForeColor = System.Drawing.Color.Black;
             this.lblTurnOffBelowUnits.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblTurnOffBelowUnits.Location = new System.Drawing.Point(105, 558);
@@ -2706,7 +2706,7 @@
             // label49
             // 
             this.label49.BackColor = System.Drawing.Color.Transparent;
-            this.label49.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label49.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label49.ForeColor = System.Drawing.Color.Black;
             this.label49.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label49.Location = new System.Drawing.Point(198, 278);
@@ -2719,7 +2719,7 @@
             // nudDefaultSectionWidth
             // 
             this.nudDefaultSectionWidth.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudDefaultSectionWidth.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudDefaultSectionWidth.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudDefaultSectionWidth.InterceptArrowKeys = false;
             this.nudDefaultSectionWidth.Location = new System.Drawing.Point(213, 346);
             this.nudDefaultSectionWidth.Maximum = new decimal(new int[] {
@@ -2749,7 +2749,7 @@
             this.cboxNumSections.BackColor = System.Drawing.Color.AliceBlue;
             this.cboxNumSections.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxNumSections.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cboxNumSections.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxNumSections.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxNumSections.FormattingEnabled = true;
             this.cboxNumSections.Items.AddRange(new object[] {
             "1",
@@ -2778,7 +2778,7 @@
             // lblVehicleToolWidth
             // 
             this.lblVehicleToolWidth.AutoSize = true;
-            this.lblVehicleToolWidth.Font = new System.Drawing.Font("Tahoma", 24F);
+            this.lblVehicleToolWidth.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblVehicleToolWidth.ForeColor = System.Drawing.Color.Black;
             this.lblVehicleToolWidth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblVehicleToolWidth.Location = new System.Drawing.Point(536, 346);
@@ -2790,7 +2790,7 @@
             // label50
             // 
             this.label50.BackColor = System.Drawing.Color.Transparent;
-            this.label50.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label50.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label50.ForeColor = System.Drawing.Color.Black;
             this.label50.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label50.Location = new System.Drawing.Point(291, 467);
@@ -2803,7 +2803,7 @@
             // nudMinCoverage
             // 
             this.nudMinCoverage.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudMinCoverage.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudMinCoverage.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudMinCoverage.InterceptArrowKeys = false;
             this.nudMinCoverage.Location = new System.Drawing.Point(358, 502);
             this.nudMinCoverage.Name = "nudMinCoverage";
@@ -2821,7 +2821,7 @@
             // label51
             // 
             this.label51.BackColor = System.Drawing.Color.Transparent;
-            this.label51.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label51.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label51.ForeColor = System.Drawing.Color.Black;
             this.label51.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label51.Location = new System.Drawing.Point(431, 270);
@@ -2834,7 +2834,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label1.Location = new System.Drawing.Point(770, 37);
@@ -2846,7 +2846,7 @@
             // nudSection16
             // 
             this.nudSection16.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection16.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection16.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection16.InterceptArrowKeys = false;
             this.nudSection16.Location = new System.Drawing.Point(748, 68);
             this.nudSection16.Maximum = new decimal(new int[] {
@@ -2869,7 +2869,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label4.Location = new System.Drawing.Point(664, 37);
@@ -2881,7 +2881,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label19.ForeColor = System.Drawing.Color.Black;
             this.label19.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label19.Location = new System.Drawing.Point(560, 37);
@@ -2893,7 +2893,7 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label30.ForeColor = System.Drawing.Color.Black;
             this.label30.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label30.Location = new System.Drawing.Point(448, 37);
@@ -2905,7 +2905,7 @@
             // nudSection15
             // 
             this.nudSection15.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection15.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection15.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection15.InterceptArrowKeys = false;
             this.nudSection15.Location = new System.Drawing.Point(643, 68);
             this.nudSection15.Maximum = new decimal(new int[] {
@@ -2928,7 +2928,7 @@
             // nudSection14
             // 
             this.nudSection14.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection14.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection14.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection14.InterceptArrowKeys = false;
             this.nudSection14.Location = new System.Drawing.Point(538, 68);
             this.nudSection14.Maximum = new decimal(new int[] {
@@ -2951,7 +2951,7 @@
             // nudSection13
             // 
             this.nudSection13.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection13.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection13.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection13.InterceptArrowKeys = false;
             this.nudSection13.Location = new System.Drawing.Point(433, 68);
             this.nudSection13.Maximum = new decimal(new int[] {
@@ -2974,7 +2974,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label32.ForeColor = System.Drawing.Color.Black;
             this.label32.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label32.Location = new System.Drawing.Point(554, 157);
@@ -2986,7 +2986,7 @@
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label34.ForeColor = System.Drawing.Color.Black;
             this.label34.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label34.Location = new System.Drawing.Point(142, 157);
@@ -2998,7 +2998,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label35.ForeColor = System.Drawing.Color.Black;
             this.label35.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label35.Location = new System.Drawing.Point(252, 157);
@@ -3010,7 +3010,7 @@
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label40.ForeColor = System.Drawing.Color.Black;
             this.label40.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label40.Location = new System.Drawing.Point(347, 37);
@@ -3022,7 +3022,7 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label39.ForeColor = System.Drawing.Color.Black;
             this.label39.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label39.Location = new System.Drawing.Point(239, 37);
@@ -3034,7 +3034,7 @@
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label38.ForeColor = System.Drawing.Color.Black;
             this.label38.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label38.Location = new System.Drawing.Point(142, 37);
@@ -3046,7 +3046,7 @@
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label37.ForeColor = System.Drawing.Color.Black;
             this.label37.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label37.Location = new System.Drawing.Point(38, 37);
@@ -3058,7 +3058,7 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label41.ForeColor = System.Drawing.Color.Black;
             this.label41.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label41.Location = new System.Drawing.Point(796, 157);
@@ -3070,7 +3070,7 @@
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label45.ForeColor = System.Drawing.Color.Black;
             this.label45.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label45.Location = new System.Drawing.Point(664, 157);
@@ -3082,7 +3082,7 @@
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label46.ForeColor = System.Drawing.Color.Black;
             this.label46.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label46.Location = new System.Drawing.Point(347, 157);
@@ -3094,7 +3094,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label47.ForeColor = System.Drawing.Color.Black;
             this.label47.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label47.Location = new System.Drawing.Point(453, 157);
@@ -3106,7 +3106,7 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label48.ForeColor = System.Drawing.Color.Black;
             this.label48.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label48.Location = new System.Drawing.Point(47, 157);
@@ -3118,7 +3118,7 @@
             // nudSection12
             // 
             this.nudSection12.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection12.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection12.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection12.InterceptArrowKeys = false;
             this.nudSection12.Location = new System.Drawing.Point(328, 68);
             this.nudSection12.Maximum = new decimal(new int[] {
@@ -3141,7 +3141,7 @@
             // nudSection11
             // 
             this.nudSection11.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection11.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection11.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection11.InterceptArrowKeys = false;
             this.nudSection11.Location = new System.Drawing.Point(223, 68);
             this.nudSection11.Maximum = new decimal(new int[] {
@@ -3164,7 +3164,7 @@
             // nudSection10
             // 
             this.nudSection10.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection10.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection10.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection10.InterceptArrowKeys = false;
             this.nudSection10.Location = new System.Drawing.Point(118, 68);
             this.nudSection10.Maximum = new decimal(new int[] {
@@ -3187,7 +3187,7 @@
             // nudSection9
             // 
             this.nudSection9.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection9.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection9.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection9.InterceptArrowKeys = false;
             this.nudSection9.Location = new System.Drawing.Point(13, 68);
             this.nudSection9.Maximum = new decimal(new int[] {
@@ -3210,7 +3210,7 @@
             // nudSection8
             // 
             this.nudSection8.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection8.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection8.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection8.InterceptArrowKeys = false;
             this.nudSection8.Location = new System.Drawing.Point(748, 187);
             this.nudSection8.Maximum = new decimal(new int[] {
@@ -3233,7 +3233,7 @@
             // nudSection7
             // 
             this.nudSection7.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection7.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection7.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection7.InterceptArrowKeys = false;
             this.nudSection7.Location = new System.Drawing.Point(643, 187);
             this.nudSection7.Maximum = new decimal(new int[] {
@@ -3256,7 +3256,7 @@
             // nudSection6
             // 
             this.nudSection6.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection6.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection6.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection6.InterceptArrowKeys = false;
             this.nudSection6.Location = new System.Drawing.Point(538, 187);
             this.nudSection6.Maximum = new decimal(new int[] {
@@ -3279,7 +3279,7 @@
             // nudSection5
             // 
             this.nudSection5.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection5.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection5.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection5.InterceptArrowKeys = false;
             this.nudSection5.Location = new System.Drawing.Point(433, 187);
             this.nudSection5.Maximum = new decimal(new int[] {
@@ -3302,7 +3302,7 @@
             // nudSection4
             // 
             this.nudSection4.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection4.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection4.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection4.InterceptArrowKeys = false;
             this.nudSection4.Location = new System.Drawing.Point(328, 187);
             this.nudSection4.Maximum = new decimal(new int[] {
@@ -3325,7 +3325,7 @@
             // nudSection3
             // 
             this.nudSection3.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection3.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection3.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection3.InterceptArrowKeys = false;
             this.nudSection3.Location = new System.Drawing.Point(223, 187);
             this.nudSection3.Maximum = new decimal(new int[] {
@@ -3348,7 +3348,7 @@
             // nudSection2
             // 
             this.nudSection2.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection2.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection2.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection2.InterceptArrowKeys = false;
             this.nudSection2.Location = new System.Drawing.Point(118, 187);
             this.nudSection2.Maximum = new decimal(new int[] {
@@ -3371,7 +3371,7 @@
             // nudSection1
             // 
             this.nudSection1.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSection1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudSection1.InterceptArrowKeys = false;
             this.nudSection1.Location = new System.Drawing.Point(13, 187);
             this.nudSection1.Maximum = new decimal(new int[] {
@@ -3398,7 +3398,7 @@
             this.cboxSectionResponse.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxSectionResponse.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxSectionResponse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxSectionResponse.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxSectionResponse.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxSectionResponse.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxSectionResponse.Image = global::AgOpenGPS.Properties.Resources.ConS_Respnse;
             this.cboxSectionResponse.Location = new System.Drawing.Point(686, 488);
@@ -3447,7 +3447,7 @@
             this.groupBox3.Controls.Add(this.checkWorkSwitchManual);
             this.groupBox3.Controls.Add(this.chkWorkSwActiveLow);
             this.groupBox3.Controls.Add(this.chkEnableWorkSwitch);
-            this.groupBox3.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.groupBox3.ForeColor = System.Drawing.Color.Black;
             this.groupBox3.Location = new System.Drawing.Point(61, 41);
             this.groupBox3.Name = "groupBox3";
@@ -3461,7 +3461,7 @@
             this.label105.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label105.AutoSize = true;
             this.label105.BackColor = System.Drawing.Color.Transparent;
-            this.label105.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.label105.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label105.ForeColor = System.Drawing.Color.Black;
             this.label105.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label105.Location = new System.Drawing.Point(42, 375);
@@ -3480,7 +3480,7 @@
             this.checkSteerSetsManual.BackColor = System.Drawing.Color.AliceBlue;
             this.checkSteerSetsManual.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.checkSteerSetsManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkSteerSetsManual.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkSteerSetsManual.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.checkSteerSetsManual.ForeColor = System.Drawing.SystemColors.ControlText;
             this.checkSteerSetsManual.Location = new System.Drawing.Point(46, 136);
             this.checkSteerSetsManual.Name = "checkSteerSetsManual";
@@ -3496,7 +3496,7 @@
             this.checkWorkSwitchManual.BackColor = System.Drawing.Color.AliceBlue;
             this.checkWorkSwitchManual.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.checkWorkSwitchManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkWorkSwitchManual.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkWorkSwitchManual.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.checkWorkSwitchManual.ForeColor = System.Drawing.SystemColors.ControlText;
             this.checkWorkSwitchManual.Location = new System.Drawing.Point(46, 212);
             this.checkWorkSwitchManual.Name = "checkWorkSwitchManual";
@@ -3513,7 +3513,7 @@
             this.chkWorkSwActiveLow.BackColor = System.Drawing.Color.AliceBlue;
             this.chkWorkSwActiveLow.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkWorkSwActiveLow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkWorkSwActiveLow.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkWorkSwActiveLow.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.chkWorkSwActiveLow.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkWorkSwActiveLow.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.chkWorkSwActiveLow.Location = new System.Drawing.Point(46, 288);
@@ -3530,7 +3530,7 @@
             this.chkEnableWorkSwitch.BackColor = System.Drawing.Color.AliceBlue;
             this.chkEnableWorkSwitch.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkEnableWorkSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkEnableWorkSwitch.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkEnableWorkSwitch.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.chkEnableWorkSwitch.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkEnableWorkSwitch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.chkEnableWorkSwitch.Location = new System.Drawing.Point(46, 60);
@@ -3570,7 +3570,7 @@
             this.label66.ForeColor = System.Drawing.Color.Black;
             this.label66.Location = new System.Drawing.Point(628, 449);
             this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(87, 16);
+            this.label66.Size = new System.Drawing.Size(86, 16);
             this.label66.TabIndex = 477;
             this.label66.Text = "Overlap / Gap";
             // 
@@ -3581,14 +3581,14 @@
             this.label65.ForeColor = System.Drawing.Color.Black;
             this.label65.Location = new System.Drawing.Point(411, 525);
             this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(42, 16);
+            this.label65.Size = new System.Drawing.Size(41, 16);
             this.label65.TabIndex = 476;
             this.label65.Text = "Offset";
             // 
             // label16
             // 
             this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label16.ForeColor = System.Drawing.Color.Black;
             this.label16.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label16.Location = new System.Drawing.Point(35, 79);
@@ -3601,7 +3601,7 @@
             // label14
             // 
             this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label14.ForeColor = System.Drawing.Color.Black;
             this.label14.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label14.Location = new System.Drawing.Point(35, 239);
@@ -3614,7 +3614,7 @@
             // label10
             // 
             this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label10.ForeColor = System.Drawing.Color.Black;
             this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label10.Location = new System.Drawing.Point(35, 378);
@@ -3628,7 +3628,7 @@
             // 
             this.nudLookAheadOff.BackColor = System.Drawing.Color.AliceBlue;
             this.nudLookAheadOff.DecimalPlaces = 1;
-            this.nudLookAheadOff.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLookAheadOff.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudLookAheadOff.Increment = new decimal(new int[] {
             1,
             0,
@@ -3656,7 +3656,7 @@
             // nudOffset
             // 
             this.nudOffset.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudOffset.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudOffset.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudOffset.InterceptArrowKeys = false;
             this.nudOffset.Location = new System.Drawing.Point(414, 470);
             this.nudOffset.Maximum = new decimal(new int[] {
@@ -3685,7 +3685,7 @@
             // 
             this.nudTurnOffDelay.BackColor = System.Drawing.Color.AliceBlue;
             this.nudTurnOffDelay.DecimalPlaces = 1;
-            this.nudTurnOffDelay.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudTurnOffDelay.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudTurnOffDelay.Increment = new decimal(new int[] {
             1,
             0,
@@ -3709,7 +3709,7 @@
             // 
             this.nudLookAhead.BackColor = System.Drawing.Color.AliceBlue;
             this.nudLookAhead.DecimalPlaces = 1;
-            this.nudLookAhead.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLookAhead.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudLookAhead.Increment = new decimal(new int[] {
             1,
             0,
@@ -3742,7 +3742,7 @@
             // nudOverlap
             // 
             this.nudOverlap.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudOverlap.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudOverlap.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudOverlap.InterceptArrowKeys = false;
             this.nudOverlap.Location = new System.Drawing.Point(631, 394);
             this.nudOverlap.Maximum = new decimal(new int[] {
@@ -3795,44 +3795,14 @@
             this.tabDHeading.Enter += new System.EventHandler(this.tabDHeading_Enter);
             this.tabDHeading.Leave += new System.EventHandler(this.tabDHeading_Leave);
             // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(303, 190);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 23);
-            this.label6.TabIndex = 466;
-            this.label6.Text = "On/Off";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cboxIsReverseOn
-            // 
-            this.cboxIsReverseOn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cboxIsReverseOn.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxIsReverseOn.BackColor = System.Drawing.Color.AliceBlue;
-            this.cboxIsReverseOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
-            this.cboxIsReverseOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxIsReverseOn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsReverseOn.ForeColor = System.Drawing.Color.Black;
-            this.cboxIsReverseOn.Location = new System.Drawing.Point(257, 214);
-            this.cboxIsReverseOn.Name = "cboxIsReverseOn";
-            this.cboxIsReverseOn.Size = new System.Drawing.Size(161, 59);
-            this.cboxIsReverseOn.TabIndex = 465;
-            this.cboxIsReverseOn.Text = "Reverse Detection";
-            this.cboxIsReverseOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxIsReverseOn.UseVisualStyleBackColor = false;
-            // 
             // label104
             // 
             this.label104.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label104.BackColor = System.Drawing.Color.Transparent;
-            this.label104.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.label104.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label104.ForeColor = System.Drawing.Color.Black;
             this.label104.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label104.Location = new System.Drawing.Point(71, 360);
+            this.label104.Location = new System.Drawing.Point(49, 341);
             this.label104.Name = "label104";
             this.label104.Size = new System.Drawing.Size(201, 23);
             this.label104.TabIndex = 462;
@@ -3843,10 +3813,10 @@
             // 
             this.label103.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label103.AutoSize = true;
-            this.label103.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label103.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label103.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label103.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label103.Location = new System.Drawing.Point(155, 443);
+            this.label103.Location = new System.Drawing.Point(133, 424);
             this.label103.Name = "label103";
             this.label103.Size = new System.Drawing.Size(43, 18);
             this.label103.TabIndex = 464;
@@ -3857,9 +3827,9 @@
             // 
             this.nudMinimumFrameTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.nudMinimumFrameTime.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudMinimumFrameTime.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudMinimumFrameTime.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudMinimumFrameTime.InterceptArrowKeys = false;
-            this.nudMinimumFrameTime.Location = new System.Drawing.Point(125, 388);
+            this.nudMinimumFrameTime.Location = new System.Drawing.Point(103, 369);
             this.nudMinimumFrameTime.Maximum = new decimal(new int[] {
             90,
             0,
@@ -3885,10 +3855,10 @@
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(133, 491);
+            this.label2.Location = new System.Drawing.Point(111, 472);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 23);
             this.label2.TabIndex = 310;
@@ -3902,9 +3872,9 @@
             this.cboxIsRTK.BackColor = System.Drawing.Color.AliceBlue;
             this.cboxIsRTK.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
             this.cboxIsRTK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxIsRTK.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsRTK.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxIsRTK.ForeColor = System.Drawing.Color.Black;
-            this.cboxIsRTK.Location = new System.Drawing.Point(100, 517);
+            this.cboxIsRTK.Location = new System.Drawing.Point(78, 498);
             this.cboxIsRTK.Name = "cboxIsRTK";
             this.cboxIsRTK.Size = new System.Drawing.Size(161, 43);
             this.cboxIsRTK.TabIndex = 309;
@@ -3928,13 +3898,26 @@
             this.gboxSingle.Controls.Add(this.hsbarFusion);
             this.gboxSingle.Controls.Add(this.lblFusion);
             this.gboxSingle.Controls.Add(this.lblIMUFusion);
-            this.gboxSingle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gboxSingle.Location = new System.Drawing.Point(392, 16);
+            this.gboxSingle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.gboxSingle.Location = new System.Drawing.Point(328, 16);
             this.gboxSingle.Name = "gboxSingle";
-            this.gboxSingle.Size = new System.Drawing.Size(446, 544);
+            this.gboxSingle.Size = new System.Drawing.Size(510, 544);
             this.gboxSingle.TabIndex = 308;
             this.gboxSingle.TabStop = false;
             this.gboxSingle.Text = "Single Antenna Settings";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label6.Location = new System.Drawing.Point(87, 158);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(61, 23);
+            this.label6.TabIndex = 466;
+            this.label6.Text = "On/Off";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cboxIsDualAsIMU
             // 
@@ -3943,21 +3926,38 @@
             this.cboxIsDualAsIMU.BackColor = System.Drawing.Color.AliceBlue;
             this.cboxIsDualAsIMU.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
             this.cboxIsDualAsIMU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxIsDualAsIMU.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsDualAsIMU.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxIsDualAsIMU.ForeColor = System.Drawing.Color.Black;
-            this.cboxIsDualAsIMU.Location = new System.Drawing.Point(115, 456);
+            this.cboxIsDualAsIMU.Location = new System.Drawing.Point(270, 182);
             this.cboxIsDualAsIMU.Name = "cboxIsDualAsIMU";
-            this.cboxIsDualAsIMU.Size = new System.Drawing.Size(279, 43);
+            this.cboxIsDualAsIMU.Size = new System.Drawing.Size(158, 59);
             this.cboxIsDualAsIMU.TabIndex = 310;
             this.cboxIsDualAsIMU.Text = "Dual As IMU";
             this.cboxIsDualAsIMU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsDualAsIMU.UseVisualStyleBackColor = false;
             // 
+            // cboxIsReverseOn
+            // 
+            this.cboxIsReverseOn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cboxIsReverseOn.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxIsReverseOn.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxIsReverseOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
+            this.cboxIsReverseOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxIsReverseOn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.cboxIsReverseOn.ForeColor = System.Drawing.Color.Black;
+            this.cboxIsReverseOn.Location = new System.Drawing.Point(41, 182);
+            this.cboxIsReverseOn.Name = "cboxIsReverseOn";
+            this.cboxIsReverseOn.Size = new System.Drawing.Size(161, 59);
+            this.cboxIsReverseOn.TabIndex = 465;
+            this.cboxIsReverseOn.Text = "Reverse Detection";
+            this.cboxIsReverseOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxIsReverseOn.UseVisualStyleBackColor = false;
+            // 
             // nudStartSpeed
             // 
             this.nudStartSpeed.BackColor = System.Drawing.Color.AliceBlue;
             this.nudStartSpeed.DecimalPlaces = 1;
-            this.nudStartSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudStartSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudStartSpeed.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.nudStartSpeed.Increment = new decimal(new int[] {
             1,
@@ -3965,7 +3965,7 @@
             0,
             65536});
             this.nudStartSpeed.InterceptArrowKeys = false;
-            this.nudStartSpeed.Location = new System.Drawing.Point(35, 214);
+            this.nudStartSpeed.Location = new System.Drawing.Point(41, 74);
             this.nudStartSpeed.Maximum = new decimal(new int[] {
             5,
             0,
@@ -3991,9 +3991,9 @@
             // lblFusionIMU
             // 
             this.lblFusionIMU.AutoSize = true;
-            this.lblFusionIMU.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFusionIMU.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblFusionIMU.ForeColor = System.Drawing.Color.Black;
-            this.lblFusionIMU.Location = new System.Drawing.Point(8, 372);
+            this.lblFusionIMU.Location = new System.Drawing.Point(44, 312);
             this.lblFusionIMU.Name = "lblFusionIMU";
             this.lblFusionIMU.Size = new System.Drawing.Size(91, 39);
             this.lblFusionIMU.TabIndex = 302;
@@ -4002,10 +4002,10 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label15.Location = new System.Drawing.Point(191, 36);
+            this.label15.Location = new System.Drawing.Point(328, 20);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(100, 23);
             this.label15.TabIndex = 307;
@@ -4014,10 +4014,10 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(31, 188);
+            this.label9.Location = new System.Drawing.Point(37, 48);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(165, 23);
             this.label9.TabIndex = 306;
@@ -4025,9 +4025,9 @@
             // 
             // lblIMU
             // 
-            this.lblIMU.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIMU.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblIMU.ForeColor = System.Drawing.Color.Black;
-            this.lblIMU.Location = new System.Drawing.Point(55, 341);
+            this.lblIMU.Location = new System.Drawing.Point(91, 281);
             this.lblIMU.Name = "lblIMU";
             this.lblIMU.Size = new System.Drawing.Size(76, 23);
             this.lblIMU.TabIndex = 300;
@@ -4037,10 +4037,10 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label8.Location = new System.Drawing.Point(181, 64);
+            this.label8.Location = new System.Drawing.Point(318, 48);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(117, 23);
             this.label8.TabIndex = 305;
@@ -4048,9 +4048,9 @@
             // 
             // lblGPS
             // 
-            this.lblGPS.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGPS.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblGPS.ForeColor = System.Drawing.Color.Black;
-            this.lblGPS.Location = new System.Drawing.Point(315, 341);
+            this.lblGPS.Location = new System.Drawing.Point(351, 281);
             this.lblGPS.Name = "lblGPS";
             this.lblGPS.Size = new System.Drawing.Size(69, 23);
             this.lblGPS.TabIndex = 299;
@@ -4061,7 +4061,7 @@
             // 
             this.nudMinFixStepDistance.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMinFixStepDistance.DecimalPlaces = 1;
-            this.nudMinFixStepDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudMinFixStepDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudMinFixStepDistance.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.nudMinFixStepDistance.Increment = new decimal(new int[] {
             2,
@@ -4069,7 +4069,7 @@
             0,
             65536});
             this.nudMinFixStepDistance.InterceptArrowKeys = false;
-            this.nudMinFixStepDistance.Location = new System.Drawing.Point(170, 90);
+            this.nudMinFixStepDistance.Location = new System.Drawing.Point(307, 74);
             this.nudMinFixStepDistance.Maximum = new decimal(new int[] {
             10,
             0,
@@ -4095,7 +4095,7 @@
             // hsbarFusion
             // 
             this.hsbarFusion.LargeChange = 1;
-            this.hsbarFusion.Location = new System.Drawing.Point(105, 371);
+            this.hsbarFusion.Location = new System.Drawing.Point(141, 311);
             this.hsbarFusion.Minimum = 1;
             this.hsbarFusion.Name = "hsbarFusion";
             this.hsbarFusion.Size = new System.Drawing.Size(235, 43);
@@ -4106,9 +4106,9 @@
             // lblFusion
             // 
             this.lblFusion.AutoSize = true;
-            this.lblFusion.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFusion.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblFusion.ForeColor = System.Drawing.Color.Black;
-            this.lblFusion.Location = new System.Drawing.Point(345, 372);
+            this.lblFusion.Location = new System.Drawing.Point(381, 312);
             this.lblFusion.Name = "lblFusion";
             this.lblFusion.Size = new System.Drawing.Size(91, 39);
             this.lblFusion.TabIndex = 298;
@@ -4116,9 +4116,9 @@
             // 
             // lblIMUFusion
             // 
-            this.lblIMUFusion.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIMUFusion.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblIMUFusion.ForeColor = System.Drawing.Color.Black;
-            this.lblIMUFusion.Location = new System.Drawing.Point(166, 341);
+            this.lblIMUFusion.Location = new System.Drawing.Point(202, 281);
             this.lblIMUFusion.Name = "lblIMUFusion";
             this.lblIMUFusion.Size = new System.Drawing.Size(109, 23);
             this.lblIMUFusion.TabIndex = 297;
@@ -4131,11 +4131,11 @@
             this.headingGroupBox.Controls.Add(this.rbtnHeadingHDT);
             this.headingGroupBox.Controls.Add(this.rbtnHeadingGPS);
             this.headingGroupBox.Controls.Add(this.rbtnHeadingFix);
-            this.headingGroupBox.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.headingGroupBox.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.headingGroupBox.ForeColor = System.Drawing.Color.Black;
-            this.headingGroupBox.Location = new System.Drawing.Point(28, 16);
+            this.headingGroupBox.Location = new System.Drawing.Point(13, 16);
             this.headingGroupBox.Name = "headingGroupBox";
-            this.headingGroupBox.Size = new System.Drawing.Size(329, 323);
+            this.headingGroupBox.Size = new System.Drawing.Size(295, 293);
             this.headingGroupBox.TabIndex = 85;
             this.headingGroupBox.TabStop = false;
             this.headingGroupBox.Text = "Antenna Heading Type";
@@ -4143,7 +4143,7 @@
             // pictureBox13
             // 
             this.pictureBox13.Image = global::AgOpenGPS.Properties.Resources.Con_SourcesGPS;
-            this.pictureBox13.Location = new System.Drawing.Point(169, 81);
+            this.pictureBox13.Location = new System.Drawing.Point(169, 53);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(110, 225);
             this.pictureBox13.TabIndex = 3;
@@ -4155,9 +4155,9 @@
             this.rbtnHeadingHDT.BackColor = System.Drawing.Color.AliceBlue;
             this.rbtnHeadingHDT.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
             this.rbtnHeadingHDT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnHeadingHDT.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnHeadingHDT.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.rbtnHeadingHDT.ForeColor = System.Drawing.Color.Black;
-            this.rbtnHeadingHDT.Location = new System.Drawing.Point(23, 245);
+            this.rbtnHeadingHDT.Location = new System.Drawing.Point(23, 235);
             this.rbtnHeadingHDT.Name = "rbtnHeadingHDT";
             this.rbtnHeadingHDT.Size = new System.Drawing.Size(117, 43);
             this.rbtnHeadingHDT.TabIndex = 2;
@@ -4173,9 +4173,9 @@
             this.rbtnHeadingGPS.Checked = true;
             this.rbtnHeadingGPS.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
             this.rbtnHeadingGPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnHeadingGPS.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnHeadingGPS.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.rbtnHeadingGPS.ForeColor = System.Drawing.Color.Black;
-            this.rbtnHeadingGPS.Location = new System.Drawing.Point(24, 142);
+            this.rbtnHeadingGPS.Location = new System.Drawing.Point(24, 123);
             this.rbtnHeadingGPS.Name = "rbtnHeadingGPS";
             this.rbtnHeadingGPS.Size = new System.Drawing.Size(117, 43);
             this.rbtnHeadingGPS.TabIndex = 1;
@@ -4191,9 +4191,9 @@
             this.rbtnHeadingFix.BackColor = System.Drawing.Color.AliceBlue;
             this.rbtnHeadingFix.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
             this.rbtnHeadingFix.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnHeadingFix.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnHeadingFix.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.rbtnHeadingFix.ForeColor = System.Drawing.Color.Black;
-            this.rbtnHeadingFix.Location = new System.Drawing.Point(23, 55);
+            this.rbtnHeadingFix.Location = new System.Drawing.Point(23, 53);
             this.rbtnHeadingFix.Name = "rbtnHeadingFix";
             this.rbtnHeadingFix.Size = new System.Drawing.Size(117, 43);
             this.rbtnHeadingFix.TabIndex = 0;
@@ -4244,7 +4244,7 @@
             this.label78.ForeColor = System.Drawing.Color.Black;
             this.label78.Location = new System.Drawing.Point(461, 208);
             this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(66, 16);
+            this.label78.Size = new System.Drawing.Size(65, 16);
             this.label78.TabIndex = 484;
             this.label78.Text = "Invert Roll";
             // 
@@ -4254,7 +4254,7 @@
             this.label77.ForeColor = System.Drawing.Color.Black;
             this.label77.Location = new System.Drawing.Point(94, 209);
             this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(59, 16);
+            this.label77.Size = new System.Drawing.Size(58, 16);
             this.label77.TabIndex = 483;
             this.label77.Text = "Zero Roll";
             // 
@@ -4264,14 +4264,14 @@
             this.label76.ForeColor = System.Drawing.Color.Black;
             this.label76.Location = new System.Drawing.Point(94, 53);
             this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(92, 16);
+            this.label76.Size = new System.Drawing.Size(91, 16);
             this.label76.TabIndex = 482;
             this.label76.Text = "Remove Offset";
             // 
             // lblRollZeroOffset
             // 
             this.lblRollZeroOffset.AutoSize = true;
-            this.lblRollZeroOffset.Font = new System.Drawing.Font("Tahoma", 20.25F);
+            this.lblRollZeroOffset.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblRollZeroOffset.ForeColor = System.Drawing.Color.Black;
             this.lblRollZeroOffset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblRollZeroOffset.Location = new System.Drawing.Point(229, 256);
@@ -4284,7 +4284,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.BackColor = System.Drawing.Color.Transparent;
-            this.label24.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label24.ForeColor = System.Drawing.Color.Black;
             this.label24.Location = new System.Drawing.Point(51, 428);
             this.label24.Name = "label24";
@@ -4297,7 +4297,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.BackColor = System.Drawing.Color.Transparent;
-            this.label26.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label26.ForeColor = System.Drawing.Color.Black;
             this.label26.Location = new System.Drawing.Point(338, 428);
             this.label26.Name = "label26";
@@ -4309,7 +4309,7 @@
             // lblRollFilterPercent
             // 
             this.lblRollFilterPercent.AutoSize = true;
-            this.lblRollFilterPercent.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRollFilterPercent.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblRollFilterPercent.ForeColor = System.Drawing.Color.Black;
             this.lblRollFilterPercent.Location = new System.Drawing.Point(185, 505);
             this.lblRollFilterPercent.Name = "lblRollFilterPercent";
@@ -4319,7 +4319,7 @@
             // 
             // label18
             // 
-            this.label18.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label18.ForeColor = System.Drawing.Color.Black;
             this.label18.Location = new System.Drawing.Point(169, 399);
             this.label18.Name = "label18";
@@ -4348,7 +4348,7 @@
             this.btnResetIMU.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnResetIMU.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
             this.btnResetIMU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetIMU.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetIMU.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnResetIMU.ForeColor = System.Drawing.Color.Black;
             this.btnResetIMU.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnResetIMU.Location = new System.Drawing.Point(449, 71);
@@ -4364,7 +4364,7 @@
             this.btnZeroRoll.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnZeroRoll.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
             this.btnZeroRoll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnZeroRoll.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZeroRoll.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnZeroRoll.ForeColor = System.Drawing.Color.Black;
             this.btnZeroRoll.Image = global::AgOpenGPS.Properties.Resources.ConDa_RollSetZero;
             this.btnZeroRoll.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -4381,7 +4381,7 @@
             this.btnRemoveZeroOffset.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnRemoveZeroOffset.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
             this.btnRemoveZeroOffset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveZeroOffset.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveZeroOffset.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnRemoveZeroOffset.ForeColor = System.Drawing.Color.Black;
             this.btnRemoveZeroOffset.Image = global::AgOpenGPS.Properties.Resources.ConDa_RemoveOffset;
             this.btnRemoveZeroOffset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -4399,7 +4399,7 @@
             this.cboxDataInvertRoll.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxDataInvertRoll.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxDataInvertRoll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxDataInvertRoll.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxDataInvertRoll.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxDataInvertRoll.ForeColor = System.Drawing.Color.Black;
             this.cboxDataInvertRoll.Image = global::AgOpenGPS.Properties.Resources.ConDa_InvertRoll;
             this.cboxDataInvertRoll.Location = new System.Drawing.Point(449, 227);
@@ -4436,7 +4436,7 @@
             // lblFtMUTurn
             // 
             this.lblFtMUTurn.AutoSize = true;
-            this.lblFtMUTurn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFtMUTurn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblFtMUTurn.ForeColor = System.Drawing.Color.Black;
             this.lblFtMUTurn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblFtMUTurn.Location = new System.Drawing.Point(171, 405);
@@ -4449,7 +4449,7 @@
             // 
             this.nudTurnDistanceFromBoundary.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.nudTurnDistanceFromBoundary.DecimalPlaces = 2;
-            this.nudTurnDistanceFromBoundary.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudTurnDistanceFromBoundary.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudTurnDistanceFromBoundary.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.nudTurnDistanceFromBoundary.Increment = new decimal(new int[] {
             2,
@@ -4475,7 +4475,7 @@
             // 
             this.lblSmoothing.AutoSize = true;
             this.lblSmoothing.BackColor = System.Drawing.Color.Transparent;
-            this.lblSmoothing.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSmoothing.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblSmoothing.ForeColor = System.Drawing.Color.Black;
             this.lblSmoothing.Location = new System.Drawing.Point(641, 291);
             this.lblSmoothing.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -4488,7 +4488,7 @@
             // 
             this.lblDistance.AutoSize = true;
             this.lblDistance.BackColor = System.Drawing.Color.Transparent;
-            this.lblDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblDistance.ForeColor = System.Drawing.Color.Black;
             this.lblDistance.Location = new System.Drawing.Point(415, 291);
             this.lblDistance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -4502,7 +4502,7 @@
             this.label54.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label54.AutoSize = true;
             this.label54.BackColor = System.Drawing.Color.Transparent;
-            this.label54.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label54.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label54.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label54.Location = new System.Drawing.Point(29, 3);
@@ -4517,7 +4517,7 @@
             this.btnTurnSmoothingUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTurnSmoothingUp.FlatAppearance.BorderSize = 0;
             this.btnTurnSmoothingUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTurnSmoothingUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTurnSmoothingUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnTurnSmoothingUp.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnTurnSmoothingUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
             this.btnTurnSmoothingUp.Location = new System.Drawing.Point(705, 347);
@@ -4533,7 +4533,7 @@
             this.btnTurnSmoothingDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTurnSmoothingDown.FlatAppearance.BorderSize = 0;
             this.btnTurnSmoothingDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTurnSmoothingDown.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTurnSmoothingDown.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnTurnSmoothingDown.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnTurnSmoothingDown.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
             this.btnTurnSmoothingDown.Location = new System.Drawing.Point(612, 347);
@@ -4546,7 +4546,7 @@
             // 
             // label59
             // 
-            this.label59.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label59.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label59.Image = global::AgOpenGPS.Properties.Resources.ConU_UTurnSmooth;
             this.label59.Location = new System.Drawing.Point(624, 171);
@@ -4558,7 +4558,7 @@
             // 
             // label58
             // 
-            this.label58.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label58.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label58.Image = global::AgOpenGPS.Properties.Resources.ConU_UturnDistance;
             this.label58.Location = new System.Drawing.Point(128, 207);
@@ -4570,7 +4570,7 @@
             // 
             // lblWhenTrig
             // 
-            this.lblWhenTrig.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWhenTrig.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblWhenTrig.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblWhenTrig.Image = global::AgOpenGPS.Properties.Resources.ConU_UturnLength;
             this.lblWhenTrig.Location = new System.Drawing.Point(405, 169);
@@ -4585,7 +4585,7 @@
             this.btnDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDistanceUp.FlatAppearance.BorderSize = 0;
             this.btnDistanceUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnDistanceUp.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnDistanceUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
             this.btnDistanceUp.Location = new System.Drawing.Point(479, 347);
@@ -4601,7 +4601,7 @@
             this.btnDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDistanceDn.FlatAppearance.BorderSize = 0;
             this.btnDistanceDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnDistanceDn.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnDistanceDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
             this.btnDistanceDn.Location = new System.Drawing.Point(386, 347);
@@ -4656,7 +4656,7 @@
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(613, 327);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(160, 32);
+            this.label12.Size = new System.Drawing.Size(159, 32);
             this.label12.TabIndex = 487;
             this.label12.Text = "Switch - Momentary\r\nButton - Push On, Push Off";
             // 
@@ -4666,7 +4666,7 @@
             this.labelPressureTurnSensor.ForeColor = System.Drawing.Color.Black;
             this.labelPressureTurnSensor.Location = new System.Drawing.Point(306, 170);
             this.labelPressureTurnSensor.Name = "labelPressureTurnSensor";
-            this.labelPressureTurnSensor.Size = new System.Drawing.Size(133, 16);
+            this.labelPressureTurnSensor.Size = new System.Drawing.Size(132, 16);
             this.labelPressureTurnSensor.TabIndex = 486;
             this.labelPressureTurnSensor.Text = "Pressure Turn Sensor";
             // 
@@ -4676,7 +4676,7 @@
             this.labelCurrentTurnSensor.ForeColor = System.Drawing.Color.Black;
             this.labelCurrentTurnSensor.Location = new System.Drawing.Point(305, 312);
             this.labelCurrentTurnSensor.Name = "labelCurrentTurnSensor";
-            this.labelCurrentTurnSensor.Size = new System.Drawing.Size(126, 16);
+            this.labelCurrentTurnSensor.Size = new System.Drawing.Size(125, 16);
             this.labelCurrentTurnSensor.TabIndex = 485;
             this.labelCurrentTurnSensor.Text = "Current Turn Sensor";
             // 
@@ -4686,7 +4686,7 @@
             this.labelEncoder.ForeColor = System.Drawing.Color.Black;
             this.labelEncoder.Location = new System.Drawing.Point(305, 29);
             this.labelEncoder.Name = "labelEncoder";
-            this.labelEncoder.Size = new System.Drawing.Size(79, 16);
+            this.labelEncoder.Size = new System.Drawing.Size(78, 16);
             this.labelEncoder.TabIndex = 479;
             this.labelEncoder.Text = "Turn Sensor";
             // 
@@ -4696,7 +4696,7 @@
             this.label70.ForeColor = System.Drawing.Color.Black;
             this.label70.Location = new System.Drawing.Point(31, 169);
             this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(98, 16);
+            this.label70.Size = new System.Drawing.Size(97, 16);
             this.label70.TabIndex = 478;
             this.label70.Text = "Invert Motor Dir";
             // 
@@ -4706,7 +4706,7 @@
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(31, 309);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(82, 16);
+            this.label7.Size = new System.Drawing.Size(81, 16);
             this.label7.TabIndex = 477;
             this.label7.Text = "Invert Relays";
             // 
@@ -4716,7 +4716,7 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(29, 27);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 16);
+            this.label5.Size = new System.Drawing.Size(72, 16);
             this.label5.TabIndex = 476;
             this.label5.Text = "Invert WAS";
             // 
@@ -4724,7 +4724,7 @@
             // 
             this.label68.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label68.BackColor = System.Drawing.Color.Transparent;
-            this.label68.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label68.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label68.ForeColor = System.Drawing.Color.Black;
             this.label68.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label68.Location = new System.Drawing.Point(543, 495);
@@ -4739,7 +4739,7 @@
             this.cboxMotorDrive.BackColor = System.Drawing.Color.AliceBlue;
             this.cboxMotorDrive.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxMotorDrive.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cboxMotorDrive.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxMotorDrive.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxMotorDrive.FormattingEnabled = true;
             this.cboxMotorDrive.Items.AddRange(new object[] {
             "Cytron",
@@ -4756,7 +4756,7 @@
             this.cboxSteerEnable.BackColor = System.Drawing.Color.AliceBlue;
             this.cboxSteerEnable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxSteerEnable.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cboxSteerEnable.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxSteerEnable.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxSteerEnable.FormattingEnabled = true;
             this.cboxSteerEnable.Items.AddRange(new object[] {
             "None",
@@ -4772,7 +4772,7 @@
             // label62
             // 
             this.label62.BackColor = System.Drawing.Color.Transparent;
-            this.label62.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label62.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label62.ForeColor = System.Drawing.Color.Black;
             this.label62.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label62.Location = new System.Drawing.Point(577, 254);
@@ -4787,7 +4787,7 @@
             this.cboxConv.BackColor = System.Drawing.Color.AliceBlue;
             this.cboxConv.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxConv.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cboxConv.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxConv.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxConv.FormattingEnabled = true;
             this.cboxConv.Items.AddRange(new object[] {
             "Single",
@@ -4802,7 +4802,7 @@
             // label63
             // 
             this.label63.BackColor = System.Drawing.Color.Transparent;
-            this.label63.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label63.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label63.ForeColor = System.Drawing.Color.Black;
             this.label63.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label63.Location = new System.Drawing.Point(574, 58);
@@ -4815,7 +4815,7 @@
             // label64
             // 
             this.label64.BackColor = System.Drawing.Color.Transparent;
-            this.label64.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label64.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label64.ForeColor = System.Drawing.Color.Black;
             this.label64.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label64.Location = new System.Drawing.Point(573, 155);
@@ -4828,7 +4828,7 @@
             // label61
             // 
             this.label61.BackColor = System.Drawing.Color.Transparent;
-            this.label61.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label61.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label61.ForeColor = System.Drawing.Color.Black;
             this.label61.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label61.Location = new System.Drawing.Point(276, 445);
@@ -4841,7 +4841,7 @@
             // nudMaxCounts
             // 
             this.nudMaxCounts.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudMaxCounts.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudMaxCounts.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudMaxCounts.InterceptArrowKeys = false;
             this.nudMaxCounts.Location = new System.Drawing.Point(333, 486);
             this.nudMaxCounts.Maximum = new decimal(new int[] {
@@ -4871,12 +4871,12 @@
             this.label55.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label55.AutoSize = true;
             this.label55.BackColor = System.Drawing.Color.Transparent;
-            this.label55.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label55.ForeColor = System.Drawing.Color.Black;
             this.label55.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label55.Location = new System.Drawing.Point(31, 451);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(53, 16);
+            this.label55.Size = new System.Drawing.Size(52, 16);
             this.label55.TabIndex = 449;
             this.label55.Text = "Danfoss";
             this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -4888,7 +4888,7 @@
             this.cboxCurrentSensor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxCurrentSensor.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxCurrentSensor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxCurrentSensor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxCurrentSensor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxCurrentSensor.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxCurrentSensor.Image = global::AgOpenGPS.Properties.Resources.ConSt_TurnSensorCurrent;
             this.cboxCurrentSensor.Location = new System.Drawing.Point(306, 330);
@@ -4907,7 +4907,7 @@
             this.cboxPressureSensor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxPressureSensor.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxPressureSensor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxPressureSensor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPressureSensor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxPressureSensor.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxPressureSensor.Image = global::AgOpenGPS.Properties.Resources.ConSt_TurnSensorPressure;
             this.cboxPressureSensor.Location = new System.Drawing.Point(306, 189);
@@ -4937,7 +4937,7 @@
             this.cboxDanfoss.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxDanfoss.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxDanfoss.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxDanfoss.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxDanfoss.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxDanfoss.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxDanfoss.Image = global::AgOpenGPS.Properties.Resources.ConSt_Danfoss;
             this.cboxDanfoss.Location = new System.Drawing.Point(34, 470);
@@ -4956,7 +4956,7 @@
             this.chkSteerInvertRelays.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.chkSteerInvertRelays.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkSteerInvertRelays.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkSteerInvertRelays.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkSteerInvertRelays.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chkSteerInvertRelays.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkSteerInvertRelays.Image = global::AgOpenGPS.Properties.Resources.ConSt_InvertRelay;
             this.chkSteerInvertRelays.Location = new System.Drawing.Point(32, 330);
@@ -4975,7 +4975,7 @@
             this.chkInvertSteer.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.chkInvertSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkInvertSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkInvertSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkInvertSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chkInvertSteer.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkInvertSteer.Image = global::AgOpenGPS.Properties.Resources.ConSt_InvertDirection;
             this.chkInvertSteer.Location = new System.Drawing.Point(32, 188);
@@ -4994,7 +4994,7 @@
             this.cboxEncoder.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxEncoder.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxEncoder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxEncoder.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxEncoder.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxEncoder.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxEncoder.Image = global::AgOpenGPS.Properties.Resources.ConSt_TurnSensor;
             this.cboxEncoder.Location = new System.Drawing.Point(306, 47);
@@ -5015,7 +5015,7 @@
             this.chkInvertWAS.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.chkInvertWAS.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkInvertWAS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkInvertWAS.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkInvertWAS.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.chkInvertWAS.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkInvertWAS.Image = global::AgOpenGPS.Properties.Resources.ConSt_InvertWAS;
             this.chkInvertWAS.Location = new System.Drawing.Point(32, 46);
@@ -5072,7 +5072,7 @@
             this.groupBox4.Controls.Add(this.nudLowerTime);
             this.groupBox4.Controls.Add(this.pictureBox7);
             this.groupBox4.Controls.Add(this.nudRaiseTime);
-            this.groupBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox4.Location = new System.Drawing.Point(29, 25);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(637, 394);
@@ -5084,7 +5084,7 @@
             // 
             this.nudHydLiftLookAhead.BackColor = System.Drawing.Color.AliceBlue;
             this.nudHydLiftLookAhead.DecimalPlaces = 1;
-            this.nudHydLiftLookAhead.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudHydLiftLookAhead.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudHydLiftLookAhead.InterceptArrowKeys = false;
             this.nudHydLiftLookAhead.Location = new System.Drawing.Point(76, 278);
             this.nudHydLiftLookAhead.Maximum = new decimal(new int[] {
@@ -5112,7 +5112,7 @@
             // label69
             // 
             this.label69.BackColor = System.Drawing.Color.Transparent;
-            this.label69.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label69.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label69.ForeColor = System.Drawing.Color.Black;
             this.label69.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label69.Location = new System.Drawing.Point(72, 200);
@@ -5125,33 +5125,33 @@
             // label74
             // 
             this.label74.AutoSize = true;
-            this.label74.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label74.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label74.ForeColor = System.Drawing.Color.Black;
             this.label74.Location = new System.Drawing.Point(293, 54);
             this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(111, 16);
+            this.label74.Size = new System.Drawing.Size(110, 16);
             this.label74.TabIndex = 478;
             this.label74.Text = "Raise Time (secs)";
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label25.ForeColor = System.Drawing.Color.Black;
             this.label25.Location = new System.Drawing.Point(62, 43);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(46, 16);
+            this.label25.Size = new System.Drawing.Size(45, 16);
             this.label25.TabIndex = 479;
             this.label25.Text = "Enable";
             // 
             // label73
             // 
             this.label73.AutoSize = true;
-            this.label73.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label73.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label73.ForeColor = System.Drawing.Color.Black;
             this.label73.Location = new System.Drawing.Point(293, 259);
             this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(115, 16);
+            this.label73.Size = new System.Drawing.Size(114, 16);
             this.label73.TabIndex = 477;
             this.label73.Text = "Lower Time (secs)";
             // 
@@ -5162,7 +5162,7 @@
             this.cboxIsHydOn.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxIsHydOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxIsHydOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxIsHydOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsHydOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxIsHydOn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxIsHydOn.Location = new System.Drawing.Point(65, 74);
             this.cboxIsHydOn.Name = "cboxIsHydOn";
@@ -5186,7 +5186,7 @@
             // nudLowerTime
             // 
             this.nudLowerTime.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudLowerTime.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLowerTime.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudLowerTime.InterceptArrowKeys = false;
             this.nudLowerTime.Location = new System.Drawing.Point(296, 278);
             this.nudLowerTime.Maximum = new decimal(new int[] {
@@ -5224,7 +5224,7 @@
             // nudRaiseTime
             // 
             this.nudRaiseTime.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudRaiseTime.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudRaiseTime.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.nudRaiseTime.InterceptArrowKeys = false;
             this.nudRaiseTime.Location = new System.Drawing.Point(296, 74);
             this.nudRaiseTime.Maximum = new decimal(new int[] {
@@ -5255,7 +5255,7 @@
             this.label72.ForeColor = System.Drawing.Color.Black;
             this.label72.Location = new System.Drawing.Point(314, 495);
             this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(82, 16);
+            this.label72.Size = new System.Drawing.Size(81, 16);
             this.label72.TabIndex = 476;
             this.label72.Text = "Invert Relays";
             // 
@@ -5263,7 +5263,7 @@
             // 
             this.label67.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label67.BackColor = System.Drawing.Color.Transparent;
-            this.label67.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label67.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label67.ForeColor = System.Drawing.Color.Black;
             this.label67.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label67.Location = new System.Drawing.Point(519, 491);
@@ -5278,7 +5278,7 @@
             this.label56.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label56.AutoSize = true;
             this.label56.BackColor = System.Drawing.Color.Transparent;
-            this.label56.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label56.ForeColor = System.Drawing.Color.Black;
             this.label56.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label56.Location = new System.Drawing.Point(315, 3);
@@ -5308,7 +5308,7 @@
             this.cboxMachInvertRelays.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxMachInvertRelays.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxMachInvertRelays.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxMachInvertRelays.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxMachInvertRelays.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxMachInvertRelays.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxMachInvertRelays.Image = global::AgOpenGPS.Properties.Resources.ConSt_InvertRelay;
             this.cboxMachInvertRelays.Location = new System.Drawing.Point(116, 462);
@@ -5361,7 +5361,7 @@
             this.cboxTramOnBackBuffer.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxTramOnBackBuffer.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxTramOnBackBuffer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxTramOnBackBuffer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxTramOnBackBuffer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxTramOnBackBuffer.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.cboxTramOnBackBuffer.Image = global::AgOpenGPS.Properties.Resources.ConT_TramBBuffOn;
             this.cboxTramOnBackBuffer.Location = new System.Drawing.Point(560, 450);
@@ -5377,12 +5377,12 @@
             this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label23.AutoSize = true;
             this.label23.BackColor = System.Drawing.Color.Transparent;
-            this.label23.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label23.ForeColor = System.Drawing.Color.Black;
             this.label23.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label23.Location = new System.Drawing.Point(559, 450);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(114, 16);
+            this.label23.Size = new System.Drawing.Size(113, 16);
             this.label23.TabIndex = 481;
             this.label23.Text = "Tram Auto Control";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -5390,7 +5390,7 @@
             // lblTramWidthUnits
             // 
             this.lblTramWidthUnits.AutoSize = true;
-            this.lblTramWidthUnits.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTramWidthUnits.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblTramWidthUnits.ForeColor = System.Drawing.Color.Black;
             this.lblTramWidthUnits.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblTramWidthUnits.Location = new System.Drawing.Point(385, 475);
@@ -5406,7 +5406,7 @@
             this.label75.ForeColor = System.Drawing.Color.Black;
             this.label75.Location = new System.Drawing.Point(259, 440);
             this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(76, 16);
+            this.label75.Size = new System.Drawing.Size(75, 16);
             this.label75.TabIndex = 477;
             this.label75.Text = "Tram Width";
             // 
@@ -5414,7 +5414,7 @@
             // 
             this.nudTramWidth.BackColor = System.Drawing.Color.AliceBlue;
             this.nudTramWidth.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.nudTramWidth.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudTramWidth.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.nudTramWidth.InterceptArrowKeys = false;
             this.nudTramWidth.Location = new System.Drawing.Point(224, 460);
             this.nudTramWidth.Maximum = new decimal(new int[] {
@@ -5555,22 +5555,22 @@
             // label115
             // 
             this.label115.AutoSize = true;
-            this.label115.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label115.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label115.ForeColor = System.Drawing.Color.Black;
             this.label115.Location = new System.Drawing.Point(746, 42);
             this.label115.Name = "label115";
-            this.label115.Size = new System.Drawing.Size(48, 16);
+            this.label115.Size = new System.Drawing.Size(47, 16);
             this.label115.TabIndex = 509;
             this.label115.Text = "U-Turn";
             // 
             // label114
             // 
             this.label114.AutoSize = true;
-            this.label114.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label114.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label114.ForeColor = System.Drawing.Color.Black;
             this.label114.Location = new System.Drawing.Point(746, 167);
             this.label114.Name = "label114";
-            this.label114.Size = new System.Drawing.Size(47, 16);
+            this.label114.Size = new System.Drawing.Size(46, 16);
             this.label114.TabIndex = 508;
             this.label114.Text = "Lateral";
             // 
@@ -5586,7 +5586,7 @@
             this.cboxFeatureLateral.FlatAppearance.BorderSize = 2;
             this.cboxFeatureLateral.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureLateral.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureLateral.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureLateral.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureLateral.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureLateral.Location = new System.Drawing.Point(723, 185);
             this.cboxFeatureLateral.Name = "cboxFeatureLateral";
@@ -5608,7 +5608,7 @@
             this.cboxFeatureUTurn.FlatAppearance.BorderSize = 2;
             this.cboxFeatureUTurn.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureUTurn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureUTurn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureUTurn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureUTurn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureUTurn.Location = new System.Drawing.Point(723, 59);
             this.cboxFeatureUTurn.Name = "cboxFeatureUTurn";
@@ -5621,215 +5621,215 @@
             // label100
             // 
             this.label100.AutoSize = true;
-            this.label100.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label100.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label100.ForeColor = System.Drawing.Color.Black;
             this.label100.Location = new System.Drawing.Point(560, 464);
             this.label100.Name = "label100";
-            this.label100.Size = new System.Drawing.Size(69, 16);
+            this.label100.Size = new System.Drawing.Size(68, 16);
             this.label100.TabIndex = 505;
             this.label100.Text = "Auto Steer";
             // 
             // label98
             // 
             this.label98.AutoSize = true;
-            this.label98.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label98.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label98.ForeColor = System.Drawing.Color.Black;
             this.label98.Location = new System.Drawing.Point(552, 146);
             this.label98.Name = "label98";
-            this.label98.Size = new System.Drawing.Size(95, 16);
+            this.label98.Size = new System.Drawing.Size(94, 16);
             this.label98.TabIndex = 503;
             this.label98.Text = "Manual Section";
             // 
             // label99
             // 
             this.label99.AutoSize = true;
-            this.label99.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label99.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label99.ForeColor = System.Drawing.Color.Black;
             this.label99.Location = new System.Drawing.Point(560, 42);
             this.label99.Name = "label99";
-            this.label99.Size = new System.Drawing.Size(80, 16);
+            this.label99.Size = new System.Drawing.Size(79, 16);
             this.label99.TabIndex = 501;
             this.label99.Text = "Auto Section";
             // 
             // label97
             // 
             this.label97.AutoSize = true;
-            this.label97.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label97.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label97.ForeColor = System.Drawing.Color.Black;
             this.label97.Location = new System.Drawing.Point(407, 352);
             this.label97.Name = "label97";
-            this.label97.Size = new System.Drawing.Size(71, 16);
+            this.label97.Size = new System.Drawing.Size(70, 16);
             this.label97.TabIndex = 499;
             this.label97.Text = "Cycle Lines";
             // 
             // label96
             // 
             this.label96.AutoSize = true;
-            this.label96.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label96.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label96.ForeColor = System.Drawing.Color.Black;
             this.label96.Location = new System.Drawing.Point(416, 248);
             this.label96.Name = "label96";
-            this.label96.Size = new System.Drawing.Size(46, 16);
+            this.label96.Size = new System.Drawing.Size(45, 16);
             this.label96.TabIndex = 497;
             this.label96.Text = "ABLine";
             // 
             // label95
             // 
             this.label95.AutoSize = true;
-            this.label95.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label95.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label95.ForeColor = System.Drawing.Color.Black;
             this.label95.Location = new System.Drawing.Point(416, 144);
             this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(41, 16);
+            this.label95.Size = new System.Drawing.Size(40, 16);
             this.label95.TabIndex = 495;
             this.label95.Text = "Curve";
             // 
             // label94
             // 
             this.label94.AutoSize = true;
-            this.label94.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label94.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label94.ForeColor = System.Drawing.Color.Black;
             this.label94.Location = new System.Drawing.Point(562, 354);
             this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(74, 16);
+            this.label94.Size = new System.Drawing.Size(73, 16);
             this.label94.TabIndex = 493;
             this.label94.Text = "Steer Mode";
             // 
             // label93
             // 
             this.label93.AutoSize = true;
-            this.label93.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label93.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label93.ForeColor = System.Drawing.Color.Black;
             this.label93.Location = new System.Drawing.Point(412, 464);
             this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(60, 16);
+            this.label93.Size = new System.Drawing.Size(59, 16);
             this.label93.TabIndex = 491;
             this.label93.Text = "You Turn";
             // 
             // label92
             // 
             this.label92.AutoSize = true;
-            this.label92.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label92.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label92.ForeColor = System.Drawing.Color.Black;
             this.label92.Location = new System.Drawing.Point(416, 40);
             this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(53, 16);
+            this.label92.Size = new System.Drawing.Size(52, 16);
             this.label92.TabIndex = 490;
             this.label92.Text = "Contour";
             // 
             // label91
             // 
             this.label91.AutoSize = true;
-            this.label91.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label91.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label91.ForeColor = System.Drawing.Color.Black;
             this.label91.Location = new System.Drawing.Point(578, 250);
             this.label91.Name = "label91";
-            this.label91.Size = new System.Drawing.Size(36, 16);
+            this.label91.Size = new System.Drawing.Size(35, 16);
             this.label91.TabIndex = 489;
             this.label91.Text = "AgIO";
             // 
             // label90
             // 
             this.label90.AutoSize = true;
-            this.label90.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label90.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label90.ForeColor = System.Drawing.Color.Black;
             this.label90.Location = new System.Drawing.Point(237, 352);
             this.label90.Name = "label90";
-            this.label90.Size = new System.Drawing.Size(62, 16);
+            this.label90.Size = new System.Drawing.Size(61, 16);
             this.label90.TabIndex = 488;
             this.label90.Text = "Offset Fix";
             // 
             // label89
             // 
             this.label89.AutoSize = true;
-            this.label89.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label89.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label89.ForeColor = System.Drawing.Color.Black;
             this.label89.Location = new System.Drawing.Point(237, 249);
             this.label89.Name = "label89";
-            this.label89.Size = new System.Drawing.Size(60, 16);
+            this.label89.Size = new System.Drawing.Size(59, 16);
             this.label89.TabIndex = 487;
             this.label89.Text = "WebCam";
             // 
             // label88
             // 
             this.label88.AutoSize = true;
-            this.label88.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label88.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label88.ForeColor = System.Drawing.Color.Black;
             this.label88.Location = new System.Drawing.Point(229, 144);
             this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(82, 16);
+            this.label88.Size = new System.Drawing.Size(81, 16);
             this.label88.TabIndex = 486;
             this.label88.Text = "Hide Contour";
             // 
             // label87
             // 
             this.label87.AutoSize = true;
-            this.label87.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label87.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label87.ForeColor = System.Drawing.Color.Black;
             this.label87.Location = new System.Drawing.Point(233, 40);
             this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(71, 16);
+            this.label87.Size = new System.Drawing.Size(70, 16);
             this.label87.TabIndex = 485;
             this.label87.Text = "AB Smooth";
             // 
             // label86
             // 
             this.label86.AutoSize = true;
-            this.label86.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label86.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label86.ForeColor = System.Drawing.Color.Black;
             this.label86.Location = new System.Drawing.Point(64, 462);
             this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(58, 16);
+            this.label86.Size = new System.Drawing.Size(57, 16);
             this.label86.TabIndex = 484;
             this.label86.Text = "Rec Path";
             // 
             // label85
             // 
             this.label85.AutoSize = true;
-            this.label85.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label85.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label85.ForeColor = System.Drawing.Color.Black;
             this.label85.Location = new System.Drawing.Point(57, 352);
             this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(78, 16);
+            this.label85.Size = new System.Drawing.Size(77, 16);
             this.label85.TabIndex = 483;
             this.label85.Text = "Bnd Contour";
             // 
             // label84
             // 
             this.label84.AutoSize = true;
-            this.label84.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label84.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label84.ForeColor = System.Drawing.Color.Black;
             this.label84.Location = new System.Drawing.Point(65, 248);
             this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(61, 16);
+            this.label84.Size = new System.Drawing.Size(60, 16);
             this.label84.TabIndex = 482;
             this.label84.Text = "Boundary";
             // 
             // label83
             // 
             this.label83.AutoSize = true;
-            this.label83.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label83.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label83.ForeColor = System.Drawing.Color.Black;
             this.label83.Location = new System.Drawing.Point(59, 40);
             this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(72, 16);
+            this.label83.Size = new System.Drawing.Size(71, 16);
             this.label83.TabIndex = 481;
             this.label83.Text = "Tram Lines";
             // 
             // label82
             // 
             this.label82.AutoSize = true;
-            this.label82.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label82.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label82.ForeColor = System.Drawing.Color.Black;
             this.label82.Location = new System.Drawing.Point(66, 144);
             this.label82.Name = "label82";
-            this.label82.Size = new System.Drawing.Size(61, 16);
+            this.label82.Size = new System.Drawing.Size(60, 16);
             this.label82.TabIndex = 480;
             this.label82.Text = "Headland";
             // 
             // label81
             // 
-            this.label81.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label81.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label81.ForeColor = System.Drawing.Color.Black;
             this.label81.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label81.Location = new System.Drawing.Point(462, 2);
@@ -5841,7 +5841,7 @@
             // 
             // label80
             // 
-            this.label80.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label80.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label80.ForeColor = System.Drawing.Color.Black;
             this.label80.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label80.Location = new System.Drawing.Point(200, 2);
@@ -5853,7 +5853,7 @@
             // 
             // label71
             // 
-            this.label71.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label71.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label71.ForeColor = System.Drawing.Color.Black;
             this.label71.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label71.Location = new System.Drawing.Point(30, 2);
@@ -5873,7 +5873,7 @@
             this.cboxFeatureAutoSteer.FlatAppearance.BorderSize = 2;
             this.cboxFeatureAutoSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureAutoSteer.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureAutoSteer.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOff;
             this.cboxFeatureAutoSteer.Location = new System.Drawing.Point(559, 483);
@@ -5894,7 +5894,7 @@
             this.cboxFeatureManualSection.FlatAppearance.BorderSize = 2;
             this.cboxFeatureManualSection.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureManualSection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureManualSection.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureManualSection.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureManualSection.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureManualSection.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
             this.cboxFeatureManualSection.Location = new System.Drawing.Point(563, 165);
@@ -5915,7 +5915,7 @@
             this.cboxFeatureAutoSection.FlatAppearance.BorderSize = 2;
             this.cboxFeatureAutoSection.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureAutoSection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureAutoSection.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureAutoSection.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureAutoSection.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureAutoSection.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
             this.cboxFeatureAutoSection.Location = new System.Drawing.Point(563, 61);
@@ -5936,7 +5936,7 @@
             this.cboxFeatureCycleLines.FlatAppearance.BorderSize = 2;
             this.cboxFeatureCycleLines.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureCycleLines.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureCycleLines.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureCycleLines.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureCycleLines.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureCycleLines.Image = global::AgOpenGPS.Properties.Resources.ABLineCycle;
             this.cboxFeatureCycleLines.Location = new System.Drawing.Point(404, 371);
@@ -5957,7 +5957,7 @@
             this.cboxFeatureABLine.FlatAppearance.BorderSize = 2;
             this.cboxFeatureABLine.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureABLine.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureABLine.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureABLine.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOn;
             this.cboxFeatureABLine.Location = new System.Drawing.Point(404, 267);
@@ -5978,7 +5978,7 @@
             this.cboxFeatureCurve.FlatAppearance.BorderSize = 2;
             this.cboxFeatureCurve.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureCurve.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureCurve.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureCurve.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureCurve.Image = global::AgOpenGPS.Properties.Resources.CurveOn;
             this.cboxFeatureCurve.Location = new System.Drawing.Point(404, 163);
@@ -5999,7 +5999,7 @@
             this.cboxFeatureSteerMode.FlatAppearance.BorderSize = 2;
             this.cboxFeatureSteerMode.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureSteerMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureSteerMode.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureSteerMode.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureSteerMode.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureSteerMode.Image = global::AgOpenGPS.Properties.Resources.ModePurePursuit;
             this.cboxFeatureSteerMode.Location = new System.Drawing.Point(561, 373);
@@ -6020,7 +6020,7 @@
             this.cboxFeatureYouTurn.FlatAppearance.BorderSize = 2;
             this.cboxFeatureYouTurn.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureYouTurn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureYouTurn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureYouTurn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureYouTurn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureYouTurn.Image = global::AgOpenGPS.Properties.Resources.YouTurnNo;
             this.cboxFeatureYouTurn.Location = new System.Drawing.Point(404, 483);
@@ -6041,7 +6041,7 @@
             this.cboxFeatureContour.FlatAppearance.BorderSize = 2;
             this.cboxFeatureContour.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureContour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureContour.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureContour.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureContour.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureContour.Image = global::AgOpenGPS.Properties.Resources.ContourOn;
             this.cboxFeatureContour.Location = new System.Drawing.Point(404, 59);
@@ -6062,7 +6062,7 @@
             this.cboxFeatureAgIO.FlatAppearance.BorderSize = 2;
             this.cboxFeatureAgIO.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureAgIO.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureAgIO.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureAgIO.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureAgIO.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureAgIO.Image = global::AgOpenGPS.Properties.Resources.AgIO;
             this.cboxFeatureAgIO.Location = new System.Drawing.Point(561, 269);
@@ -6083,7 +6083,7 @@
             this.cboxFeatureOffsetFix.FlatAppearance.BorderSize = 2;
             this.cboxFeatureOffsetFix.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureOffsetFix.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureOffsetFix.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureOffsetFix.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureOffsetFix.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureOffsetFix.Image = global::AgOpenGPS.Properties.Resources.YouTurnReverse;
             this.cboxFeatureOffsetFix.Location = new System.Drawing.Point(230, 371);
@@ -6104,7 +6104,7 @@
             this.cboxFeatureWebcam.FlatAppearance.BorderSize = 2;
             this.cboxFeatureWebcam.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureWebcam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureWebcam.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureWebcam.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureWebcam.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureWebcam.Image = global::AgOpenGPS.Properties.Resources.Webcam;
             this.cboxFeatureWebcam.Location = new System.Drawing.Point(230, 267);
@@ -6125,7 +6125,7 @@
             this.cboxFeatureHideContour.FlatAppearance.BorderSize = 2;
             this.cboxFeatureHideContour.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureHideContour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureHideContour.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureHideContour.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureHideContour.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureHideContour.Image = global::AgOpenGPS.Properties.Resources.HideContour;
             this.cboxFeatureHideContour.Location = new System.Drawing.Point(230, 163);
@@ -6146,7 +6146,7 @@
             this.cboxFeatureABSmooth.FlatAppearance.BorderSize = 2;
             this.cboxFeatureABSmooth.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureABSmooth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureABSmooth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureABSmooth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureABSmooth.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureABSmooth.Image = global::AgOpenGPS.Properties.Resources.ABSmooth;
             this.cboxFeatureABSmooth.Location = new System.Drawing.Point(230, 59);
@@ -6167,7 +6167,7 @@
             this.cboxFeatureRecPath.FlatAppearance.BorderSize = 2;
             this.cboxFeatureRecPath.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureRecPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureRecPath.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureRecPath.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureRecPath.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureRecPath.Image = global::AgOpenGPS.Properties.Resources.RecPath;
             this.cboxFeatureRecPath.Location = new System.Drawing.Point(57, 481);
@@ -6188,7 +6188,7 @@
             this.cboxFeatureBoundaryContour.FlatAppearance.BorderSize = 2;
             this.cboxFeatureBoundaryContour.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureBoundaryContour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureBoundaryContour.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureBoundaryContour.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureBoundaryContour.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureBoundaryContour.Image = global::AgOpenGPS.Properties.Resources.MakeBoundaryContour1;
             this.cboxFeatureBoundaryContour.Location = new System.Drawing.Point(57, 371);
@@ -6209,7 +6209,7 @@
             this.cboxFeatureBoundary.FlatAppearance.BorderSize = 2;
             this.cboxFeatureBoundary.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureBoundary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureBoundary.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureBoundary.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureBoundary.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureBoundary.Image = global::AgOpenGPS.Properties.Resources.MakeBoundary;
             this.cboxFeatureBoundary.Location = new System.Drawing.Point(57, 267);
@@ -6230,7 +6230,7 @@
             this.cboxFeatureHeadland.FlatAppearance.BorderSize = 2;
             this.cboxFeatureHeadland.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureHeadland.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureHeadland.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureHeadland.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureHeadland.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureHeadland.Image = global::AgOpenGPS.Properties.Resources.HeadlandOn;
             this.cboxFeatureHeadland.Location = new System.Drawing.Point(57, 163);
@@ -6251,7 +6251,7 @@
             this.cboxFeatureTram.FlatAppearance.BorderSize = 2;
             this.cboxFeatureTram.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxFeatureTram.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureTram.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureTram.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.cboxFeatureTram.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureTram.Image = global::AgOpenGPS.Properties.Resources.TramAll;
             this.cboxFeatureTram.Location = new System.Drawing.Point(57, 59);
@@ -6267,7 +6267,7 @@
             this.lblCurrentVehicle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCurrentVehicle.AutoSize = true;
             this.lblCurrentVehicle.BackColor = System.Drawing.Color.Transparent;
-            this.lblCurrentVehicle.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.lblCurrentVehicle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblCurrentVehicle.ForeColor = System.Drawing.Color.Black;
             this.lblCurrentVehicle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblCurrentVehicle.Location = new System.Drawing.Point(34, 4);
@@ -6280,7 +6280,7 @@
             // lblInchesCm
             // 
             this.lblInchesCm.AutoSize = true;
-            this.lblInchesCm.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInchesCm.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblInchesCm.ForeColor = System.Drawing.Color.DarkGreen;
             this.lblInchesCm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblInchesCm.Location = new System.Drawing.Point(455, 37);
@@ -6292,7 +6292,7 @@
             // lblSecTotalWidthMeters
             // 
             this.lblSecTotalWidthMeters.AutoSize = true;
-            this.lblSecTotalWidthMeters.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSecTotalWidthMeters.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblSecTotalWidthMeters.ForeColor = System.Drawing.Color.Black;
             this.lblSecTotalWidthMeters.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblSecTotalWidthMeters.Location = new System.Drawing.Point(632, 32);
@@ -6303,7 +6303,7 @@
             // 
             // label52
             // 
-            this.label52.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label52.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label52.ForeColor = System.Drawing.Color.Black;
             this.label52.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label52.Location = new System.Drawing.Point(583, 4);
@@ -6316,7 +6316,7 @@
             // lblSecTotalWidthFeet
             // 
             this.lblSecTotalWidthFeet.AutoSize = true;
-            this.lblSecTotalWidthFeet.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSecTotalWidthFeet.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblSecTotalWidthFeet.ForeColor = System.Drawing.Color.Black;
             this.lblSecTotalWidthFeet.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblSecTotalWidthFeet.Location = new System.Drawing.Point(620, 32);
@@ -6328,7 +6328,7 @@
             // lblSecTotalWidthInches
             // 
             this.lblSecTotalWidthInches.AutoSize = true;
-            this.lblSecTotalWidthInches.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSecTotalWidthInches.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblSecTotalWidthInches.ForeColor = System.Drawing.Color.Black;
             this.lblSecTotalWidthInches.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblSecTotalWidthInches.Location = new System.Drawing.Point(679, 32);
@@ -6359,7 +6359,7 @@
             // lblFeetMeters
             // 
             this.lblFeetMeters.AutoSize = true;
-            this.lblFeetMeters.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFeetMeters.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblFeetMeters.ForeColor = System.Drawing.Color.DarkGreen;
             this.lblFeetMeters.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblFeetMeters.Location = new System.Drawing.Point(455, 9);
@@ -6374,7 +6374,7 @@
             this.btnOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnOK.FlatAppearance.BorderSize = 0;
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOK.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOK.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnOK.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnOK.Location = new System.Drawing.Point(780, 7);
@@ -6389,7 +6389,7 @@
             // label22
             // 
             this.label22.BackColor = System.Drawing.Color.Transparent;
-            this.label22.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label22.ForeColor = System.Drawing.Color.Black;
             this.label22.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label22.Location = new System.Drawing.Point(369, 9);
@@ -6408,7 +6408,7 @@
             this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.panelChildForm);
             this.Controls.Add(this.panelLeftSideMenu);
-            this.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;

@@ -2098,9 +2098,6 @@ namespace AgOpenGPS
                 else GL.Color3(0.298f, 0.972f, 0.99903f);
 
                 font.DrawText(center, 100, "I:" + Math.Round(ahrs.imuHeading, 1).ToString(), 1);
-                font.DrawText(center, 160, "D:" + Math.Round(testDelta, 2).ToString(), 1);
-
-
             }
 
             if (isAngVelGuidance)
