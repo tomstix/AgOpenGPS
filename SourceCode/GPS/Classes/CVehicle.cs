@@ -36,18 +36,13 @@ namespace AgOpenGPS
         public bool isHydLiftOn;
         public double stanleyIntegralDistanceAwayTriggerAB, stanleyIntegralGainAB, purePursuitIntegralGain;
 
-        //flag for free drive window to control autosteer
-        public bool isInFreeDriveMode;
-
-        //the trackbar angle for free drive
-        public double driveFreeSteerAngle = 0;
+        public CAutoSteer ast;
 
         public CVehicle(FormGPS _f)
         {
             //constructor
             mf = _f;
-            isInFreeDriveMode = false;
-
+            ast = new CAutoSteer();
 
             isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
             antennaHeight = Properties.Vehicle.Default.setVehicle_antennaHeight;

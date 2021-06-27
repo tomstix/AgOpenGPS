@@ -1477,16 +1477,16 @@ namespace AgOpenGPS
 
                         GL.Begin(PrimitiveType.Lines);
                         GL.Color3(0.9f, 0.2f, 0.2f);
-                        GL.Vertex3(ABLine.refList[0].easting, ABLine.refList[0].northing, 0.0);
-                        GL.Vertex3(ABLine.refList[2].easting, ABLine.refList[2].northing, 0.0);
+                        GL.Vertex3(ABLine.refABLineP1.easting, ABLine.refABLineP1.northing, 0);
+                        GL.Vertex3(ABLine.refABLineP2.easting, ABLine.refABLineP2.northing, 0);
                         GL.End();
                         GL.Disable(EnableCap.LineStipple);
 
                         //raw current AB Line
                         GL.Begin(PrimitiveType.Lines);
                         GL.Color3(0.9f, 0.20f, 0.90f);
-                        GL.Vertex3(ABLine.curList[0].easting, ABLine.curList[0].northing, 0.0);
-                        GL.Vertex3(ABLine.curList[1].easting, ABLine.curList[1].northing, 0.0);
+                        GL.Vertex3(ABLine.curlist[0].easting, ABLine.curlist[0].northing, 0.0);
+                        GL.Vertex3(ABLine.curlist[1].easting, ABLine.curlist[1].northing, 0.0);
                         GL.End();
                     }
 

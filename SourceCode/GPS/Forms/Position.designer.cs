@@ -522,7 +522,7 @@ namespace AgOpenGPS
             if (recPath.isDrivingRecordedPath) recPath.UpdatePosition();
 
             // If Drive button off - normal autosteer 
-            if (!vehicle.isInFreeDriveMode)
+            if (!vehicle.ast.isInFreeDriveMode)
             {
                 //fill up0 the appropriate arrays with new values
                 p_254.pgn[p_254.speedHi] = unchecked((byte)((int)(Math.Abs(pn.speed) * 10.0) >> 8));
@@ -584,11 +584,11 @@ namespace AgOpenGPS
                 p_254.pgn[p_254.status] = 1;
 
                 //send the steer angle
-                guidanceLineSteerAngle = (Int16)(vehicle.driveFreeSteerAngle * 100);
+                guidanceLineSteerAngle = (Int16)(vehicle.ast.driveFreeSteerAngle * 100);
 
                 if (isAngVelGuidance)
                 {
-                    setAngVel = 0.277777 * avgSpeed * (Math.Tan(glm.toRadians(vehicle.driveFreeSteerAngle))) / vehicle.wheelbase;
+                    setAngVel = 0.277777 * avgSpeed * (Math.Tan(glm.toRadians(vehicle.ast.driveFreeSteerAngle))) / vehicle.wheelbase;
                     setAngVel = glm.toDegrees(setAngVel) * 100;
 
                     errorAngVel = (short)(((int)(setAngVel) - ahrs.angVel));
@@ -652,7 +652,7 @@ namespace AgOpenGPS
                         {
                             //now check to make sure we are not in an inner turn boundary - drive thru is ok
                             if (yt.youTurnPhase < 0) yt.youTurnPhase++;
-                            else if (yt.youTurnPhase < 10)
+                            else if (yt.youTurnPhase != 3)
                             {
                                 if (crossTrackError > 500)
                                 {
@@ -662,17 +662,17 @@ namespace AgOpenGPS
                                 {
                                     if (ABLine.isABLineSet)
                                     {
-                                        yt.BuildABLineDubinsYouTurn(!yt.isYouTurnRight, ABLine.isHeadingSameWay, ABLine.howManyPathsAway, ref ABLine.curList, ref ABLine.refList);
+                                        yt.BuildABLineDubinsYouTurn(yt.isYouTurnRight);
                                     }
-                                    else yt.BuildABLineDubinsYouTurn(!yt.isYouTurnRight, curve.isHeadingSameWay, curve.howManyPathsAway, ref curve.curList, ref curve.refList);
+                                    else yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight, pivotAxlePos);
                                 }
 
-                                //if (yt.youTurnPhase == 3) yt.SmoothYouTurn(yt.uTurnSmoothing);
+                                if (yt.youTurnPhase == 3) yt.SmoothYouTurn(yt.uTurnSmoothing);
                             }
                             else //wait to trigger the actual turn since its made and waiting
                             {
                                 //distance from current pivot to first point of youturn pattern
-                                distancePivotToTurnLine = glm.Distance(yt.ytList[0], pivotAxlePos);
+                                distancePivotToTurnLine = glm.Distance(yt.ytList[5], pivotAxlePos);
 
                                 if ((distancePivotToTurnLine <= 20.0) && (distancePivotToTurnLine >= 18.0) && !yt.isYouTurnTriggered)
 

@@ -317,7 +317,8 @@ namespace AgOpenGPS
                 int idx = lvLines.SelectedIndices[0];
                 mf.ABLine.numABLineSelected = idx + 1;
 
-                mf.ABLine.refList[1] = new vec3(mf.ABLine.lineArr[idx].origin.easting, mf.ABLine.lineArr[idx].origin.northing, mf.ABLine.lineArr[idx].heading);
+                mf.ABLine.abHeading = mf.ABLine.lineArr[idx].heading;
+                mf.ABLine.refPoint1 = mf.ABLine.lineArr[idx].origin;
 
                 mf.ABLine.SetABLineByHeading();
 
