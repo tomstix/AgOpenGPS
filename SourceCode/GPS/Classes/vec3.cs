@@ -51,7 +51,7 @@ namespace AgOpenGPS
 
     public class vec6 : vec2
     {
-        public int crosssingIdx;
+        public int crossingIdx;
         public int turnLineIdx;
         public int boundaryIndex;
         public double time;
@@ -60,7 +60,7 @@ namespace AgOpenGPS
         {
             time = _time;
             boundaryIndex = _boundaryindex;
-            crosssingIdx = _crosssingidx;
+            crossingIdx = _crosssingidx;
             turnLineIdx = _turnlineidx;
         }
     }
