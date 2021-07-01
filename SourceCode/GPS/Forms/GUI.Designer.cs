@@ -153,6 +153,7 @@ namespace AgOpenGPS
 
                 lblTopData.Text = (tool.toolWidth * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
                 lblFix.Text = FixQuality;
+                lblAge.Text = pn.age.ToString("N1");
 
                 if (isJobStarted)
                 {
@@ -526,6 +527,9 @@ namespace AgOpenGPS
 
             //is rtk on?
             isRTK = Properties.Settings.Default.setGPS_isRTK;
+            isRTK_KillAutosteer = Properties.Settings.Default.setGPS_isRTK_KillAutoSteer;
+
+            pn.ageAlarm = Properties.Settings.Default.setGPS_ageAlarm;
 
             isAngVelGuidance = Properties.Settings.Default.setAS_isAngVelGuidance;
 
@@ -533,7 +537,11 @@ namespace AgOpenGPS
 
             gyd.sideHillCompFactor = Properties.Settings.Default.setAS_sideHillComp;
 
-            ahrs.isReverseOn = Properties.Settings.Default.setIMU_isReverseOn;
+            //ahrs.isReverseOn = Properties.Settings.Default.setIMU_isReverseOn;
+            //ahrs.reverseComp = Properties.Settings.Default.setGPS_reverseComp;
+            //ahrs.forwardComp = Properties.Settings.Default.setGPS_forwardComp;
+
+            ahrs = new CAHRS();
 
             //update the field data areas
             fd.UpdateFieldBoundaryGUIAreas();

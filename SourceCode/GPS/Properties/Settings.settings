@@ -174,7 +174,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setIMU_fusionWeight" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.25</Value>
+      <Value Profile="(Default)">0.06</Value>
     </Setting>
     <Setting Name="setIMU_rollFilter" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.5</Value>
@@ -258,6 +258,18 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setIMU_isReverseOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setGPS_forwardComp" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="setGPS_reverseComp" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="setGPS_ageAlarm" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="setGPS_isRTK_KillAutoSteer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
