@@ -26,9 +26,6 @@ namespace AgOpenGPS
         //for adding steering angle based on side slope hill
         public double sideHillCompFactor;
 
-        public vec2 goalPoint = new vec2(0, 0);
-        public vec2 radiusPoint = new vec2(0, 0);
-        public bool isLateralTriggered;
         //derivative counter
         public int counter, currentLocationIndex;
 
