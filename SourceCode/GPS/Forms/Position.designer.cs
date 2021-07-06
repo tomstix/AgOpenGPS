@@ -95,7 +95,6 @@ namespace AgOpenGPS
 
         public vec2 lastGPS = new vec2(0, 0);
 
-
         public void UpdateFixPosition()
         {
             //Measure the frequency of the GPS updates
@@ -408,7 +407,6 @@ namespace AgOpenGPS
                             //Difference between the IMU heading and the GPS heading
                             double gyroDelta = (correctionHeading + imuGPS_Offset) - gpsHeading;
                             if (gyroDelta < 0) gyroDelta += glm.twoPI;
-
 
                             //if the gyro and last corrected fix is < 10 degrees, super low pass for gps
                             if (Math.Abs(gyroDelta) < 0.18)
@@ -987,11 +985,7 @@ namespace AgOpenGPS
 
                 //All sections OFF so if on, turn off
                 else { if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); } }
-
-                //Build contour line if close enough to a patch
-                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos);
             }
-
         }
 
         //calculate the extreme tool left, right velocities, each section lookahead, and whether or not its going backwards

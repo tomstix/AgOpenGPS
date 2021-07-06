@@ -20,24 +20,6 @@ namespace AgOpenGPS
             calcList.Capacity = 128;
         }
 
-        public bool IsPointInHeadArea(vec3 testPointv2)
-        {
-            if (calcList.Count < 3) return false;
-            int j = hdLine.Count - 1;
-            bool oddNodes = false;
-
-            //test against the constant and multiples list the test point
-            for (int i = 0; i < hdLine.Count; j = i++)
-            {
-                if ((hdLine[i].northing < testPointv2.northing && hdLine[j].northing >= testPointv2.northing)
-                || (hdLine[j].northing < testPointv2.northing && hdLine[i].northing >= testPointv2.northing))
-                {
-                    oddNodes ^= ((testPointv2.northing * calcList[i].northing) + calcList[i].easting < testPointv2.easting);
-                }
-            }
-            return oddNodes; //true means inside.
-        }
-
         public bool IsPointInHeadArea(vec2 testPointv2)
         {
             if (calcList.Count < 3) return false;

@@ -265,8 +265,6 @@ namespace AgOpenGPS
         private double lastSecond;
         public void BuildContourGuidanceLine(vec3 pivot)
         {
-            if ((mf.secondsSinceStart - lastSecond) < 3) return;
-
             lastSecond = mf.secondsSinceStart;
 
             int ptCount;
@@ -431,15 +429,6 @@ namespace AgOpenGPS
             }
         }
 
-        //determine distance from contour guidance line
-        public void GetCurrentContourLine(vec3 pivot, vec3 steer)
-        {
-            if (mf.isStanleyUsed)
-                mf.gyd.StanleyGuidance(pivot, steer, ref ctList, isHeadingSameWay);
-            else
-                mf.gyd.PurePursuitGuidance(pivot, ref ctList, isHeadingSameWay);
-        }
-
         //start stop and add points to list
         public void StartContourLine(vec3 pivot)
         {
@@ -453,7 +442,6 @@ namespace AgOpenGPS
             {
                 //make new ptList
                 ptList = new List<vec3>();
-                ptList.Capacity = 16;
                 stripList.Add(ptList);
             }
 
@@ -523,7 +511,6 @@ namespace AgOpenGPS
             int ptCount = mf.bnd.bndArr[0].bndLine.Count;
 
             ptList = new List<vec3>();
-            ptList.Capacity = 128;
             stripList.Add(ptList);
 
             for (int i = ptCount - 1; i >= 0; i--)
@@ -563,6 +550,15 @@ namespace AgOpenGPS
             }
 
             mf.TimedMessageBox(1500, "Boundary Contour", "Contour Path Created");
+        }
+
+        //determine distance from contour guidance line
+        public void GetCurrentContourLine(vec3 pivot, vec3 steer)
+        {
+            if (ctList.Count < 2 || (mf.secondsSinceStart - lastSecond) > 2.0)
+                BuildContourGuidanceLine(pivot);
+
+            mf.gyd.CalculateSteerAngle(pivot, steer, ref ctList, isHeadingSameWay, mf.isStanleyUsed);
         }
 
         //draw the red follow me line

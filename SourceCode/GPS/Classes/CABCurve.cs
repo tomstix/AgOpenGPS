@@ -310,14 +310,7 @@ namespace AgOpenGPS
                 && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchValue != 0)))
                 BuildCurveCurrentList(pivot);
 
-            if (mf.isStanleyUsed)//Stanley
-            {
-                mf.gyd.StanleyGuidance(pivot, steer, ref curList, isHeadingSameWay);
-            }
-            else// Pure Pursuit ------------------------------------------
-            {
-                mf.gyd.PurePursuitGuidance(pivot, ref curList, isHeadingSameWay);
-            }
+            mf.gyd.CalculateSteerAngle(pivot, steer, ref curList, isHeadingSameWay, mf.isStanleyUsed);
         }
 
         public void DrawCurve()

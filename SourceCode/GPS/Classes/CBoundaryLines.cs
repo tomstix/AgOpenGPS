@@ -6,6 +6,19 @@ namespace AgOpenGPS
 {
     public class CBoundaryLines
     {
+        //constructor
+        public CBoundaryLines()
+        {
+            area = 0;
+            isSet = false;
+            isDriveAround = false;
+            isDriveThru = false;
+            bndLine.Capacity = 128;
+            calcList.Capacity = 128;
+            calcListEar.Capacity = 128;
+            bndLineEar.Capacity = 128;
+        }
+
         //list of coordinates of boundary line
         public List<vec3> bndLine = new List<vec3>();
 
@@ -25,19 +38,6 @@ namespace AgOpenGPS
 
         //boundary variables
         public bool isSet, isDriveAround, isDriveThru;
-
-        //constructor
-        public CBoundaryLines()
-        {
-            area = 0;
-            isSet = false;
-            isDriveAround = false;
-            isDriveThru = false;
-            bndLine.Capacity = 128;
-            calcList.Capacity = 128;
-            calcListEar.Capacity = 128;
-            bndLineEar.Capacity = 128;
-        }
 
         public void CalculateBoundaryHeadings()
         {

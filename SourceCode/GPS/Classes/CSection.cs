@@ -89,7 +89,6 @@ namespace AgOpenGPS
             //constructor
             mf = _f;
             patchList.Capacity = 2048;
-            //triangleList.Capacity = 
         }
 
         public void TurnMappingOn()

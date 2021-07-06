@@ -68,7 +68,7 @@ namespace AgOpenGPS
                 pivotAxlePosRP = mf.pivotAxlePos;
 
                 List<vec3> tt = new List<vec3>(shuttleDubinsList);
-                mf.gyd.PurePursuitGuidance(mf.pivotAxlePos, ref tt, true);
+                mf.gyd.CalculateSteerAngle(mf.pivotAxlePos, mf.steerAxlePos, ref tt, true, false);
 
                 //check if close to recorded path
                 int cnt = shuttleDubinsList.Count;
@@ -91,7 +91,7 @@ namespace AgOpenGPS
                 pivotAxlePosRP = mf.pivotAxlePos;
 
                 List<vec3> tt = new List<vec3>(recList);
-                mf.gyd.PurePursuitGuidance(mf.pivotAxlePos, ref tt, true);
+                mf.gyd.CalculateSteerAngle(mf.pivotAxlePos, mf.steerAxlePos, ref tt, true, false);
 
                 //if end of the line then stop
                 if (!isEndOfTheRecLine)
