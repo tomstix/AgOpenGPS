@@ -186,9 +186,8 @@ namespace AgOpenGPS
 
                 ABLine.numABLineSelected++;
                 if (ABLine.numABLineSelected > ABLine.numABLines) ABLine.numABLineSelected = 1;
-                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
-                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
-                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
+                ABLine.refList[1] = new vec3(ABLine.lineArr[ABLine.numABLineSelected - 1].origin.easting, ABLine.lineArr[ABLine.numABLineSelected - 1].origin.northing, ABLine.lineArr[ABLine.numABLineSelected - 1].heading);
+
                 ABLine.SetABLineByHeading();
                 ABLine.isABLineSet = true;
                 ABLine.isABLineLoaded = true;
@@ -1616,6 +1615,22 @@ namespace AgOpenGPS
                    TimedMessageBox(1500, "Sections are on", "Turn Auto or Manual Off First");
                 }
             }
+        }
+
+        private void headingChartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //check if window already exists
+            Form fcg = Application.OpenForms["FormHeadingGraph"];
+
+            if (fcg != null)
+            {
+                fcg.Focus();
+                return;
+            }
+
+            //
+            Form formG = new FormHeadingGraph(this);
+            formG.Show(this);
         }
 
         private void toolStripAutoSteerChart_Click(object sender, EventArgs e)

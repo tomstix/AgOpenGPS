@@ -933,7 +933,6 @@ namespace AgOpenGPS
             btnCycleLines.Image = Properties.Resources.ABLineCycle;
             btnCycleLines.Enabled = true;
 
-            ABLine.abHeading = 0.00;
             btnAutoSteer.Enabled = true;
 
             DisableYouTurnButtons();

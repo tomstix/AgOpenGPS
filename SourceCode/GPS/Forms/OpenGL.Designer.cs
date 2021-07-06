@@ -445,17 +445,14 @@ namespace AgOpenGPS
 
                     if (isRTK)
                     {
-                        if (pn.fixQuality != 4) DrawLostRTK();
+                        if (pn.fixQuality != 4)
+                        {
+                            DrawLostRTK();
+                            if (isRTK_KillAutosteer && isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                        }
                     }
 
-                    //if (!isFirstHeadingSet && headingFromSource == "Fix")
-                    //{
-                    //    GL.Color3(0.970f, 0.972f, 0.52f);
-                    //    font.DrawText(-220, 120, "DRIVE FORWARD TO BEGIN", 1.5);
-                    //}
-
-
-                    //if (isJobStarted) DrawFieldText();
+                    if (pn.age > pn.ageAlarm) DrawAge();
 
                     GL.Flush();//finish openGL commands
                     GL.PopMatrix();//  Pop the modelview.
@@ -1477,16 +1474,16 @@ namespace AgOpenGPS
 
                         GL.Begin(PrimitiveType.Lines);
                         GL.Color3(0.9f, 0.2f, 0.2f);
-                        GL.Vertex3(ABLine.refABLineP1.easting, ABLine.refABLineP1.northing, 0);
-                        GL.Vertex3(ABLine.refABLineP2.easting, ABLine.refABLineP2.northing, 0);
+                        GL.Vertex3(ABLine.refList[0].easting, ABLine.refList[0].northing, 0.0);
+                        GL.Vertex3(ABLine.refList[2].easting, ABLine.refList[2].northing, 0.0);
                         GL.End();
                         GL.Disable(EnableCap.LineStipple);
 
                         //raw current AB Line
                         GL.Begin(PrimitiveType.Lines);
                         GL.Color3(0.9f, 0.20f, 0.90f);
-                        GL.Vertex3(ABLine.curlist[0].easting, ABLine.curlist[0].northing, 0.0);
-                        GL.Vertex3(ABLine.curlist[1].easting, ABLine.curlist[1].northing, 0.0);
+                        GL.Vertex3(ABLine.curList[0].easting, ABLine.curList[0].northing, 0.0);
+                        GL.Vertex3(ABLine.curList[1].easting, ABLine.curList[1].northing, 0.0);
                         GL.End();
                     }
 
@@ -2106,14 +2103,17 @@ namespace AgOpenGPS
 
             GL.Color3(0.9752f, 0.952f, 0.93f);
 
-            font.DrawText(center, 40, (fixHeading * 57.2957795).ToString("N1"), 1);
+            font.DrawText(center+30, 30, (fixHeading * 57.2957795).ToString("N1"), 1);
 
             if (ahrs.imuHeading != 99999)
             {
-                font.DrawText(center, 70, "G:" + (gpsHeading * 57.2957795).ToString("N1"), 0.8);
+                GL.Color3(0.98f, 0.72f, 0.3f);
+                font.DrawText(center, 70, "G:" + (gpsHeading * 57.2957795).ToString("N1"), 1);
 
-                GL.Color3(0.9752f, 0.952f, 0.03f);
-                font.DrawText(center, 95, "I:" + Math.Round(ahrs.imuHeading, 1).ToString(), 0.8);
+                if (!isSuperSlow) GL.Color3(0.9752f, 0.952f, 0.03f);
+                else GL.Color3(0.298f, 0.972f, 0.99903f);
+
+                font.DrawText(center, 100, "I:" + Math.Round(ahrs.imuHeading, 1).ToString(), 1);
             }
 
             if (isAngVelGuidance)
@@ -2295,6 +2295,12 @@ namespace AgOpenGPS
         {
             GL.Color3(0.9752f, 0.52f, 0.0f);
             font.DrawText(-oglMain.Width / 4, 110, "Lost RTK", 2.0);
+        }
+
+        private void DrawAge()
+        {
+            GL.Color3(0.9752f, 0.52f, 0.0f);
+            font.DrawText(oglMain.Width / 4, 60, "Age:" + pn.age.ToString("N1"), 1.5);
         }
 
         private void CalcFrustum()

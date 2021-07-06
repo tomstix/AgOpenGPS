@@ -29,41 +29,47 @@ namespace AgOpenGPS
 
             if (rbtnHeadingHDT.Checked) gboxSingle.Enabled = false;
 
-            cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
-
-            cboxIsReverseOn.Checked = Properties.Settings.Default.setIMU_isReverseOn;
-
-            nudMinFixStepDistance.Value = (decimal)Properties.Settings.Default.setF_minFixStep;
-            nudStartSpeed.Value = (decimal)Properties.Vehicle.Default.setVehicle_startSpeed;
-
             if (Properties.Settings.Default.setIMU_fusionWeight > 0.2)
             {
                 Properties.Settings.Default.setIMU_fusionWeight = 0.2;
                 Properties.Settings.Default.Save();
                 mf.ahrs.fusionWeight = 0.2;
             }
-
             hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight * 500);
             lblFusion.Text = (hsbarFusion.Value).ToString();
             lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
 
+            cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
+            cboxIsRTK_KillAutoSteer.Checked = Properties.Settings.Default.setGPS_isRTK_KillAutoSteer;
+
+            cboxIsReverseOn.Checked = Properties.Settings.Default.setIMU_isReverseOn;
+
+            nudMinFixStepDistance.Value = (decimal)Properties.Settings.Default.setF_minFixStep;
+            nudStartSpeed.Value = (decimal)Properties.Vehicle.Default.setVehicle_startSpeed;
+
             cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
 
-            hsbarFusion.Focus();
             nudMinimumFrameTime.Value = Properties.Settings.Default.SetGPS_udpWatchMsec;
+
+            nudForwardComp.Value = (decimal)(Properties.Settings.Default.setGPS_forwardComp);
+            nudReverseComp.Value = (decimal)(Properties.Settings.Default.setGPS_reverseComp);
+            nudAgeAlarm.Value = Properties.Settings.Default.setGPS_ageAlarm;
         }
 
         private void tabDHeading_Leave(object sender, EventArgs e)
         {
+            Properties.Settings.Default.setIMU_isDualAsIMU = mf.ahrs.isDualAsIMU = cboxIsDualAsIMU.Checked;
+
             Properties.Settings.Default.setIMU_fusionWeight = (double)hsbarFusion.Value * 0.002;
             mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.002;
-
-            Properties.Settings.Default.setIMU_isDualAsIMU = mf.ahrs.isDualAsIMU = cboxIsDualAsIMU.Checked;
 
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 
             Properties.Settings.Default.setGPS_isRTK = mf.isRTK = cboxIsRTK.Checked;
+            Properties.Settings.Default.setGPS_isRTK_KillAutoSteer = mf.isRTK_KillAutosteer = cboxIsRTK_KillAutoSteer.Checked;
+
+            Properties.Settings.Default.setIMU_isReverseOn = mf.ahrs.isReverseOn = cboxIsReverseOn.Checked;
 
             Properties.Settings.Default.setIMU_isReverseOn = mf.ahrs.isReverseOn = cboxIsReverseOn.Checked;
 
@@ -89,19 +95,12 @@ namespace AgOpenGPS
             }
         }
 
-        private void hsbarFusion_ValueChanged(object sender, EventArgs e)
-        {
-            lblFusion.Text = (hsbarFusion.Value).ToString();
-            lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
-        }
-
         private void nudMinFixStepDistance_Click(object sender, EventArgs e)
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setF_minFixStep = (double)nudMinFixStepDistance.Value;
             }
-            hsbarFusion.Focus();
         }
 
         private void nudStartSpeed_Click(object sender, EventArgs e)
@@ -110,7 +109,36 @@ namespace AgOpenGPS
             {
                 Properties.Vehicle.Default.setVehicle_startSpeed = (double)nudStartSpeed.Value;
             }
-            hsbarFusion.Focus();
+        }
+
+        private void hsbarFusion_ValueChanged(object sender, EventArgs e)
+        {
+            lblFusion.Text = (hsbarFusion.Value).ToString();
+            lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
+        }
+
+        private void nudForwardComp_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setGPS_forwardComp = (double)nudForwardComp.Value;
+            }
+        }
+
+        private void nudReverseComp_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setGPS_reverseComp = (double)nudReverseComp.Value;
+            }
+        }
+
+        private void nudAgeAlarm_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setGPS_ageAlarm = (int)nudAgeAlarm.Value;
+            }
         }
 
         #endregion

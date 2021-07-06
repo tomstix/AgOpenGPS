@@ -67,10 +67,10 @@ namespace AgOpenGPS
 
             if (idx >= 0)
             {
-                mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
+                mf.ABLine.lineArr[idx].heading = mf.ABLine.refList[1].heading;
                 //calculate the new points for the reference line and points
-                mf.ABLine.lineArr[idx].origin.easting = mf.ABLine.refPoint1.easting;
-                mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.refPoint1.northing;
+                mf.ABLine.lineArr[idx].origin.easting = mf.ABLine.refList[1].easting;
+                mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.refList[1].northing;
             }
 
             mf.FileSaveABLines();
@@ -135,18 +135,7 @@ namespace AgOpenGPS
 
         private void btnSwapAB_Click(object sender, EventArgs e)
         {
-            mf.ABLine.abHeading += Math.PI;
-            if (mf.ABLine.abHeading > glm.twoPI) mf.ABLine.abHeading -= glm.twoPI;
-
-            mf.ABLine.refABLineP1.easting = mf.ABLine.refPoint1.easting - (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-            mf.ABLine.refABLineP1.northing = mf.ABLine.refPoint1.northing - (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
-
-            mf.ABLine.refABLineP2.easting = mf.ABLine.refPoint1.easting + (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-            mf.ABLine.refABLineP2.northing = mf.ABLine.refPoint1.northing + (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
-
-            mf.ABLine.refPoint2.easting = mf.ABLine.refABLineP2.easting;
-            mf.ABLine.refPoint2.northing = mf.ABLine.refABLineP2.northing;
-
+            mf.ABLine.SwapAB();
             mf.ABLine.BuildTram();
         }
 
