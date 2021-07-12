@@ -2174,7 +2174,6 @@
             this.cboxAngVel.Text = "AV";
             this.cboxAngVel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxAngVel.UseVisualStyleBackColor = false;
-            this.cboxAngVel.Visible = false;
             this.cboxAngVel.Click += new System.EventHandler(this.cboxAngVel_Click);
             // 
             // label102

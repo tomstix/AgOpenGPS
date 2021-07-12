@@ -218,28 +218,6 @@ namespace AgOpenGPS
                 minuteCounter++;
                 tenMinuteCounter++;
 
-                if (isStanleyUsed)
-                {
-                    if (curve.isBtnCurveOn || ABLine.isBtnABLineOn)
-                    {
-                        lblInty.Text = gyd.inty.ToString("N3");
-                    }
-                }
-                else
-                {
-                    if (curve.isBtnCurveOn)
-                    {
-                        lblInty.Text = curve.inty.ToString("N3");
-                    }
-
-                    else if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
-                    {
-                        lblInty.Text = ABLine.inty.ToString("N3");
-                    }
-
-                    else if (ct.isContourBtnOn) lblInty.Text = ct.inty.ToString("N3");
-                }
-
                 if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
                 {
                     btnEditAB.Text = ((int)(ABLine.moveDistance * 100)).ToString();
@@ -248,6 +226,7 @@ namespace AgOpenGPS
                 {
                     btnEditAB.Text = ((int)(curve.moveDistance * 100)).ToString();
                 }
+
 
                 //the main formgps window
                 if (isMetric)  //metric or imperial
@@ -276,6 +255,28 @@ namespace AgOpenGPS
                         panelSim.BackColor = Color.Tomato;
                     }
                 }
+
+                if (isStanleyUsed)
+                {
+                    if (curve.isBtnCurveOn || ABLine.isBtnABLineOn)
+                    {
+                        lblInty.Text = gyd.inty.ToString("N3");
+                    }
+                }
+                else
+                {
+                    if (curve.isBtnCurveOn)
+                    {
+                        lblInty.Text = curve.inty.ToString("N3");
+                    }
+
+                    else if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
+                    {
+                        lblInty.Text = ABLine.inty.ToString("N3");
+                    }
+
+                    else if (ct.isContourBtnOn) lblInty.Text = ct.inty.ToString("N3");
+                }
             }
 
             //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////
@@ -285,6 +286,19 @@ namespace AgOpenGPS
                 displayUpdateHalfSecondCounter = oneHalfSecond;
 
                 isFlashOnOff = !isFlashOnOff;
+ 
+                //the main formgps window
+                if (isMetric)  //metric or imperial
+                {
+                    lblSpeed.Text = SpeedKPH;
+                    //btnContour.Text = XTE; //cross track error
+
+                }
+                else  //Imperial Measurements
+                {
+                    lblSpeed.Text = SpeedMPH;
+                    //btnContour.Text = InchXTE; //cross track error
+                }
 
                 //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
                 if (isJobStarted && ahrs.isAutoSteerAuto &&
@@ -303,19 +317,6 @@ namespace AgOpenGPS
                 //Make sure it is off when it should
                 if ((!ABLine.isBtnABLineOn && !ct.isContourBtnOn && !curve.isBtnCurveOn && isAutoSteerBtnOn)
                     ) btnAutoSteer.PerformClick();
-
-                //the main formgps window
-                if (isMetric)  //metric or imperial
-                {
-                    lblSpeed.Text = SpeedKPH;
-                    //btnContour.Text = XTE; //cross track error
-
-                }
-                else  //Imperial Measurements
-                {
-                    lblSpeed.Text = SpeedMPH;
-                    //btnContour.Text = InchXTE; //cross track error
-                }
 
                 secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
 

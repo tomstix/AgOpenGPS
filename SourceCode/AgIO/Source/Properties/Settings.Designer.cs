@@ -217,7 +217,7 @@ namespace AgIO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
         public int setNTRIP_sendGGAInterval {
             get {
                 return ((int)(this["setNTRIP_sendGGAInterval"]));

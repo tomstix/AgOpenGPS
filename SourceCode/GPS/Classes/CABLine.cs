@@ -144,8 +144,11 @@ namespace AgOpenGPS
                 radiusPointAB.easting = mf.yt.radiusPointYT.easting;
                 radiusPointAB.northing = mf.yt.radiusPointYT.northing;
                 ppRadiusAB = mf.yt.ppRadiusYT;
+
+                mf.setAngVel = 0.277777 * mf.pn.speed / ppRadiusAB;
+                mf.setAngVel = glm.toDegrees(mf.setAngVel) * 100;
             }
-            
+
             //Stanley
             else if (mf.isStanleyUsed)
                 mf.gyd.StanleyGuidanceABLine(currentABLineP1, currentABLineP2, pivot, steer);
@@ -263,26 +266,30 @@ namespace AgOpenGPS
                 if (steerAngleAB < -mf.vehicle.maxSteerAngle) steerAngleAB = -mf.vehicle.maxSteerAngle;
                 if (steerAngleAB > mf.vehicle.maxSteerAngle) steerAngleAB = mf.vehicle.maxSteerAngle;
 
-                //limit circle size for display purpose
-                if (ppRadiusAB < -500) ppRadiusAB = -500;
-                if (ppRadiusAB > 500) ppRadiusAB = 500;
-
                 radiusPointAB.easting = pivot.easting + (ppRadiusAB * Math.Cos(localHeading));
                 radiusPointAB.northing = pivot.northing + (ppRadiusAB * Math.Sin(localHeading));
 
-                if (mf.isAngVelGuidance)
+                //if (mf.isAngVelGuidance)
                 {
                     //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
                     mf.setAngVel = 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleAB))) / mf.vehicle.wheelbase;
+
+                    mf.setAngVel = 0.277777 * mf.pn.speed / ppRadiusAB;
                     mf.setAngVel = glm.toDegrees(mf.setAngVel) * 100;
 
+
+
                     //clamp the steering angle to not exceed safe angular velocity
-                    if (Math.Abs(mf.setAngVel) > 1000)
-                    {
-                        //mf.setAngVel = mf.setAngVel < 0 ? -mf.vehicle.maxAngularVelocity : mf.vehicle.maxAngularVelocity;
-                        mf.setAngVel = mf.setAngVel < 0 ? -1000 : 1000;
-                    }
+                    //if (Math.Abs(mf.setAngVel) > 1000)
+                    //{
+                    //    //mf.setAngVel = mf.setAngVel < 0 ? -mf.vehicle.maxAngularVelocity : mf.vehicle.maxAngularVelocity;
+                    //    mf.setAngVel = mf.setAngVel < 0 ? -1000 : 1000;
+                    //}
                 }
+
+                //limit circle size for display purpose
+                if (ppRadiusAB < -500) ppRadiusAB = -500;
+                if (ppRadiusAB > 500) ppRadiusAB = 500;
 
                 //distance is negative if on left, positive if on right
                 if (!isHeadingSameWay)
