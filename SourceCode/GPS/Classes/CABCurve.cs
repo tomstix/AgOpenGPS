@@ -497,18 +497,20 @@ namespace AgOpenGPS
                     //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
 
                     //double angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleCu))) / mf.vehicle.wheelbase;
-                    mf.setAngVel = 0.277777 * mf.pn.speed / ppRadiusCu;
-                    mf.setAngVel = glm.toDegrees(mf.setAngVel) * 100;
+                    //if (mf.isAngVelGuidance)
+                    {
+                        mf.setAngVel = 0.277777 * mf.pn.speed / ppRadiusCu;
+                        mf.setAngVel = glm.toDegrees(mf.setAngVel) * 100;
 
-                    if (ppRadiusCu < -500) ppRadiusCu = -500;
-                    if (ppRadiusCu > 500) ppRadiusCu = 500;
+                        if (ppRadiusCu < -500) ppRadiusCu = -500;
+                        if (ppRadiusCu > 500) ppRadiusCu = 500;
+                    }
 
                     //clamp the steering angle to not exceed safe angular velocity
-                    //if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
+                    //if (Math.Abs(mf.setAngVel) > 1000)
                     //{
-                    //    steerAngleCu = glm.toDegrees(steerAngleCu > 0 ?
-                    //            (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777)))
-                    //        : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777))));
+                    //    //mf.setAngVel = mf.setAngVel < 0 ? -mf.vehicle.maxAngularVelocity : mf.vehicle.maxAngularVelocity;
+                    //    mf.setAngVel = mf.setAngVel < 0 ? -1000 : 1000;
                     //}
 
                     if (!isHeadingSameWay)

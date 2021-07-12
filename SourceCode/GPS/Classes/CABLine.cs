@@ -277,8 +277,6 @@ namespace AgOpenGPS
                     mf.setAngVel = 0.277777 * mf.pn.speed / ppRadiusAB;
                     mf.setAngVel = glm.toDegrees(mf.setAngVel) * 100;
 
-
-
                     //clamp the steering angle to not exceed safe angular velocity
                     //if (Math.Abs(mf.setAngVel) > 1000)
                     //{
