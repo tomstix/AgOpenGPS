@@ -927,6 +927,11 @@ namespace AgOpenGPS
                     GL.LineWidth(mf.ABLine.lineWidth);
                     GL.Color3(0.98f, 0.2f, 0.980f);
                     GL.Begin(PrimitiveType.LineStrip);
+                    for (int h = 0; h < ptCount; h++) GL.Vertex3(ptList[h].easting, ptList[h].northing, 0);
+                    GL.End();
+
+                    GL.Color3(0.2f, 0.9f, 0.2f);
+                    GL.Begin(PrimitiveType.LineStrip);
                     for (int h = lower; h < upper; h++) GL.Vertex3(ptList[h].easting, ptList[h].northing, 0);
                     GL.End();
 
