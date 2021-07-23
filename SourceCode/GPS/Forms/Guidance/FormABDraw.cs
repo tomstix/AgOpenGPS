@@ -46,7 +46,8 @@ namespace AgOpenGPS
         private void FormABDraw_Load(object sender, EventArgs e)
         {
             int cnt = mf.bnd.bndArr[0].bndLine.Count;
-            arr = new vec3[cnt * 2];
+            int ptcnt = mf.ct.ptList.Count;
+            arr = new vec3[(cnt * 2)+ptcnt];
 
             for (int i = 0; i < cnt; i++)
             {
@@ -60,6 +61,14 @@ namespace AgOpenGPS
                 arr[i].easting = mf.bnd.bndArr[0].bndLine[i - cnt].easting;
                 arr[i].northing = mf.bnd.bndArr[0].bndLine[i - cnt].northing;
                 arr[i].heading = mf.bnd.bndArr[0].bndLine[i - cnt].heading;
+            }
+
+            for (int i = cnt*2; i < (cnt * 2)+ptcnt; i++)
+            {
+                int j = i - (cnt * 2);
+                arr[i].easting = mf.ct.ptList[j].easting;
+                arr[i].northing = mf.ct.ptList[j].northing;
+                arr[i].heading = mf.ct.ptList[j].heading;
             }
 
             nudDistance.Value = (decimal)Math.Round(((mf.tool.toolWidth * mf.m2InchOrCm) * 0.5), 0); // 
@@ -671,6 +680,7 @@ namespace AgOpenGPS
 
             //draw all the boundaries
             mf.bnd.DrawBoundaryLines();
+            mf.ct.DrawContourLine();
 
             //the vehicle
             GL.PointSize(16.0f);
