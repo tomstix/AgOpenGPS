@@ -276,7 +276,6 @@
             this.btnDistanceUp = new ProXoft.WinForms.RepeatButton();
             this.btnDistanceDn = new ProXoft.WinForms.RepeatButton();
             this.tabASteer = new System.Windows.Forms.TabPage();
-            this.label12 = new System.Windows.Forms.Label();
             this.labelPressureTurnSensor = new System.Windows.Forms.Label();
             this.labelCurrentTurnSensor = new System.Windows.Forms.Label();
             this.labelEncoder = new System.Windows.Forms.Label();
@@ -386,6 +385,8 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
+            this.cboxWorksw = new System.Windows.Forms.ComboBox();
+            this.label103 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -4759,7 +4760,8 @@
             // tabASteer
             // 
             this.tabASteer.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabASteer.Controls.Add(this.label12);
+            this.tabASteer.Controls.Add(this.cboxWorksw);
+            this.tabASteer.Controls.Add(this.label103);
             this.tabASteer.Controls.Add(this.labelPressureTurnSensor);
             this.tabASteer.Controls.Add(this.labelCurrentTurnSensor);
             this.tabASteer.Controls.Add(this.labelEncoder);
@@ -4793,16 +4795,6 @@
             this.tabASteer.Text = "aSteer";
             this.tabASteer.Enter += new System.EventHandler(this.tabASteer_Enter);
             this.tabASteer.Leave += new System.EventHandler(this.tabASteer_Leave);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(613, 327);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(160, 32);
-            this.label12.TabIndex = 487;
-            this.label12.Text = "Switch - Momentary\r\nButton - Push On, Push Off";
             // 
             // labelPressureTurnSensor
             // 
@@ -4888,7 +4880,7 @@
             this.cboxMotorDrive.Items.AddRange(new object[] {
             "Cytron",
             "IBT2"});
-            this.cboxMotorDrive.Location = new System.Drawing.Point(578, 89);
+            this.cboxMotorDrive.Location = new System.Drawing.Point(579, 60);
             this.cboxMotorDrive.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxMotorDrive.Name = "cboxMotorDrive";
             this.cboxMotorDrive.Size = new System.Drawing.Size(226, 37);
@@ -4906,12 +4898,30 @@
             "None",
             "Button",
             "Switch"});
-            this.cboxSteerEnable.Location = new System.Drawing.Point(579, 287);
+            this.cboxSteerEnable.Location = new System.Drawing.Point(577, 200);
             this.cboxSteerEnable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxSteerEnable.Name = "cboxSteerEnable";
             this.cboxSteerEnable.Size = new System.Drawing.Size(226, 37);
             this.cboxSteerEnable.TabIndex = 462;
             this.cboxSteerEnable.Click += new System.EventHandler(this.EnableAlert_Click);
+            // 
+            // cboxWorksw
+            // 
+            this.cboxWorksw.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxWorksw.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxWorksw.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxWorksw.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxWorksw.FormattingEnabled = true;
+            this.cboxWorksw.Items.AddRange(new object[] {
+            "None",
+            "Hitch",
+            "PTO"});
+            this.cboxWorksw.Location = new System.Drawing.Point(579, 272);
+            this.cboxWorksw.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxWorksw.Name = "cboxWorksw";
+            this.cboxWorksw.Size = new System.Drawing.Size(226, 37);
+            this.cboxWorksw.TabIndex = 488;
+            this.cboxWorksw.Click += new System.EventHandler(this.EnableAlert_Click);
             // 
             // label62
             // 
@@ -4919,7 +4929,7 @@
             this.label62.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label62.ForeColor = System.Drawing.Color.Black;
             this.label62.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label62.Location = new System.Drawing.Point(577, 254);
+            this.label62.Location = new System.Drawing.Point(575, 167);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(230, 29);
             this.label62.TabIndex = 463;
@@ -4936,7 +4946,7 @@
             this.cboxConv.Items.AddRange(new object[] {
             "Single",
             "Differential"});
-            this.cboxConv.Location = new System.Drawing.Point(578, 187);
+            this.cboxConv.Location = new System.Drawing.Point(577, 132);
             this.cboxConv.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxConv.Name = "cboxConv";
             this.cboxConv.Size = new System.Drawing.Size(226, 37);
@@ -4949,7 +4959,7 @@
             this.label63.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label63.ForeColor = System.Drawing.Color.Black;
             this.label63.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label63.Location = new System.Drawing.Point(574, 58);
+            this.label63.Location = new System.Drawing.Point(575, 29);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(230, 29);
             this.label63.TabIndex = 460;
@@ -4962,7 +4972,7 @@
             this.label64.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label64.ForeColor = System.Drawing.Color.Black;
             this.label64.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label64.Location = new System.Drawing.Point(573, 155);
+            this.label64.Location = new System.Drawing.Point(572, 100);
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(230, 29);
             this.label64.TabIndex = 461;
@@ -6543,6 +6553,19 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label103
+            // 
+            this.label103.BackColor = System.Drawing.Color.Transparent;
+            this.label103.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label103.ForeColor = System.Drawing.Color.Black;
+            this.label103.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label103.Location = new System.Drawing.Point(575, 241);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(230, 29);
+            this.label103.TabIndex = 489;
+            this.label103.Text = "Workswitch Type";
+            this.label103.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -6958,7 +6981,6 @@
         private System.Windows.Forms.Label labelPressureTurnSensor;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnFeatureHides;
         private System.Windows.Forms.TabPage tabBtns;
         private System.Windows.Forms.CheckBox cboxFeatureTram;
@@ -7044,5 +7066,7 @@
         private System.Windows.Forms.Label lblIMUFusion;
         private System.Windows.Forms.Label label118;
         private System.Windows.Forms.CheckBox cboxIsRTK_KillAutoSteer;
+        private System.Windows.Forms.ComboBox cboxWorksw;
+        private System.Windows.Forms.Label label103;
     }
 }

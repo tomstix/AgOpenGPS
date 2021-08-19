@@ -124,7 +124,7 @@ namespace AgOpenGPS
             public int angVel  = 9;
             //public int  = 10;
             //public int  = 11;
-            //public int  = 12;
+            public int set2 = 12;
 
             public CPGN_FB()
             {
@@ -133,6 +133,7 @@ namespace AgOpenGPS
                 pgn[minSpeed] = 0;
                 pgn[set1] = 0;
                 pgn[angVel] = 0;
+                pgn[set2] = 0;
             }
 
             public void Reset()

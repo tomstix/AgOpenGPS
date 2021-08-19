@@ -188,6 +188,7 @@ namespace AgOpenGPS
                         //steer config
                         mf.p_251.pgn[mf.p_251.set0] = Properties.Vehicle.Default.setArdSteer_setting0;
                         mf.p_251.pgn[mf.p_251.set1] = Properties.Vehicle.Default.setArdSteer_setting1;
+                        mf.p_251.pgn[mf.p_251.set2] = Properties.Vehicle.Default.setArdSteer_setting2;
                         mf.p_251.pgn[mf.p_251.maxPulse] = Properties.Vehicle.Default.setArdSteer_maxPulseCounts;
                         mf.p_251.pgn[mf.p_251.minSpeed] = 5; //0.5 kmh
 

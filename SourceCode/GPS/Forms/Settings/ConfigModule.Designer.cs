@@ -83,6 +83,13 @@ namespace AgOpenGPS
                 label61.Visible = false;
                 nudMaxCounts.Visible = false;
             }
+
+            sett = Properties.Vehicle.Default.setArdSteer_setting2;
+
+            if ((sett & 1) == 1) cboxWorksw.Text = "Hitch";
+            else if((sett & 2) == 2) cboxWorksw.Text = "PTO";
+            else cboxWorksw.Text = "None";
+
         }
 
         private void tabASteer_Leave(object sender, EventArgs e)
@@ -238,10 +245,25 @@ namespace AgOpenGPS
 
             Properties.Vehicle.Default.setArdSteer_setting1 = (byte)sett;
 
+            set = 1;
+            reset = 2046;
+            sett = 0;
+            if (cboxWorksw.Text == "Hitch") sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxWorksw.Text == "PTO") sett |= set;
+            else sett &= reset;
+
+            Properties.Vehicle.Default.setArdSteer_setting2 = (byte)sett;
+
             Properties.Vehicle.Default.Save();
 
             mf.p_251.pgn[mf.p_251.set0] = Properties.Vehicle.Default.setArdSteer_setting0;
             mf.p_251.pgn[mf.p_251.set1] = Properties.Vehicle.Default.setArdSteer_setting1;
+            mf.p_251.pgn[mf.p_251.set2] = Properties.Vehicle.Default.setArdSteer_setting2;
             mf.p_251.pgn[mf.p_251.maxPulse] = Properties.Vehicle.Default.setArdSteer_maxPulseCounts;
             mf.p_251.pgn[mf.p_251.minSpeed] = 5; //0.5 kmh
 

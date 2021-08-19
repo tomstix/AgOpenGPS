@@ -155,6 +155,9 @@
     <Setting Name="setArdSteer_setting1" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+	  <Setting Name="setArdSteer_setting2" Type="System.Byte" Scope="User">
+		  <Value Profile="(Default)">0</Value>
+	  </Setting>
     <Setting Name="setArdSteer_minSpeed" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
